@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Letter Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="letter.js" defer></script>
+</head>
+<body>
+    <h2>Generate Your Letter</h2>
+    <form id="letterForm">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" required><br><br>
+
+        <label for="designation">Designation:</label>
+        <input type="text" id="designation" required><br><br>
+
+        <label for="location">Job Location:</label>
+        <input type="text" id="location" required><br><br>
+
+        <button type="button" onclick="generatePDF()">Download PDF</button>
+    </form>
+
+    <h3>Preview of Your Letter:</h3>
+    <div id="letterOutput"></div>
+</body>
+</html>
