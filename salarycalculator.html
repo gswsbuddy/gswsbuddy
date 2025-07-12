@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GSWS Buddy Salary Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4faff;
+      padding: 20px;
+    }
+    h2 {
+      text-align: center;
+      color: #005a9c;
+    }
+    label {
+      font-weight: bold;
+    }
+    form {
+      max-width: 500px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0 16px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #005a9c;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #output {
+      margin-top: 30px;
+      background: #e8f0fe;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+<body>
+  <h2>GSWS Buddy Salary Calculator</h2>
+  <form id="salaryForm">
+    <label for="basic">Basic Pay (₹):</label>
+    <input type="number" id="basic" required>
+
+    <label for="hra">HRA Rate (%):</label>
+    <select id="hra" required>
+      <option value="10">10%</option>
+      <option value="12">12%</option>
+      <option value="16">16%</option>
+    </select>
+
+    <label for="apgli">APGLI (₹):</label>
+    <input type="number" id="apgli" required>
+
+    <button type="button" onclick="calculateSalary()">Calculate</button>
+  </form>
+
+  <div id="output"></div>
+
+  <script src="salarycalculator.js"></script>
+</body>
+</html>
