@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GSWS Buddy - Increment Certificate Generator</title>
+  <style>
+    body {
+      font-family: 'Times New Roman', serif;
+      background: #eef;
+      padding: 20px;
+    }
+    form {
+      background: #fff;
+      padding: 20px;
+      max-width: 700px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+    input {
+      width: 100%;
+      padding: 6px;
+      margin-top: 4px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      margin-top: 20px;
+      margin-right: 10px;
+      padding: 10px 15px;
+      background-color: #005a9c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #output {
+      background: #fff;
+      padding: 30px;
+      margin-top: 30px;
+      white-space: pre-wrap;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      font-size: 16px;
+      line-height: 2;
+      font-family: 'Times New Roman', serif;
+    }
+  </style>
+</head>
+<body>
+  <h2 style="text-align:center; color:#005a9c;">Increment Certificate Generator</h2>
+  <form>
+    <label>Employee Name</label>
+    <input type="text" id="name">
+    <label>Designation</label>
+    <input type="text" id="designation">
+    <label>Place of Working</label>
+    <input type="text" id="placeOfWorking">
+    <label>Mandal</label>
+    <input type="text" id="mandal">
+    <label>District</label>
+    <input type="text" id="district">
+    <label>Date of Working in Present Station</label>
+    <input type="date" id="dateOfJoining">
+    <label>Date of Regularisation</label>
+    <input type="date" id="regularisationDate">
+    <label>Basic Pay</label>
+    <input type="number" id="basicPay">
+    <label>Last Increment Date</label>
+    <input type="date" id="lastIncrementDate">
+
+    <button type="button" onclick="generatePreview()">Generate Preview</button>
+    <button type="button" onclick="downloadWord()">Download as Word</button>
+  </form>
+
+  <div id="output"></div>
+
+  <script>
+    function formatDateIndian(dateStr) {
+      const date = new Date(dateStr);
+      return `${String(date.getDate()).padStart(2,"0")}/${String(date.getMonth()+1).padStart(2,"0")}/${date.getFullYear()}`;
+    }
+
+    function calculateOneYearLater(dateStr) {
+      const date = new Date(dateStr);
+      date.setDate(date.getDate() + 364); // 364th day logic
+      return formatDateIndian(date.toISOString().split('T')[0]);
+    }
+
+    function generateText() {
+      const name = document.getElementById("name").value;
+      const designation = document.getElementById("designation").value;
+      const placeOfWorking = document.getElementById("placeOfWorking").value;
+      const mandal = document.getElementById("mandal").value;
+      const district = document.getElementById("district").value;
+      const dateOfJoining = formatDateIndian(document.getElementById("dateOfJoining").value);
+      const regularisationDate = formatDateIndian(document.getElementById("regularisationDate").value);
+      const basicPay = document.getElementById("basicPay").value;
+      const lastIncrementRaw = document.getElementById("lastIncrementDate").value;
+      const lastIncrementDate = formatDateIndian(lastIncrementRaw);
+      const oneYearDate = calculateOneYearLater(lastIncrementRaw);
+
+      const leaveTable = `
+        <table border="1" cellspacing="0" cellpadding="5" style="border-collapse: collapse; width: 100%; font-family: Times New Roman; font-size: 16px;">
+          <tr>
+            <th>S. No</th>
+            <th>Type of Leave</th>
+            <th>Leave Period From</th>
+            <th>Leave Period To</th>
+            <th>No. of Days</th>
+            <th>Remarks</th>
+          </tr>
+          <tr><td>1</td><td>Maternity Leave</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>2</td><td>EOL - ExtraOrdinary Leave</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>3</td><td>Medical Leave (HPL/Commuted)</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>4</td><td>Child Care Leave</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>5</td><td>Earned Leave</td><td></td><td></td><td></td><td></td></tr>
+        </table>
+      `;
+
+      return `
+        <h3 style="text-align:center;">EMPLOYEE SERVICE CERTIFICATE</h3>
+        <p style="text-indent: 50px;">This is to certify that Sri ${name} working as ${designation} at ${placeOfWorking} Grama Sachivalayam, ${mandal} (M), ${district} District from ${dateOfJoining}. He has regularised from service on ${regularisationDate}. His basic pay is Rs. ${basicPay}/- wef ${lastIncrementDate}. He has completed one year of his service without any break. He has paid and drawn salary for the period from ${lastIncrementDate} to ${oneYearDate}.</p>
+        <p>His leave availed details are as follows from the period ${lastIncrementDate} to ${oneYearDate}:</p>
+        ${leaveTable}
+        <p>So Sri ${name}, ${designation} is eligible for Annual Grade Increment wef ${oneYearDate} as per our records.</p>
+        <p style="margin-top: 40px;">Panchayath Secretary (DDO)<br>
+        ${placeOfWorking} Village Secretariat<br>
+        ${mandal} (M.), ${district} Dist.</p>
+      `;
+    }
+
+    function generatePreview() {
+      document.getElementById("output").innerHTML = generateText();
+    }
+
+    function downloadWord() {
+      const content = generateText();
+      const sourceHTML = `
+        <html xmlns:o='urn:schemas-microsoft-com:office:office'
+              xmlns:w='urn:schemas-microsoft-com:office:word'
+              xmlns='http://www.w3.org/TR/REC-html40'>
+          <head><meta charset='utf-8'></head>
+          <body style='font-family:Times New Roman; font-size:16px; line-height:2;'>${content}</body>
+        </html>
+      `;
+      const blob = new Blob(['\ufeff', sourceHTML], {
+        type: 'application/msword'
+      });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'Increment_Certificate.doc';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  </script>
+</body>
+</html>
