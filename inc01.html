@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GSWS Buddy - Increment Letter Generator</title>
+  <style>
+    body {
+      font-family: 'Times New Roman', serif;
+      background: #eef;
+      padding: 20px;
+    }
+    form {
+      background: #fff;
+      padding: 20px;
+      max-width: 700px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+    input, select {
+      width: 100%;
+      padding: 6px;
+      margin-top: 4px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      margin-top: 20px;
+      margin-right: 10px;
+      padding: 10px 15px;
+      background-color: #005a9c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #output {
+      background: #fff;
+      padding: 30px;
+      margin-top: 30px;
+      white-space: pre-wrap;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      font-size: 16px;
+      line-height: 1.8;
+      text-align: justify;
+      text-indent: 40px;
+    }
+  </style>
+</head>
+<body>
+  <h2 style="text-align:center; color:#005a9c;">Increment Application Letter Generator</h2>
+  <form>
+    <label>Name of the Employee</label>
+    <input type="text" id="name">
+    <label>Designation</label>
+    <input type="text" id="designation">
+    <label>Working Place</label>
+    <input type="text" id="workingPlace">
+    <label>Working Mandal</label>
+    <input type="text" id="workingMandal">
+    <label>Working District</label>
+    <input type="text" id="workingDistrict">
+    <label>Date of Increment</label>
+    <input type="date" id="dateIncrement">
+    <label>Date of Joining in Present Cadre</label>
+    <input type="date" id="joiningDate">
+    <label>Increment Month</label>
+    <select id="incrementMonth">
+      <option value="">--Select Month--</option>
+      <option value="January">January</option>
+      <option value="February">February</option>
+      <option value="March">March</option>
+      <option value="April">April</option>
+      <option value="May">May</option>
+      <option value="June">June</option>
+      <option value="July">July</option>
+      <option value="August">August</option>
+      <option value="September">September</option>
+      <option value="October">October</option>
+      <option value="November">November</option>
+      <option value="December">December</option>
+    </select>
+    <label>Date of Last Increment</label>
+    <input type="date" id="lastIncrementDate">
+    <label>Present Basic Pay</label>
+    <input type="number" id="basicPay">
+    
+    <button type="button" onclick="downloadWord()">Generate Word Doc</button>
+
+  </form>
+
+  <div id="output"></div>
+
+  <script>
+    function formatDateIndian(dateStr) {
+      const date = new Date(dateStr);
+      return `${String(date.getDate()).padStart(2, "0")}/${String(date.getMonth() + 1).padStart(2, "0")}/${date.getFullYear()}`;
+    }
+
+
+    function downloadWord() {
+      const name = document.getElementById("name").value;
+      const designation = document.getElementById("designation").value;
+      const workingPlace = document.getElementById("workingPlace").value;
+      const workingMandal = document.getElementById("workingMandal").value;
+      const workingDistrict = document.getElementById("workingDistrict").value;
+      const dateIncrement = formatDateIndian(document.getElementById("dateIncrement").value);
+      const joiningDate = formatDateIndian(document.getElementById("joiningDate").value);
+      const incrementMonth = document.getElementById("incrementMonth").value;
+      const lastIncrementDate = formatDateIndian(document.getElementById("lastIncrementDate").value);
+      const basicPay = document.getElementById("basicPay").value;
+
+      const subjectLine = `
+        <div style="display: inline-block; width: 60%; margin-left: 100px; margin-right: 40px: text-align: left; margin-bottom: 20px;">    
+          Sub: - Request for sanction of Annual Grade Increment W.E.F ${dateIncrement} - Regarding.
+        </div>
+      `;
+
+      const closingBlock = `
+        <table style="margin-left: auto; margin-right: 80px; font-size: 16px; font-family: 'Times New Roman';">
+          <tr><td style="text-indent: 410px;">Yours Sincerely</td></tr><br><br>
+          <tr><td style="text-indent: 400px;">${name}</td></tr>
+          <tr><td style="text-indent: 340px;">${designation}</td></tr>
+          <tr><td style="text-indent: 440px;">${workingPlace}</td></tr>
+          <tr><td style="text-indent: 440px;">${workingMandal}</td></tr>
+        </table>
+      `;
+
+      const body = `
+        <p style="text-align: right; margin-right: 120px;">Date:</p>
+        <p>To,<br><br>_______________________________<br><br>_______________________________<br><br>_______________________________</p>
+        <p style="text-indent: 50px;">Respected Sir,</p>
+        ${subjectLine}
+        <p style="text-indent: 130px; text-align: justify; line-height: 2;">
+          I, ${name} working as a ${designation} at ${workingPlace} Grama Sachivalayam, ${workingMandal} Mandal, ${workingDistrict} District.
+          I have been working in the present cadre since ${joiningDate}. My Annual Grade Increment falls in the month of ${incrementMonth}. I have successfully completed 1 year service from ${lastIncrementDate} without any break of service.
+          My present basic pay is ₹${basicPay}. Hence I request you to sanction my periodical increment and issue necessary orders at an earliest date so as to enable me to present bills to STO.
+        </p>
+        <p style="text-indent: 280px;">Thanking you sir,</p>
+        ${closingBlock}
+      `;
+
+      const sourceHTML = `
+        <html xmlns:o='urn:schemas-microsoft-com:office:office'
+              xmlns:w='urn:schemas-microsoft-com:office:word'
+              xmlns='http://www.w3.org/TR/REC-html40'>
+          <head><meta charset='utf-8'></head>
+          <body style='font-family:Times New Roman; font-size:16px;'>${body}</body>
+        </html>
+      `;
+
+      const blob = new Blob(['\ufeff', sourceHTML], {
+        type: 'application/msword'
+      });
+
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'Increment_Application.doc';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  </script>
+</body>
+</html>
