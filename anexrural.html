@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Know your Sachivalayam (Rural)</title>
+</head>
+<body>
+<h2>Know your Sachivalayam (Rural)</h2>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f4faff;
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+  color: #005a9c;
+}
+
+label {
+  font-weight: bold;
+}
+
+form {
+  max-width: 200px;
+  margin: auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+select {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0 16px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#output {
+  margin-top: 30px;
+  background: #e8f0fe;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+</style>
+
+<label for="district">District:</label>
+<select id="district"><option>-- Select District --</option></select>
+
+<label for="mandal">Mandal:</label>
+<select id="mandal"><option>-- Select Mandal --</option></select>
+
+<label for="secretariat">Secretariat:</label>
+<select id="secretariat"><option>-- Select Secretariat --</option></select>
+
+<div id="rationalised-output" style="margin-top: 20px; padding: 10px; background-color: #f9f9f9; border-radius: 6px;"></div>
+<script>
+fetch("annexrural1.json")
+  .then(response => response.json())
+  .then(data => {
+    const districtSelect = document.getElementById("district");
+    const mandalSelect = document.getElementById("mandal");
+    const secretariatSelect = document.getElementById("secretariat");
+    const output = document.getElementById("rationalised-output");
+
+    // Populate District dropdown
+    Object.keys(data).forEach(district => {
+      const opt = document.createElement("option");
+      opt.value = district;
+      opt.textContent = district;
+      districtSelect.appendChild(opt);
+    });
+
+    districtSelect.addEventListener("change", () => {
+      mandalSelect.innerHTML = '<option>-- Select Mandal --</option>';
+      secretariatSelect.innerHTML = '<option>-- Select Secretariat --</option>';
+      output.innerHTML = '';
+
+      const mandals = data[districtSelect.value];
+      Object.keys(mandals).forEach(mandal => {
+        const opt = document.createElement("option");
+        opt.value = mandal;
+        opt.textContent = mandal;
+        mandalSelect.appendChild(opt);
+      });
+    });
+
+    mandalSelect.addEventListener("change", () => {
+      secretariatSelect.innerHTML = '<option>-- Select Secretariat --</option>';
+      output.innerHTML = '';
+
+      const secretariats = data[districtSelect.value][mandalSelect.value];
+      Object.keys(secretariats).forEach(secretariat => {
+        const opt = document.createElement("option");
+        opt.value = secretariat;
+        opt.textContent = secretariat;
+        secretariatSelect.appendChild(opt);
+      });
+    });
+
+    secretariatSelect.addEventListener("change", () => {
+      const details =
+        data[districtSelect.value][mandalSelect.value][secretariatSelect.value];
+      output.innerHTML = `
+        <h3>📌 Secretariat: ${secretariatSelect.value}</h3>
+        <p><strong>🆔 Code:</strong> ${details["Seccretariat Code"]}</p>
+        <p><strong>🏡 Rural/Urban:</strong> ${details["Rural / Urban"]}</p>
+        <p><strong>📊 Population Category:</strong> ${details["Population Category"]}</p>
+        <h4>👥 Designated Roles:</h4>
+        <ul>
+          ${Object.entries(details.Designations)
+            .map(
+              ([role, status]) =>
+                `<li>${role}: ${status === "YES" ? "✅" : "❌"}</li>`
+            )
+            .join("")}
+        </ul>
+      `;
+    });
+  });
+</script>
+</body>
+</html>
+
+
