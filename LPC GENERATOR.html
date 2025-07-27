@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Last Pay Certificate Generator</title>
+  <style>
+    body { font-family: sans-serif; background: #f2faff; padding: 20px; }
+    form, #outputBox { background: #fff; padding: 20px; border-radius: 10px; max-width: 720px; margin: auto; box-shadow: 0 0 8px #ccc; }
+    label { display: block; margin-top: 10px; font-weight: bold; }
+    input, select { width: 100%; padding: 8px; margin-top: 4px; border-radius: 5px; border: 1px solid #ccc; }
+    button { margin-top: 20px; background: #005a9c; color: white; padding: 10px; border-radius: 5px; border: none; cursor: pointer; }
+    h2 { text-align: center; color: #005a9c; }
+  </style>
+</head>
+<body>
+
+<h2>Last Pay Certificate Generator</h2>
+<form id="lpcForm">
+<!-- Basic Information -->
+  <label>Employee Name</label><input name="employeeName" required>
+  <label>Designation</label>
+  <select name="designation" id="designation">
+    <option value="">-- Select Designation --</option>
+    <option value="Panchayat Secretary Grade-VI (Digital Assistant)">Panchayat Secretary Grade-VI (Digital Assistant)</option>
+    <option value="Village Agriculture Assistant">Village Agriculture Assistant</option>
+    <option value="Village Horticulture Assistant">Village Horticulture Assistant</option>
+    <option value="Animal Husbandary Assistant">Animal Husbandary Assistant</option>
+    <option value="Welfare And Educational Assitant">Welfare And Educational Assitant</option>
+    <option value="Grama Mahila Samrakshana Karyadarshi">Grama Mahila Samrakshana Karyadarshi</option>
+    <option value="Village Revenue Officer">Village Revenue Officer</option>
+    <option value="Village Surveyor">Village Surveyor</option>
+    <option value="Engineering Assistant">Engineering Assistant</option>
+    <option value="Mahila Police and Women Help Desk Counselor">Mahila Police and Women Help Desk Counselor</option>
+    <option value="Other">Other</option>
+  </select>
+  <div id="customDesignationDiv" style="display: none; margin-top: 10px;">
+    <label for="customDesignation">Enter your Designation</label>
+    <input type="text" name="customDesignation" id="customDesignation" />
+  </div>
+  
+
+  <label>Present Secretariat</label><input name="presentSecretariat">
+  <label>Present Mandal</label><input name="presentMandal">
+  <label>District</label><input name="district">
+  <label>New Secretariat</label><input name="newSecretariat">
+  <label>New Mandal</label><input name="newMandal">
+  <label>Transfer Proceedings Number</label><input name="proceedingsNo">
+  <label>Proceedings Date</label><input name="proceedingsDate" type="date">
+  <label>Relieved Date</label><input name="relievedDate" type="date">
+  <label>Session</label>
+  <select name="session"><option>F.N.</option><option>A.N.</option></select>
+  <label>CFMS ID</label><input name="cfmsId">
+  <label>HRMS ID</label><input name="hrmsId">
+  <label>Pay Scale</label>
+  <select name="payScale">
+    
+    <option value="22460-72810">22460-72810</option>
+    <option value="23120-74770">23120-74770</option>
+  </select>
+  <label>Basic Pay</label>
+  <select name="basicPay">
+    <option value="22460">22460</option>
+    <option value="23120">23120</option>
+    <option value="23780">23780</option>
+    <option value="24500">24500</option>
+    <option value="25220">25220</option>
+    <option value="25940">25940</option>
+    <option value="26720">26720</option>
+    <option value="27500">27500</option>
+    <option value="28280">28280</option>
+  </select>
+  <label>Bank Name</label><input name="bankName">
+  <label>Salary Account No</label><input name="salaryAccount">
+  <!-- Earnings/Deductions -->
+  <label>DA</label><input name="da" type="number">
+  <label>HRA</label><input name="hra" type="number">
+  <label>PT</label><input name="pt" type="number">
+  <label>APGLI</label><input name="apgli" type="number">
+  <label>GIS</label><input name="gis" type="number">
+  <label>CPS</label><input name="cps" type="number">
+  <label>EHS</label><input name="ehs" type="number">
+  <label>SALARY PAID IN OLD STATION UPTO</label><input name="lpcdate" type="date">
+  <label>Place</label><input name="place">
+  <label>Date</label><input name="date" type="date">
+  <button type="submit">Generate LPC</button>
+  <button id="downloadBtn" type="button">Download as Word</button>
+</form>
+
+<div id="outputBox" style="display:none; margin-top:20px;">
+  <div id="lpcContent" style="background:#fff; padding:20px; border-radius:10px; box-shadow:0 0 6px #aaa;"></div>
+</div>
+</body>
+<script>
+// Format Date as DD/MM/YYYY
+function formatDate(dateStr) {
+  if (!dateStr) return "";
+  const [year, month, day] = dateStr.split("-");
+  return `${day}/${month}/${year}`;
+}
+// Convert number to Indian currency words
+function toWords(num) {
+  const ones = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"];
+  const teens = ["Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", 
+                 "Seventeen", "Eighteen", "Nineteen"];
+  const tens = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
+
+  if (num === 0) return "Zero Only";
+
+  function convert(n) {
+    if (n < 10) return ones[n];
+    if (n < 20) return teens[n - 10];
+    if (n < 100) return tens[Math.floor(n / 10)] + " " + ones[n % 10];
+    if (n < 1000) return ones[Math.floor(n / 100)] + " Hundred " + convert(n % 100);
+    if (n < 100000) return convert(Math.floor(n / 1000)) + " Thousand " + convert(n % 1000);
+    if (n < 10000000) return convert(Math.floor(n / 100000)) + " Lakh " + convert(n % 100000);
+    return convert(Math.floor(n / 10000000)) + " Crore " + convert(n % 10000000);
+  }
+
+  return convert(num).replace(/\s+/g, ' ').trim() + " Only";
+}
+
+document.getElementById("lpcForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(e.target).entries());
+
+  // Format Dates
+  data.proceedingsDate = formatDate(data.proceedingsDate);
+  data.relievedDate = formatDate(data.relievedDate);
+  data.date = formatDate(data.date);
+  data.lpcdate = formatDate(data.lpcdate || ""); // Optional
+
+  // Numeric Conversion
+  const basic = parseInt(data.basicPay) || 0;
+  const da = parseInt(data.da) || 0;
+  const hra = parseInt(data.hra) || 0;
+  const pt = parseInt(data.pt) || 0;
+  const apgli = parseInt(data.apgli) || 0;
+  const gis = parseInt(data.gis) || 0;
+  const cps = parseInt(data.cps) || 0;
+  const ehs = parseInt(data.ehs) || 0;
+
+  data.gross = basic + da + hra;
+  data.deductions = pt + apgli + gis + cps + ehs;
+  data.net = data.gross - data.deductions;
+  data.netWords = toWords(data.net);
+
+  // Your full HTML layout rendering [same as before]
+  const html = `
+    <div style="font-family: Arial; font-size:14px;">
+      <h2 style="text-align:center;">LAST PAY CERTIFICATE</h2>
+      <p style="text-align: justify; text-justify: inter-word; text-indent: 80px;">
+  Last pay certificate of Sri/Smt ${data.employeeName}, Designation ${data.designation}, O/o ${data.presentSecretariat} Grama Sachivalayam in ${data.presentMandal} Mandal, ${data.district} District, transferred and posted to ${data.newSecretariat} Grama Sachivalayam of ${data.newMandal} Mandal vide Progs.Roc.No. ${data.proceedingsNo}, Dated ${data.proceedingsDate} and he/she relieved on Dt: ${data.relievedDate} ${data.session}
+</p>      
+      <p>The pay and allowances have been paid to him/her up to ${data.lpcdate} at the following rates.</p>
+      
+      <table style="width:100%; border-collapse: collapse;" border="1">
+  <tr>
+    <td><strong>CFMS ID</strong></td><td>${data.cfmsId}</td>
+    <td><strong>HRMS ID</strong></td><td>${data.hrmsId}</td>
+  </tr>
+  <tr>
+    <td><strong>Name</strong></td><td>${data.employeeName}</td>
+    <td><strong>Designation</strong></td><td>${data.designation}</td>
+  </tr>
+  <tr>
+    <td><strong>HOA</strong></td><td>2515001980053010011NVN  </td>
+    <td><strong>Bank Name</strong></td><td>${data.bankName}</td>
+  </tr>
+  <tr>
+    <td><strong>Scale</strong></td><td>${data.payScale}</td>
+    <td><strong>Salary A/C No</strong></td><td>${data.salaryAccount}</td>
+  </tr>
+          <tr>
+            <th colspan="2" style="border:1px solid black; background:#f2f2f2; padding:6px;">Earnings</th>
+            <th colspan="2" style="border:1px solid black; background:#f2f2f2; padding:6px;">Deductions</th>
+          </tr>
+          <tr>
+            <td style="border:1px solid black; padding:6px;">Basic Pay</td>
+            <td style="border:1px solid black; padding:6px;">₹${data.basicPay}/-</td>
+            <td style="border:1px solid black; padding:6px;">APGLI</td>
+            <td style="border:1px solid black; padding:6px;">₹${data.apgli}/-</td>
+          </tr>
+          <tr>
+            <td style="border:1px solid black; padding:6px;">Dearness Allowance (33.67%)</td>
+            <td style="border:1px solid black; padding:6px;">₹${data.da}/-</td>
+            <td style="border:1px solid black; padding:6px;">GIS</td>
+            <td style="border:1px solid black; padding:6px;">₹${data.gis}/-</td>
+          </tr>
+          <tr>
+            <td style="border:1px solid black; padding:6px;">House Rent Allowance (16%)</td>
+            <td style="border:1px solid black; padding:6px;">₹${data.hra}/-</td>
+            <td style="border:1px solid black; padding:6px;">PT</td>
+            <td style="border:1px solid black; padding:6px;">₹${data.pt}/-</td>
+          </tr>
+          <tr>
+            <td style="border:1px solid black; padding:6px;">Other Allowance</td>
+            <td style="border:1px solid black; padding:6px;">—</td>
+            <td style="border:1px solid black; padding:6px;">CPS (GPF)</td>
+            <td style="border:1px solid black; padding:6px;">₹${data.cps}/-</td>
+          </tr>
+          <tr>
+            <td></td><td></td>
+            <td style="border:1px solid black; padding:6px;">EHS</td>
+            <td style="border:1px solid black; padding:6px;">₹${data.ehs}/-</td>
+          </tr>
+          <tr>
+            <td style="border:1px solid black; font-weight:bold; padding:6px;">Gross Total</td>
+            <td style="border:1px solid black; font-weight:bold; padding:6px;">₹${data.gross}/-</td>
+            <td style="border:1px solid black; font-weight:bold; padding:6px;">Deduction Total</td>
+            <td style="border:1px solid black; font-weight:bold; padding:6px;">₹${data.deductions}/-</td>
+          </tr>
+          <tr>
+            
+          </tr>
+          <tr>
+            <td colspan="4" style="border:1px solid black; font-weight:bold; padding:6px;">Net Salary: ₹${data.net}/-</td>
+          </tr>
+      </table>
+
+      <p><b>Net Drawn Rs.</b> ₹${data.net}/-<br>
+      (In words: ${data.netWords})</p>
+
+      <p>Entitlement of C.Ls (_____Days), O.H (_____Days), CCLS (_____Days), SCLS (______Days).</p>
+      <p>Details of recoveries which are recovered in the salary: NO RECOVERY</p>
+      <p>Date: ${data.date}<br>
+         Place: ${data.presentSecretariat}
+      </p>
+
+      <p style="text-align: right; padding-right: 100px;">DDO Signature With Office Stamp</p>
+    </div>`;
+
+  document.getElementById("lpcContent").innerHTML = html;
+  document.getElementById("outputBox").style.display = "block";
+});
+
+// Word download button logic unchanged
+document.getElementById("downloadBtn").addEventListener("click", function () {
+  const content = document.getElementById("lpcContent").innerHTML;
+  const header = `<html xmlns:o='urn:schemas-microsoft-com:office:office' 
+        xmlns:w='urn:schemas-microsoft-com:office:word' 
+        xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>LPC</title></head><body>`;
+  const footer = "</body></html>";
+  const fullHtml = header + content + footer;
+
+  const blob = new Blob(['\ufeff', fullHtml], { type: 'application/msword' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "LPC_Letter.doc";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+});
+  function toggleCustomDesignation() {
+    const select = document.getElementById("designation");
+    const customDiv = document.getElementById("customDesignationDiv");
+    customDiv.style.display = select.value === "Other" ? "block" : "none";
+  }
+
+  window.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("designation").addEventListener("change", toggleCustomDesignation);
+    toggleCustomDesignation(); // handle autofill or preset selection
+  });
+</script>
+</html>
