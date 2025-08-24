@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Non Drawal Certificate Generator</title>
+  <style>
+    body { font-family: sans-serif; background: #f2faff; padding: 20px; }
+    form, #outputBox { background: #fff; padding: 20px; border-radius: 10px; max-width: 720px; margin: auto; box-shadow: 0 0 8px #ccc; }
+    label { display: block; margin-top: 10px; font-weight: bold; }
+    input, select { width: 100%; padding: 8px; margin-top: 4px; border-radius: 5px; border: 1px solid #ccc; }
+    button { margin-top: 15px; background: #005a9c; color: white; padding: 10px; border-radius: 5px; border: none; cursor: pointer; }
+    h2 { text-align: center; color: #005a9c; }
+  </style>
+</head>
+<body>
+
+<form id="ndcForm">
+  <h2>Non Drawal Certificate Generator</h2>
+
+  <label>Title</label>
+  <select name="title">
+    <option>Select...</option>
+    <option>Sri</option>
+    <option>Smt</option>
+  </select>
+
+  <label>Employee Name</label>
+  <input type="text" name="name">
+
+  <label>Designation</label>
+  <select name="designation" id="designation">
+    <option value="">-- Select Designation --</option>
+    <option value="Panchayat Secretary Grade-VI (Digital Assistant)">Panchayat Secretary Grade-VI (Digital Assistant)</option>
+    <option value="Village Agriculture Assistant">Village Agriculture Assistant</option>
+    <option value="Village Horticulture Assistant">Village Horticulture Assistant</option>
+    <option value="Animal Husbandary Assistant">Animal Husbandary Assistant</option>
+    <option value="Welfare And Educational Assitant">Welfare And Educational Assitant</option>
+    <option value="Grama Mahila Samrakshana Karyadarshi">Grama Mahila Samrakshana Karyadarshi</option>
+    <option value="Village Revenue Officer">Village Revenue Officer</option>
+    <option value="Village Surveyor">Village Surveyor</option>
+    <option value="Engineering Assistant">Engineering Assistant</option>
+    <option value="Mahila Police and Women Help Desk Counselor">Mahila Police and Women Help Desk Counselor</option>
+    <option value="Other">Other</option>
+  </select>
+  <div id="customDesignationDiv" style="display: none; margin-top: 10px;">
+    <label for="customDesignation">Enter your Designation</label>
+    <input type="text" name="customDesignation" id="customDesignation" />
+  </div>
+  <h3>Old Posting</h3>
+<label>Old District:</label>
+<select id="oldDistrict"><option value="">Select Old District</option></select>
+
+<label>Old Mandal:</label>
+<select id="oldMandal"><option value="">Select Old Mandal</option></select>
+
+<label>Old Secretariat:</label>
+<select id="oldSecretariat"><option value="">Select Old Secretariat</option></select>
+
+<h3>New Posting</h3>
+<label>New District:</label>
+<select id="newDistrict"><option value="">Select New District</option></select>
+
+<label>New Mandal:</label>
+<select id="newMandal"><option value="">Select New Mandal</option></select>
+
+<label>New Secretariat:</label>
+<select id="newSecretariat"><option value="">Select New Secretariat</option></select>
+
+  <label>Salary Paid Up To (Month)</label>
+  <input type="month" name="salaryPaidMonth">
+
+  <label>Relieved Date</label>
+  <input type="date" name="relievedDate">
+
+  <label>Session</label>
+  <select name="session">
+    <option>Select...</option>
+    <option>FN</option>
+    <option>AN</option>
+  </select>
+
+  <label>ROC Number</label>
+  <input type="text" name="rcNo">
+
+  <label>Proceedings Date</label>
+  <input type="date" name="proceedingDate">
+
+  <label>Mother Department</label>
+  <input type="text" name="department">
+
+  <label>Salary Not Drawn From</label>
+  <input type="date" name="notDrawnFrom">
+
+  <label>Salary Not Drawn To</label>
+  <input type="date" name="notDrawnTo">
+
+  <label>Place</label>
+  <input type="text" name="place">
+
+  <label>Date</label>
+  <input type="date" name="certDate">
+
+  <button type="button" onclick="generateCertificate()">Generate Certificate</button>
+  <button type="button" onclick="previewCertificate()">Preview Certificate</button>
+  <button type="button" onclick="downloadWord()">Download as Word</button>
+</form>
+
+<div id="outputBox" style="white-space: pre-wrap; margin-top: 30px;"></div>
+
+<script>
+document.getElementById('designation').addEventListener('change', function () {
+  const customDiv = document.getElementById('customDesignationDiv');
+  if (this.value === 'Other') {
+    customDiv.style.display = 'block';
+  } else {
+    customDiv.style.display = 'none';
+    document.getElementById('customDesignation').value = ''; // optional reset
+  }
+});
+
+let locationData;
+
+fetch('gswsdropdown.json')
+  .then(response => response.json())
+  .then(data => {
+    locationData = data;
+    populateDistricts('oldDistrict');
+    populateDistricts('newDistrict');
+  })
+  .catch(error => console.error('Error loading locations:', error));
+
+function populateDistricts(selectId) {
+  const dropdown = document.getElementById(selectId);
+  Object.keys(locationData).forEach(district => {
+    const option = document.createElement('option');
+    option.value = district;
+    option.textContent = district;
+    dropdown.appendChild(option);
+  });
+
+  // Attach event listener for mandals
+  dropdown.addEventListener('change', () => {
+    populateMandals(selectId, `${selectId.slice(0, 3)}Mandal`);
+  });
+}
+
+function populateMandals(districtSelectId, mandalSelectId) {
+  const district = document.getElementById(districtSelectId).value;
+  const mandalDropdown = document.getElementById(mandalSelectId);
+  mandalDropdown.innerHTML = '<option value="">Select Mandal</option>';
+
+  if (locationData[district]) {
+    Object.keys(locationData[district]).forEach(mandal => {
+      const option = document.createElement('option');
+      option.value = mandal;
+      option.textContent = mandal;
+      mandalDropdown.appendChild(option);
+    });
+
+    mandalDropdown.addEventListener('change', () => {
+      populateSecretariats(districtSelectId, mandalSelectId, `${districtSelectId.slice(0, 3)}Secretariat`);
+    });
+  }
+}
+
+function populateSecretariats(districtSelectId, mandalSelectId, secretariatSelectId) {
+  const district = document.getElementById(districtSelectId).value;
+  const mandal = document.getElementById(mandalSelectId).value;
+  const secretariatDropdown = document.getElementById(secretariatSelectId);
+  secretariatDropdown.innerHTML = '<option value="">Select Secretariat</option>';
+
+  if (locationData[district] && locationData[district][mandal]) {
+    locationData[district][mandal].forEach(secretariat => {
+      const option = document.createElement('option');
+      option.value = secretariat;
+      option.textContent = secretariat;
+      secretariatDropdown.appendChild(option);
+    });
+  }
+}
+function formatDateDDMMYYYY(dateStr) {
+  const date = new Date(dateStr);
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+  const year = date.getFullYear();
+  return `${day}/${month}/${year}`;
+}
+function formatMonthYear(dateStr) {
+  const date = new Date(dateStr);
+  const options = { month: 'long', year: 'numeric' };
+  return date.toLocaleDateString('en-GB', options); // e.g., "June 2025"
+}
+
+
+function generateCertificate() {
+  const form = document.forms.ndcForm;
+  const today = form.certDate.value || new Date().toLocaleDateString('en-IN');
+
+  const designation = form.designation.value === "Other"
+    ? form.customDesignation.value
+    : form.designation.value;
+
+  const oldDistrict = document.getElementById('oldDistrict').value;
+  const oldMandal = document.getElementById('oldMandal').value;
+  const oldSecretariat = document.getElementById('oldSecretariat').value;
+
+  const pronoun = form.title.value === "Smt" ? "She" : "He";
+  const possessive = pronoun === "She" ? "her" : "his";
+
+  if (!form.name.value || !designation || !oldDistrict || !oldMandal || !oldSecretariat || !form.salaryPaidMonth.value || !form.relievedDate.value) {
+    alert("Please fill all required fields before generating the certificate.");
+    return;
+  }
+
+  const relievedDate = formatDateDDMMYYYY(form.relievedDate.value);
+const proceedingDate = formatDateDDMMYYYY(form.proceedingDate.value);
+const notDrawnFrom = formatDateDDMMYYYY(form.notDrawnFrom.value);
+const notDrawnTo = formatDateDDMMYYYY(form.notDrawnTo.value);
+const salaryPaidMonth = formatMonthYear(form.salaryPaidMonth.value);
+
+const output = `
+  <h3 style="text-align:center;">NON DRAWAL CERTIFICATE</h3>
+  <p style="padding-left: 80px;">This is to certify that <strong>${form.title.value} ${form.name.value}</strong> has worked as <strong>${designation}</strong> of <strong>${oldSecretariat}</strong> Grama Sachivalayam in <strong>${oldMandal}</strong> Mandal, <strong>${oldDistrict}</strong> District and was paid salary up to <strong>${salaryPaidMonth}</strong> month only.</p>
+  <p style="padding-left: 80px;">${pronoun} was transferred and relieved from ${possessive} duties on <strong>${relievedDate}</strong> (${form.session.value}) vide RC.No <strong>${form.rcNo.value}</strong> dated <strong>${proceedingDate}</strong> of the <strong>${form.department.value}</strong> Department, <strong>${oldDistrict}</strong> District.</p>
+  <p style="padding-left: 80px;">${possessive} salary has not been drawn and paid from <strong>${notDrawnFrom}</strong> to <strong>${notDrawnTo}</strong> at this office.</p>
+  <p style="padding-left: 80px; margin-top: 30px;">
+    <strong>Place:</strong> ${form.place.value}<br>
+    <strong>Date:</strong> ${today}
+  </p>
+  <p style="text-align: right; margin-top: 60px; margin-right: 40px;">
+    DDO Signature<br>
+    With Office Stamp
+  </p>
+`;
+
+document.getElementById("outputBox").innerHTML = output;
+}
+
+
+
+  function previewCertificate() {
+    generateCertificate(); // ensures latest data
+    alert("Preview updated below.");
+  }
+
+ function downloadWord() {
+  const certificateHTML = document.getElementById("outputBox").innerHTML;
+
+  const fullHTML = `
+    <html xmlns:o='urn:schemas-microsoft-com:office:office'
+          xmlns:w='urn:schemas-microsoft-com:office:word'
+          xmlns='http://www.w3.org/TR/REC-html40'>
+    <head>
+      <meta charset='utf-8'>
+      <title>Non Drawal Certificate</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          line-height: 1.6;
+        }
+        h3 {
+          text-align: center;
+          margin-bottom: 20px;
+        }
+        p {
+          margin: 12px 0;
+        }
+        p.indent {
+          padding-left: 80px;
+        }
+        p.signature {
+          text-align: right;
+          margin-right: 40px;
+          margin-top: 60px;
+        }
+      </style>
+    </head>
+    <body>
+      ${certificateHTML}
+    </body>
+    </html>
+  `;
+
+  const blob = new Blob(["\ufeff" + fullHTML], {
+    type: "application/msword"
+  });
+
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "Non_Drawal_Certificate.doc";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+
+</script>
+
+</body>
+</html>
