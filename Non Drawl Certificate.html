@@ -216,6 +216,7 @@ const proceedingDate = formatDateDDMMYYYY(form.proceedingDate.value);
 const notDrawnFrom = formatDateDDMMYYYY(form.notDrawnFrom.value);
 const notDrawnTo = formatDateDDMMYYYY(form.notDrawnTo.value);
 const salaryPaidMonth = formatMonthYear(form.salaryPaidMonth.value);
+const certDate = formatMonthYear(form.certDate.value);
 
 const output = `
   <h3 style="text-align:center;">NON DRAWAL CERTIFICATE</h3>
@@ -224,7 +225,7 @@ const output = `
   <p style="padding-left: 80px;">${possessive} salary has not been drawn and paid from <strong>${notDrawnFrom}</strong> to <strong>${notDrawnTo}</strong> at this office.</p>
   <p style="padding-left: 80px; margin-top: 30px;">
     <strong>Place:</strong> ${form.place.value}<br>
-    <strong>Date:</strong> ${today}
+    <strong>Date:</strong> ${certDate}
   </p>
   <p style="text-align: right; margin-top: 60px; margin-right: 40px;">
     DDO Signature<br>
@@ -255,7 +256,7 @@ document.getElementById("outputBox").innerHTML = output;
       <style>
         body {
           font-family: Arial, sans-serif;
-          line-height: 1.6;
+          line-height: 2.0;
         }
         h3 {
           text-align: center;
@@ -265,7 +266,7 @@ document.getElementById("outputBox").innerHTML = output;
           margin: 12px 0;
         }
         p.indent {
-          padding-left: 80px;
+          padding-left: 140px;
         }
         p.signature {
           text-align: right;
