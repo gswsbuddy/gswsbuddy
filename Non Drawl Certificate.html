@@ -65,8 +65,8 @@
 <label>New Secretariat:</label>
 <select id="newSecretariat"><option value="">Select New Secretariat</option></select>
 
-  <label>Salary Paid Up To (Month)</label>
-  <input type="month" name="salaryPaidMonth">
+  <label>Salary Paid Up To</label>
+  <input type="date" name="salaryPaidUpto">
 
   <label>Relieved Date</label>
   <input type="date" name="relievedDate">
@@ -215,12 +215,12 @@ function generateCertificate() {
 const proceedingDate = formatDateDDMMYYYY(form.proceedingDate.value);
 const notDrawnFrom = formatDateDDMMYYYY(form.notDrawnFrom.value);
 const notDrawnTo = formatDateDDMMYYYY(form.notDrawnTo.value);
-const salaryPaidMonth = formatMonthYear(form.salaryPaidMonth.value);
-const certDate = formatMonthYear(form.certDate.value);
+const salaryPaidUpto = formatDateDDMMYYYY(form.salaryPaidUpto.value);
+const certDate = formatDateDDMMYYYY(form.certDate.value);
 
 const output = `
   <h3 style="text-align:center;">NON DRAWAL CERTIFICATE</h3>
-  <p style="padding-left: 80px;">This is to certify that <strong>${form.title.value} ${form.name.value}</strong> has worked as <strong>${designation}</strong> of <strong>${oldSecretariat}</strong> Grama Sachivalayam in <strong>${oldMandal}</strong> Mandal, <strong>${oldDistrict}</strong> District and was paid salary up to <strong>${salaryPaidMonth}</strong> month only.</p>
+  <p style="padding-left: 80px;">This is to certify that <strong>${form.title.value} ${form.name.value}</strong> has worked as <strong>${designation}</strong> of <strong>${oldSecretariat}</strong> Grama Sachivalayam in <strong>${oldMandal}</strong> Mandal, <strong>${oldDistrict}</strong> District and was paid salary up to <strong>${salaryPaidUpto}</strong> month only.</p>
   <p style="padding-left: 80px;">${pronoun} was transferred and relieved from ${possessive} duties on <strong>${relievedDate}</strong> (${form.session.value}) vide RC.No <strong>${form.rcNo.value}</strong> dated <strong>${proceedingDate}</strong> of the <strong>${form.department.value}</strong> Department, <strong>${oldDistrict}</strong> District.</p>
   <p style="padding-left: 80px;">${possessive} salary has not been drawn and paid from <strong>${notDrawnFrom}</strong> to <strong>${notDrawnTo}</strong> at this office.</p>
   <p style="padding-left: 80px; margin-top: 30px;">
@@ -263,7 +263,7 @@ document.getElementById("outputBox").innerHTML = output;
           margin-bottom: 20px;
         }
         p {
-          margin: 12px 0;
+          margin: 40px 0;
         }
         p.indent {
           padding-left: 140px;
