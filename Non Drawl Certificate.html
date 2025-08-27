@@ -206,7 +206,7 @@ function generateCertificate() {
   const pronoun = form.title.value === "Smt" ? "She" : "He";
   const possessive = pronoun === "She" ? "her" : "his";
 
-  if (!form.name.value || !designation || !oldDistrict || !oldMandal || !oldSecretariat || !form.salaryPaidMonth.value || !form.relievedDate.value) {
+  if (!form.name.value || !designation || !oldDistrict || !oldMandal || !oldSecretariat || !form.salaryPaidUpto.value || !form.relievedDate.value) {
     alert("Please fill all required fields before generating the certificate.");
     return;
   }
