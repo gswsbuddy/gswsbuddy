@@ -1,0 +1,2954 @@
+{
+  "115 SETTIPALLI": {
+    "dealerId": "1369860",
+    "agencyName": "AP MARKFED RBK 115 SETTIPALLI",
+    "mobile": "7661082412",
+    "posPin": "5115"
+  },
+  "121PEDDURU": {
+    "dealerId": "1369910",
+    "agencyName": "AP MARKFED RBK 121PEDDURU",
+    "mobile": "6304383203",
+    "posPin": "8166"
+  },
+  "12KAMMAPALLI": {
+    "dealerId": "1360022",
+    "agencyName": "AP MARKFED RBK 12KAMMAPALLI",
+    "mobile": "8499004454",
+    "posPin": "6126"
+  },
+  "14 KANDRIGA": {
+    "dealerId": "1348699",
+    "agencyName": "AP MARKFED RBK 14 KANDRIGA",
+    "mobile": "9490921997",
+    "posPin": "4109"
+  },
+  "184GOLLAPALLI": {
+    "dealerId": "1348701",
+    "agencyName": "AP MARKFED RBK 184GOLLAPALLI",
+    "mobile": "7675951557",
+    "posPin": "2110"
+  },
+  "189KOTHAPALLI": {
+    "dealerId": "1348717",
+    "agencyName": "AP MARKFED RBK 189KOTHAPALLI",
+    "mobile": "8019378922",
+    "posPin": "2172"
+  },
+  "197RAMAPURAM": {
+    "dealerId": "1360028",
+    "agencyName": "AP MARKFED RBK 197RAMAPURAM",
+    "mobile": "9676521714",
+    "posPin": "7144"
+  },
+  "29 A CHINTAMAKU": {
+    "dealerId": "1360082",
+    "agencyName": "AP MARKFED RBK 29 A CHINTAMAKU",
+    "mobile": "9676492529",
+    "posPin": "8130"
+  },
+  "30SONNEGANIPALL": {
+    "dealerId": "1369848",
+    "agencyName": "AP MARKFED RBK 30SONNEGANIPALL",
+    "mobile": "6300664006",
+    "posPin": "7196"
+  },
+  "35 ERLAMPALLI": {
+    "dealerId": "1351186",
+    "agencyName": "AP MARKFED RBK 35 ERLAMPALLI",
+    "mobile": "9390775774",
+    "posPin": "9169"
+  },
+  "81UPPARAPALLI": {
+    "dealerId": "1359990",
+    "agencyName": "AP MARKFED RBK 81UPPARAPALLI",
+    "mobile": "7382067767",
+    "posPin": "3133"
+  },
+  "89PEDDURU": {
+    "dealerId": "1350854",
+    "agencyName": "AP MARKFED RBK 89PEDDURU",
+    "mobile": "8374053559",
+    "posPin": "3169"
+  },
+  "A KOTHAKOTA": {
+    "dealerId": "1382876",
+    "agencyName": "AP MARKFED RBK A KOTHAKOTA",
+    "mobile": "9182834912",
+    "posPin": "7173"
+  },
+  "A M PURAM": {
+    "dealerId": "1379209",
+    "agencyName": "AP MARKFED RBK A M PURAM",
+    "mobile": "7893732341",
+    "posPin": "1132"
+  },
+  "ABAKALADODDI": {
+    "dealerId": "1350868",
+    "agencyName": "AP MARKFED RBK ABAKALADODDI",
+    "mobile": "9966476865",
+    "posPin": "1174"
+  },
+  "ADAVIBUDUGUR": {
+    "dealerId": "1369896",
+    "agencyName": "AP MARKFED RBK ADAVIBUDUGUR",
+    "mobile": "9052589523",
+    "posPin": "8125"
+  },
+  "ADAVIKOTHUR": {
+    "dealerId": "1360050",
+    "agencyName": "AP MARKFED RBK ADAVIKOTHUR",
+    "mobile": "7799294251",
+    "posPin": "3135"
+  },
+  "ADAVINATHUNIKU": {
+    "dealerId": "1350900",
+    "agencyName": "AP MARKFED RBK ADAVINATHUNIKU",
+    "mobile": "8500956584",
+    "posPin": "3156"
+  },
+  "AGARAM": {
+    "dealerId": "1369846",
+    "agencyName": "AP MARKFED RBK AGARAM",
+    "mobile": "9441730803",
+    "posPin": "4110"
+  },
+  "AGARAMANGALAM": {
+    "dealerId": "1377608",
+    "agencyName": "AP MARKFED RBK AGARAMANGALAM",
+    "mobile": "9000606256",
+    "posPin": "5197"
+  },
+  "ALAPAKAM": {
+    "dealerId": "1378534",
+    "agencyName": "AP MARKFED RBK ALAPAKAM",
+    "mobile": "9502365234",
+    "posPin": "8110"
+  },
+  "ALAPALLI": {
+    "dealerId": "1360106",
+    "agencyName": "AP MARKFED RBK ALAPALLI",
+    "mobile": "9160689802",
+    "posPin": "7168"
+  },
+  "ALATHUR": {
+    "dealerId": "1370110",
+    "agencyName": "AP MARKFED RBK ALATHUR",
+    "mobile": "9676032349",
+    "posPin": "9150"
+  },
+  "ALLAMADUGU": {
+    "dealerId": "1377664",
+    "agencyName": "AP MARKFED RBK ALLAMADUGU",
+    "mobile": "9989657578",
+    "posPin": "6177"
+  },
+  "ALPURAM": {
+    "dealerId": "1360026",
+    "agencyName": "AP MARKFED RBK ALPURAM",
+    "mobile": "9014455009",
+    "posPin": "8160"
+  },
+  "AMANIGUNTA": {
+    "dealerId": "1359984",
+    "agencyName": "AP MARKFED RBK AMANIGUNTA",
+    "mobile": "7799841793",
+    "posPin": "2134"
+  },
+  "AMBOBODARAPALLI": {
+    "dealerId": "1377600",
+    "agencyName": "AP MARKFED RBK AMBOBODARAPALLI",
+    "mobile": "9581554443",
+    "posPin": "3147"
+  },
+  "AMMAGARIPALLI": {
+    "dealerId": "1366550",
+    "agencyName": "AP MARKFED RBK AMMAGARIPALLI",
+    "mobile": "9014554351",
+    "posPin": "5166"
+  },
+  "AMMAPALLI": {
+    "dealerId": "1370100",
+    "agencyName": "AP MARKFED RBK AMMAPALLI",
+    "mobile": "7702499029",
+    "posPin": "9132"
+  },
+  "AMUDALA": {
+    "dealerId": "1377634",
+    "agencyName": "AP MARKFED RBK AMUDALA",
+    "mobile": "8499917684",
+    "posPin": "7135"
+  },
+  "ANIGANUR": {
+    "dealerId": "1350898",
+    "agencyName": "AP MARKFED RBK ANIGANUR",
+    "mobile": "9100707883",
+    "posPin": "4195"
+  },
+  "ANIKERA": {
+    "dealerId": "1350858",
+    "agencyName": "AP MARKFED RBK ANIKERA",
+    "mobile": "9392930996",
+    "posPin": "4155"
+  },
+  "ANNEMMAGARIPALL": {
+    "dealerId": "1370923",
+    "agencyName": "AP MARKFED RBK ANNEMMAGARIPALL",
+    "mobile": "7337476753",
+    "posPin": "5125"
+  },
+  "ANNUR": {
+    "dealerId": "1377656",
+    "agencyName": "AP MARKFED RBK ANNUR",
+    "mobile": "8143707017",
+    "posPin": "2127"
+  },
+  "ANUPALLI": {
+    "dealerId": "1350846",
+    "agencyName": "AP MARKFED RBK ANUPALLI",
+    "mobile": "7349604893",
+    "posPin": "4188"
+  },
+  "APPINIPALLI": {
+    "dealerId": "1350922",
+    "agencyName": "AP MARKFED RBK APPINIPALLI",
+    "mobile": "8008769413",
+    "posPin": "7115"
+  },
+  "ARADIGUNTA": {
+    "dealerId": "1348188",
+    "agencyName": "AP MARKFED RBK ARADIGUNTA",
+    "mobile": "9550160228",
+    "posPin": "4198"
+  },
+  "ARAGONDA": {
+    "dealerId": "1370060",
+    "agencyName": "AP MARKFED RBK ARAGONDA",
+    "mobile": "9533675656",
+    "posPin": "1138"
+  },
+  "ARURU": {
+    "dealerId": "1360070",
+    "agencyName": "AP MARKFED RBK ARURU",
+    "mobile": "9100132791",
+    "posPin": "7173"
+  },
+  "ATHURU": {
+    "dealerId": "1369157",
+    "agencyName": "AP MARKFED RBK ATHURU",
+    "mobile": "9866406812",
+    "posPin": "7141"
+  },
+  "AVULAKUPPAM": {
+    "dealerId": "1350886",
+    "agencyName": "AP MARKFED RBK AVULAKUPPAM",
+    "mobile": "7095653583",
+    "posPin": "2176"
+  },
+  "AVULAPALLI": {
+    "dealerId": "1360072",
+    "agencyName": "AP MARKFED RBK AVULAPALLI",
+    "mobile": "9177377043",
+    "posPin": "2142"
+  },
+  "AYYAPPAGARIPALL": {
+    "dealerId": "1349713",
+    "agencyName": "AP MARKFED RBK AYYAPPAGARIPALL",
+    "mobile": "6305785974",
+    "posPin": "8184"
+  },
+  "BAIPPAREDLAPALL": {
+    "dealerId": "1350888",
+    "agencyName": "AP MARKFED RBK BAIPPAREDLAPALL",
+    "mobile": "9014317292",
+    "posPin": "3120"
+  },
+  "BAIRUPALLI": {
+    "dealerId": "1369780",
+    "agencyName": "AP MARKFED RBK BAIRUPALLI",
+    "mobile": "9885767126",
+    "posPin": "3149"
+  },
+  "BAITAPALLI": {
+    "dealerId": "1366534",
+    "agencyName": "AP MARKFED RBK BAITAPALLI",
+    "mobile": "6301757239",
+    "posPin": "9135"
+  },
+  "BALAGANGANAPALL": {
+    "dealerId": "1377636",
+    "agencyName": "AP MARKFED RBK BALAGANGANAPALL",
+    "mobile": "9059140026",
+    "posPin": "8184"
+  },
+  "BALLA": {
+    "dealerId": "1350866",
+    "agencyName": "AP MARKFED RBK BALLA",
+    "mobile": "8919854744",
+    "posPin": "4141"
+  },
+  "BANDAKINDAPALLI": {
+    "dealerId": "1354128",
+    "agencyName": "AP MARKFED RBK BANDAKINDAPALLI",
+    "mobile": "9381636195",
+    "posPin": "9154"
+  },
+  "BANDARLAPALLI1": {
+    "dealerId": "1369856",
+    "agencyName": "AP MARKFED RBK BANDARLAPALLI1",
+    "mobile": "9966322698",
+    "posPin": "2193"
+  },
+  "BANDARLAPALLI2": {
+    "dealerId": "1350864",
+    "agencyName": "AP MARKFED RBK BANDARLAPALLI2",
+    "mobile": "7702977661",
+    "posPin": "3129"
+  },
+  "BANDLAPALLI VIL": {
+    "dealerId": "1377676",
+    "agencyName": "AP MARKFED RBK BANDLAPALLI VIL",
+    "mobile": "9550898603",
+    "posPin": "4165"
+  },
+  "BANGARUPALEM": {
+    "dealerId": "1370078",
+    "agencyName": "AP MARKFED RBK BANGARUPALEM",
+    "mobile": "9885074795",
+    "posPin": "3151"
+  },
+  "BASAVAPALLI": {
+    "dealerId": "1360018",
+    "agencyName": "AP MARKFED RBK BASAVAPALLI",
+    "mobile": "9160415025",
+    "posPin": "1172"
+  },
+  "BASIVINAYANIPAL": {
+    "dealerId": "1348168",
+    "agencyName": "AP MARKFED RBK BASIVINAYANIPAL",
+    "mobile": "7093901598",
+    "posPin": "3100"
+  },
+  "BATTAMDODDI": {
+    "dealerId": "1350930",
+    "agencyName": "AP MARKFED RBK BATTAMDODDI",
+    "mobile": "9490964470",
+    "posPin": "2152"
+  },
+  "BEERAKUPPAM": {
+    "dealerId": "1370901",
+    "agencyName": "AP MARKFED RBK BEERAKUPPAM",
+    "mobile": "9030308830",
+    "posPin": "5132"
+  },
+  "BEGGILIPALLI": {
+    "dealerId": "1369834",
+    "agencyName": "AP MARKFED RBK BEGGILIPALLI",
+    "mobile": "9182193331",
+    "posPin": "7182"
+  },
+  "BELUPALLI": {
+    "dealerId": "1360108",
+    "agencyName": "AP MARKFED RBK BELUPALLI",
+    "mobile": "6281805282",
+    "posPin": "5128"
+  },
+  "BHEEMAGANIPALLI": {
+    "dealerId": "1360080",
+    "agencyName": "AP MARKFED RBK BHEEMAGANIPALLI",
+    "mobile": "8886557926",
+    "posPin": "3154"
+  },
+  "BNR PETA": {
+    "dealerId": "1350830",
+    "agencyName": "AP MARKFED RBK BNR PETA",
+    "mobile": "9035517872",
+    "posPin": "3174"
+  },
+  "BODABANDLA": {
+    "dealerId": "1370018",
+    "agencyName": "AP MARKFED RBK BODABANDLA",
+    "mobile": "9573723488",
+    "posPin": "8179"
+  },
+  "BODAGUTTAPALLI": {
+    "dealerId": "1373046",
+    "agencyName": "AP MARKFED RBK BODAGUTTAPALLI",
+    "mobile": "9866495331",
+    "posPin": "6107"
+  },
+  "BODEVARIPALLI": {
+    "dealerId": "1359966",
+    "agencyName": "AP MARKFED RBK BODEVARIPALLI",
+    "mobile": "6363119484",
+    "posPin": "7187"
+  },
+  "BODIGUTAPALLE": {
+    "dealerId": "1369830",
+    "agencyName": "AP MARKFED RBK BODIGUTAPALLE",
+    "mobile": "8309966039",
+    "posPin": "4122"
+  },
+  "BOJJINAYANAPALL": {
+    "dealerId": "1377614",
+    "agencyName": "AP MARKFED RBK BOJJINAYANAPALL",
+    "mobile": "9182515152",
+    "posPin": "4150"
+  },
+  "BOMMAIAHGARI PA": {
+    "dealerId": "1354124",
+    "agencyName": "AP MARKFED RBK BOMMAIAHGARI PA",
+    "mobile": "9000169755",
+    "posPin": "4183"
+  },
+  "BOMMAIAHPALLI": {
+    "dealerId": "1377660",
+    "agencyName": "AP MARKFED RBK BOMMAIAHPALLI",
+    "mobile": "6305215016",
+    "posPin": "5126"
+  },
+  "BOMMARAJUPALLI": {
+    "dealerId": "1350990",
+    "agencyName": "AP MARKFED RBK BOMMARAJUPALLI",
+    "mobile": "9618753287",
+    "posPin": "5144"
+  },
+  "BOMMASAMUDRAM": {
+    "dealerId": "1360038",
+    "agencyName": "AP MARKFED RBK BOMMASAMUDRAM",
+    "mobile": "7989200813",
+    "posPin": "4135"
+  },
+  "BOORAGAMANDA": {
+    "dealerId": "1366542",
+    "agencyName": "AP MARKFED RBK BOORAGAMANDA",
+    "mobile": "9390622901",
+    "posPin": "8159"
+  },
+  "BOYACHINNAGANAP": {
+    "dealerId": "1369786",
+    "agencyName": "AP MARKFED RBK BOYACHINNAGANAP",
+    "mobile": "9676181656",
+    "posPin": "4154"
+  },
+  "BRAHMANAPALLI": {
+    "dealerId": "1377658",
+    "agencyName": "AP MARKFED RBK BRAHMANAPALLI",
+    "mobile": "9573148167",
+    "posPin": "2169"
+  },
+  "BUCHIVANATHAM": {
+    "dealerId": "1373542",
+    "agencyName": "AP MARKFED RBK BUCHIVANATHAM",
+    "mobile": "7892330945",
+    "posPin": "5154"
+  },
+  "BUGGA AGRAHARAM": {
+    "dealerId": "1360066",
+    "agencyName": "AP MARKFED RBK BUGGA AGRAHARAM",
+    "mobile": "7286868846",
+    "posPin": "3198"
+  },
+  "BUKKAPATNAM": {
+    "dealerId": "1377638",
+    "agencyName": "AP MARKFED RBK BUKKAPATNAM",
+    "mobile": "8074610023",
+    "posPin": "3135"
+  },
+  "C BANDAPALLI": {
+    "dealerId": "1369764",
+    "agencyName": "AP MARKFED RBK C BANDAPALLI",
+    "mobile": "9052426187",
+    "posPin": "5132"
+  },
+  "C D KANDRIGA": {
+    "dealerId": "1370102",
+    "agencyName": "AP MARKFED RBK C D KANDRIGA",
+    "mobile": "8978879013",
+    "posPin": "5160"
+  },
+  "C R KANDRIGA": {
+    "dealerId": "1350808",
+    "agencyName": "AP MARKFED RBK C R KANDRIGA",
+    "mobile": "9908729659",
+    "posPin": "3162"
+  },
+  "C V PALLI": {
+    "dealerId": "1366548",
+    "agencyName": "AP MARKFED RBK C V PALLI",
+    "mobile": "9010602088",
+    "posPin": "6103"
+  },
+  "CHADALLA": {
+    "dealerId": "1359958",
+    "agencyName": "AP MARKFED RBK CHADALLA",
+    "mobile": "8374498738",
+    "posPin": "4174"
+  },
+  "CHALAMANGALAM": {
+    "dealerId": "1350992",
+    "agencyName": "AP MARKFED RBK CHALAMANGALAM",
+    "mobile": "9705649276",
+    "posPin": "6155"
+  },
+  "CHANDAM": {
+    "dealerId": "1369894",
+    "agencyName": "AP MARKFED RBK CHANDAM",
+    "mobile": "9959801157",
+    "posPin": "3189"
+  },
+  "CHANDRAMAKULAP": {
+    "dealerId": "1359988",
+    "agencyName": "AP MARKFED RBK CHANDRAMAKULAP",
+    "mobile": "7702127808",
+    "posPin": "6147"
+  },
+  "CHAPPIDIPALLI": {
+    "dealerId": "1383374",
+    "agencyName": "AP MARKFED RBK CHAPPIDIPALLI",
+    "mobile": "9533899070",
+    "posPin": "9172"
+  },
+  "CHARALA": {
+    "dealerId": "1359970",
+    "agencyName": "AP MARKFED RBK CHARALA",
+    "mobile": "9014320155",
+    "posPin": "7145"
+  },
+  "CHARVAGANIPALLI": {
+    "dealerId": "1360116",
+    "agencyName": "AP MARKFED RBK CHARVAGANIPALLI",
+    "mobile": "9966304286",
+    "posPin": "8127"
+  },
+  "CHEEKATIPALLI": {
+    "dealerId": "1369838",
+    "agencyName": "AP MARKFED RBK CHEEKATIPALLI",
+    "mobile": "7032387113",
+    "posPin": "5125"
+  },
+  "CHEEKURUPALLI": {
+    "dealerId": "1370010",
+    "agencyName": "AP MARKFED RBK CHEEKURUPALLI",
+    "mobile": "8886482892",
+    "posPin": "5155"
+  },
+  "CHEELAPALLI": {
+    "dealerId": "1360024",
+    "agencyName": "AP MARKFED RBK CHEELAPALLI",
+    "mobile": "9502022953",
+    "posPin": "5145"
+  },
+  "CHEELEPALLI": {
+    "dealerId": "1369748",
+    "agencyName": "AP MARKFED RBK CHEELEPALLI",
+    "mobile": "7702486455",
+    "posPin": "4127"
+  },
+  "CHEKKUNATHAM": {
+    "dealerId": "1369758",
+    "agencyName": "AP MARKFED RBK CHEKKUNATHAM",
+    "mobile": "9951428501",
+    "posPin": "2180"
+  },
+  "CHELDHIGANIPALL": {
+    "dealerId": "1350894",
+    "agencyName": "AP MARKFED RBK CHELDHIGANIPALL",
+    "mobile": "9398263434",
+    "posPin": "3148"
+  },
+  "CHENGUBALLA": {
+    "dealerId": "1369844",
+    "agencyName": "AP MARKFED RBK CHENGUBALLA",
+    "mobile": "9502702046",
+    "posPin": "7132"
+  },
+  "CHERLOPALLI": {
+    "dealerId": "1370022",
+    "agencyName": "AP MARKFED RBK CHERLOPALLI",
+    "mobile": "8332047431",
+    "posPin": "3149"
+  },
+  "CHICHILIVARI PA": {
+    "dealerId": "1354132",
+    "agencyName": "AP MARKFED RBK CHICHILIVARI PA",
+    "mobile": "7993165868",
+    "posPin": "1167"
+  },
+  "CHIGARAPALLI": {
+    "dealerId": "1360016",
+    "agencyName": "AP MARKFED RBK CHIGARAPALLI",
+    "mobile": "9642203624",
+    "posPin": "2177"
+  },
+  "CHINAKAMPALLI": {
+    "dealerId": "1369802",
+    "agencyName": "AP MARKFED RBK CHINAKAMPALLI",
+    "mobile": "9160250985",
+    "posPin": "6136"
+  },
+  "CHINNAGOLLAPALL": {
+    "dealerId": "1369778",
+    "agencyName": "AP MARKFED RBK CHINNAGOLLAPALL",
+    "mobile": "7995346204",
+    "posPin": "3116"
+  },
+  "CHINNARIDODDI": {
+    "dealerId": "1369806",
+    "agencyName": "AP MARKFED RBK CHINNARIDODDI",
+    "mobile": "8106107449",
+    "posPin": "4162"
+  },
+  "CHINNAVEPANJERI": {
+    "dealerId": "1377612",
+    "agencyName": "AP MARKFED RBK CHINNAVEPANJERI",
+    "mobile": "9542940701",
+    "posPin": "3100"
+  },
+  "CHINTAMAKULAPAL": {
+    "dealerId": "1369784",
+    "agencyName": "AP MARKFED RBK CHINTAMAKULAPAL",
+    "mobile": "9515279481",
+    "posPin": "2119"
+  },
+  "CHINTHALAGUNTA": {
+    "dealerId": "1350838",
+    "agencyName": "AP MARKFED RBK CHINTHALAGUNTA",
+    "mobile": "8106866834",
+    "posPin": "7134"
+  },
+  "CHINTHAPENTA": {
+    "dealerId": "1350842",
+    "agencyName": "AP MARKFED RBK CHINTHAPENTA",
+    "mobile": "8247566254",
+    "posPin": "4174"
+  },
+  "CHITHAPARA": {
+    "dealerId": "1360030",
+    "agencyName": "AP MARKFED RBK CHITHAPARA",
+    "mobile": "7989014266",
+    "posPin": "3159"
+  },
+  "CHITIPIRALLA": {
+    "dealerId": "1349711",
+    "agencyName": "AP MARKFED RBK CHITIPIRALLA",
+    "mobile": "9030111310",
+    "posPin": "2108"
+  },
+  "CHOWDEPALLI2": {
+    "dealerId": "1370921",
+    "agencyName": "AP MARKFED RBK CHOWDEPALLI2",
+    "mobile": "9014557515",
+    "posPin": "9130"
+  },
+  "D M PURAM": {
+    "dealerId": "1370088",
+    "agencyName": "AP MARKFED RBK D M PURAM",
+    "mobile": "6309576029",
+    "posPin": "3197"
+  },
+  "DAMARAPAKAM": {
+    "dealerId": "1360052",
+    "agencyName": "AP MARKFED RBK DAMARAPAKAM",
+    "mobile": "7097957946",
+    "posPin": "5161"
+  },
+  "DANDAPALLI": {
+    "dealerId": "1350918",
+    "agencyName": "AP MARKFED RBK DANDAPALLI",
+    "mobile": "9440307595",
+    "posPin": "8169"
+  },
+  "DANDIKUPPAM": {
+    "dealerId": "1350980",
+    "agencyName": "AP MARKFED RBK DANDIKUPPAM",
+    "mobile": "9948417526",
+    "posPin": "3189"
+  },
+  "DASAMANIPALLI": {
+    "dealerId": "1369826",
+    "agencyName": "AP MARKFED RBK DASAMANIPALLI",
+    "mobile": "7989196039",
+    "posPin": "9105"
+  },
+  "DASARAPALLI": {
+    "dealerId": "1360114",
+    "agencyName": "AP MARKFED RBK DASARAPALLI",
+    "mobile": "8978293183",
+    "posPin": "1150"
+  },
+  "DASEGANOWER": {
+    "dealerId": "1383366",
+    "agencyName": "AP MARKFED RBK DASEGANOWER",
+    "mobile": "9676704450",
+    "posPin": "9166"
+  },
+  "DEVADODDDI": {
+    "dealerId": "1360090",
+    "agencyName": "AP MARKFED RBK DEVADODDDI",
+    "mobile": "7989548048",
+    "posPin": "6168"
+  },
+  "DEVALAMPETA": {
+    "dealerId": "1370124",
+    "agencyName": "AP MARKFED RBK DEVALAMPETA",
+    "mobile": "8309699941",
+    "posPin": "5128"
+  },
+  "DGVP VARI PALLI": {
+    "dealerId": "1370118",
+    "agencyName": "AP MARKFED RBK DGVP VARI PALLI",
+    "mobile": "7337489755",
+    "posPin": "3113"
+  },
+  "DHARMAPURI": {
+    "dealerId": "1350884",
+    "agencyName": "AP MARKFED RBK DHARMAPURI",
+    "mobile": "7658990314",
+    "posPin": "1114"
+  },
+  "DIDDIVARIPALLI": {
+    "dealerId": "1360086",
+    "agencyName": "AP MARKFED RBK DIDDIVARIPALLI",
+    "mobile": "9515500292",
+    "posPin": "7119"
+  },
+  "DIGUVAMAGHAM": {
+    "dealerId": "1370048",
+    "agencyName": "AP MARKFED RBK DIGUVAMAGHAM",
+    "mobile": "9000048201",
+    "posPin": "3173"
+  },
+  "DIGUVAMASAPALLI": {
+    "dealerId": "1350840",
+    "agencyName": "AP MARKFED RBK DIGUVAMASAPALLI",
+    "mobile": "6281766953",
+    "posPin": "1157"
+  },
+  "DIGUVAPALLI": {
+    "dealerId": "1359994",
+    "agencyName": "AP MARKFED RBK DIGUVAPALLI",
+    "mobile": "8500803195",
+    "posPin": "1167"
+  },
+  "DODDIPALLI": {
+    "dealerId": "1350834",
+    "agencyName": "AP MARKFED RBK DODDIPALLI",
+    "mobile": "7013832332",
+    "posPin": "2157"
+  },
+  "DURGASAMUDRAM": {
+    "dealerId": "1360076",
+    "agencyName": "AP MARKFED RBK DURGASAMUDRAM",
+    "mobile": "7702530285",
+    "posPin": "5148"
+  },
+  "ECHAMERIVARIPAL": {
+    "dealerId": "1366532",
+    "agencyName": "AP MARKFED RBK ECHAMERIVARIPAL",
+    "mobile": "9032304005",
+    "posPin": "8186"
+  },
+  "ELAKATUR": {
+    "dealerId": "1369159",
+    "agencyName": "AP MARKFED RBK ELAKATUR",
+    "mobile": "8309456335",
+    "posPin": "4151"
+  },
+  "ERPR GARIPALLI": {
+    "dealerId": "1370000",
+    "agencyName": "AP MARKFED RBK ERPR GARIPALLI",
+    "mobile": "9676075361",
+    "posPin": "4170"
+  },
+  "ETHAVANAMPALLI": {
+    "dealerId": "1370070",
+    "agencyName": "AP MARKFED RBK ETHAVANAMPALLI",
+    "mobile": "6305888491",
+    "posPin": "3331"
+  },
+  "ETHURU": {
+    "dealerId": "1377668",
+    "agencyName": "AP MARKFED RBK ETHURU",
+    "mobile": "9177995480",
+    "posPin": "3122"
+  },
+  "GADDAMVARIPALLE": {
+    "dealerId": "1370120",
+    "agencyName": "AP MARKFED RBK GADDAMVARIPALLE",
+    "mobile": "9494195249",
+    "posPin": "3112"
+  },
+  "GADDAMVARIPALLI": {
+    "dealerId": "1359978",
+    "agencyName": "AP MARKFED RBK GADDAMVARIPALLI",
+    "mobile": "7338276373",
+    "posPin": "2105"
+  },
+  "GADDUR": {
+    "dealerId": "1350882",
+    "agencyName": "AP MARKFED RBK GADDUR",
+    "mobile": "9652675174",
+    "posPin": "2144"
+  },
+  "GAJANKI": {
+    "dealerId": "1370084",
+    "agencyName": "AP MARKFED RBK GAJANKI",
+    "mobile": "6302943128",
+    "posPin": "9187"
+  },
+  "GANDLAPALLI": {
+    "dealerId": "1349727",
+    "agencyName": "AP MARKFED RBK GANDLAPALLI",
+    "mobile": "9032228383",
+    "posPin": "1161"
+  },
+  "GANDRAJUPALLI 2": {
+    "dealerId": "1350906",
+    "agencyName": "AP MARKFED RBK GANDRAJUPALLI 2",
+    "mobile": "9010593381",
+    "posPin": "7175"
+  },
+  "GANDRAJUPALLI1": {
+    "dealerId": "1370917",
+    "agencyName": "AP MARKFED RBK GANDRAJUPALLI1",
+    "mobile": "9705327429",
+    "posPin": "3129"
+  },
+  "GANGAVARAM 1": {
+    "dealerId": "1350916",
+    "agencyName": "AP MARKFED RBK GANGAVARAM 1",
+    "mobile": "9949856425",
+    "posPin": "1180"
+  },
+  "GANGAVARAM 2": {
+    "dealerId": "1350988",
+    "agencyName": "AP MARKFED RBK GANGAVARAM 2",
+    "mobile": "8121097557",
+    "posPin": "5183"
+  },
+  "GANGAVARAM 3": {
+    "dealerId": "1350978",
+    "agencyName": "AP MARKFED RBK GANGAVARAM 3",
+    "mobile": "7288913794",
+    "posPin": "5139"
+  },
+  "GANGINAYANIPALL": {
+    "dealerId": "1350878",
+    "agencyName": "AP MARKFED RBK GANGINAYANIPALL",
+    "mobile": "7780521992",
+    "posPin": "4169"
+  },
+  "GANGUPALLI": {
+    "dealerId": "1366263",
+    "agencyName": "AP MARKFED RBK GANGUPALLI",
+    "mobile": "6303055584",
+    "posPin": "8111"
+  },
+  "GANUGACHINTHA": {
+    "dealerId": "1347658",
+    "agencyName": "AP MARKFED RBK GANUGACHINTHA",
+    "mobile": "9705659027",
+    "posPin": "7150"
+  },
+  "GARIGACHENEPALL": {
+    "dealerId": "1369882",
+    "agencyName": "AP MARKFED RBK GARIGACHENEPALL",
+    "mobile": "8332941124",
+    "posPin": "3120"
+  },
+  "GD NELLORE": {
+    "dealerId": "1377630",
+    "agencyName": "AP MARKFED RBK GD NELLORE",
+    "mobile": "7286995001",
+    "posPin": "6164"
+  },
+  "GODUGUCHINTHA": {
+    "dealerId": "1349709",
+    "agencyName": "AP MARKFED RBK GODUGUCHINTHA",
+    "mobile": "8074843977",
+    "posPin": "2131"
+  },
+  "GOLLACHEEMANAPA": {
+    "dealerId": "1369800",
+    "agencyName": "AP MARKFED RBK GOLLACHEEMANAPA",
+    "mobile": "9392030016",
+    "posPin": "4104"
+  },
+  "GONUMAKULAPALLE": {
+    "dealerId": "1377166",
+    "agencyName": "AP MARKFED RBK GONUMAKULAPALLE",
+    "mobile": "8790698783",
+    "posPin": "4165"
+  },
+  "GOPISETTYPALLI": {
+    "dealerId": "1370090",
+    "agencyName": "AP MARKFED RBK GOPISETTYPALLI",
+    "mobile": "6304125454",
+    "posPin": "7100"
+  },
+  "GORIVIMAKULAPAL": {
+    "dealerId": "1350896",
+    "agencyName": "AP MARKFED RBK GORIVIMAKULAPAL",
+    "mobile": "6304634736",
+    "posPin": "5130"
+  },
+  "GOVINDAREDIPALI": {
+    "dealerId": "1370024",
+    "agencyName": "AP MARKFED RBK GOVINDAREDIPALI",
+    "mobile": "9700223301",
+    "posPin": "8139"
+  },
+  "GUBALAVARIPALLI": {
+    "dealerId": "1370036",
+    "agencyName": "AP MARKFED RBK GUBALAVARIPALLI",
+    "mobile": "7989005578",
+    "posPin": "4177"
+  },
+  "GUDIPALA": {
+    "dealerId": "1360044",
+    "agencyName": "AP MARKFED RBK GUDIPALA",
+    "mobile": "6301708650",
+    "posPin": "1116"
+  },
+  "GUDLANAYANAPALL": {
+    "dealerId": "1369782",
+    "agencyName": "AP MARKFED RBK GUDLANAYANAPALL",
+    "mobile": "9642180622",
+    "posPin": "9111"
+  },
+  "GUDUPALLE": {
+    "dealerId": "1369742",
+    "agencyName": "AP MARKFED RBK GUDUPALLE",
+    "mobile": "9392931013",
+    "posPin": "7165"
+  },
+  "GUNDLAPALLI": {
+    "dealerId": "1360014",
+    "agencyName": "AP MARKFED RBK GUNDLAPALLI",
+    "mobile": "8074008146",
+    "posPin": "1154"
+  },
+  "GUNDLASAGARAM": {
+    "dealerId": "1369900",
+    "agencyName": "AP MARKFED RBK GUNDLASAGARAM",
+    "mobile": "9581881047",
+    "posPin": "4178"
+  },
+  "GUNDRAJUKUPPAM": {
+    "dealerId": "1360048",
+    "agencyName": "AP MARKFED RBK GUNDRAJUKUPPAM",
+    "mobile": "7780198111",
+    "posPin": "9116"
+  },
+  "GUNDUGALLU": {
+    "dealerId": "1350936",
+    "agencyName": "AP MARKFED RBK GUNDUGALLU",
+    "mobile": "9502406561",
+    "posPin": "8158"
+  },
+  "GUNJARLAPALLI": {
+    "dealerId": "1369912",
+    "agencyName": "AP MARKFED RBK GUNJARLAPALLI",
+    "mobile": "9440611583",
+    "posPin": "6159"
+  },
+  "GUNTHURU": {
+    "dealerId": "1370012",
+    "agencyName": "AP MARKFED RBK GUNTHURU",
+    "mobile": "8500987072",
+    "posPin": "6144"
+  },
+  "GUNTIPALLI": {
+    "dealerId": "1366265",
+    "agencyName": "AP MARKFED RBK GUNTIPALLI",
+    "mobile": "8374786120",
+    "posPin": "9156"
+  },
+  "Hub Nagari": {
+    "dealerId": "1197357",
+    "agencyName": "AP Markfed RBK Hub Nagari",
+    "mobile": "9908186019",
+    "posPin": "1113"
+  },
+  "HUB PENUMUR": {
+    "dealerId": "1197355",
+    "agencyName": "AP MARKFED RBK HUB PENUMUR",
+    "mobile": "9515525449",
+    "posPin": "4180"
+  },
+  "HUB PUNGANUR": {
+    "dealerId": "1197315",
+    "agencyName": "AP MARKFED RBK HUB PUNGANUR",
+    "mobile": "9502900270",
+    "posPin": "8183"
+  },
+  "HUB VKOTA": {
+    "dealerId": "1197325",
+    "agencyName": "AP MARKFED RBK HUB VKOTA",
+    "mobile": "8555055585",
+    "posPin": "9119"
+  },
+  "ILAVARIPALLI": {
+    "dealerId": "1351196",
+    "agencyName": "AP MARKFED RBK ILAVARIPALLI",
+    "mobile": "9985512490",
+    "posPin": "5182"
+  },
+  "ILLATHUR": {
+    "dealerId": "1378532",
+    "agencyName": "AP MARKFED RBK ILLATHUR",
+    "mobile": "9493540471",
+    "posPin": "5154"
+  },
+  "IRALA": {
+    "dealerId": "1360112",
+    "agencyName": "AP MARKFED RBK IRALA",
+    "mobile": "9000027880",
+    "posPin": "8118"
+  },
+  "IRIKIPENTA": {
+    "dealerId": "1359992",
+    "agencyName": "AP MARKFED RBK IRIKIPENTA",
+    "mobile": "9703003694",
+    "posPin": "9136"
+  },
+  "IRUGUVAI": {
+    "dealerId": "1360054",
+    "agencyName": "AP MARKFED RBK IRUGUVAI",
+    "mobile": "9642800767",
+    "posPin": "5199"
+  },
+  "IRUVARAM": {
+    "dealerId": "1350832",
+    "agencyName": "AP MARKFED RBK IRUVARAM",
+    "mobile": "8978951815",
+    "posPin": "9138"
+  },
+  "IRUVARAMPALLI": {
+    "dealerId": "1359998",
+    "agencyName": "AP MARKFED RBK IRUVARAMPALLI",
+    "mobile": "9949810289",
+    "posPin": "5103"
+  },
+  "JAGAMARLA": {
+    "dealerId": "1360104",
+    "agencyName": "AP MARKFED RBK JAGAMARLA",
+    "mobile": "8179236989",
+    "posPin": "6103"
+  },
+  "JAGANTHAPURAM": {
+    "dealerId": "1373538",
+    "agencyName": "AP MARKFED RBK JAGANTHAPURAM",
+    "mobile": "9866447216",
+    "posPin": "2189"
+  },
+  "JAKKIDONA": {
+    "dealerId": "1377164",
+    "agencyName": "AP MARKFED RBK JAKKIDONA",
+    "mobile": "9515020613",
+    "posPin": "2132"
+  },
+  "JAMBUVARIPALLI": {
+    "dealerId": "1370030",
+    "agencyName": "AP MARKFED RBK JAMBUVARIPALLI",
+    "mobile": "9866062910",
+    "posPin": "9191"
+  },
+  "JANGALAPALLI": {
+    "dealerId": "1360032",
+    "agencyName": "AP MARKFED RBK JANGALAPALLI",
+    "mobile": "7032430373",
+    "posPin": "5198"
+  },
+  "JARAVARIPALLI": {
+    "dealerId": "1384524",
+    "agencyName": "AP MARKFED RBK JARAVARIPALLI",
+    "mobile": "9985002014",
+    "posPin": "3132"
+  },
+  "JEEDIMAKULAPALL": {
+    "dealerId": "1350934",
+    "agencyName": "AP MARKFED RBK JEEDIMAKULAPALL",
+    "mobile": "9866241709",
+    "posPin": "2157"
+  },
+  "JILLEDUPALLI": {
+    "dealerId": "1370082",
+    "agencyName": "AP MARKFED RBK JILLEDUPALLI",
+    "mobile": "8978425969",
+    "posPin": "9104"
+  },
+  "JONNAGORAKULLA": {
+    "dealerId": "1370052",
+    "agencyName": "AP MARKFED RBK JONNAGORAKULLA",
+    "mobile": "9494815631",
+    "posPin": "3102"
+  },
+  "JOUNIPALLE": {
+    "dealerId": "1370086",
+    "agencyName": "AP MARKFED RBK JOUNIPALLE",
+    "mobile": "8374387573",
+    "posPin": "7185"
+  },
+  "K C PALLI": {
+    "dealerId": "1350812",
+    "agencyName": "AP MARKFED RBK K C PALLI",
+    "mobile": "9652863432",
+    "posPin": "1138"
+  },
+  "K M KANDRIGA": {
+    "dealerId": "1369956",
+    "agencyName": "AP MARKFED RBK K M KANDRIGA",
+    "mobile": "9000176907",
+    "posPin": "6132"
+  },
+  "K V PALLI": {
+    "dealerId": "1366544",
+    "agencyName": "AP MARKFED RBK K V PALLI",
+    "mobile": "6304027947",
+    "posPin": "2146"
+  },
+  "K V PURAM": {
+    "dealerId": "1375391",
+    "agencyName": "AP MARKFED RBK K V PURAM",
+    "mobile": "8555872682",
+    "posPin": "4105"
+  },
+  "KADAPAGUNTA": {
+    "dealerId": "1375665",
+    "agencyName": "AP MARKFED RBK KADAPAGUNTA",
+    "mobile": "8008270085",
+    "posPin": "7187"
+  },
+  "KADAPALLI": {
+    "dealerId": "1369794",
+    "agencyName": "AP MARKFED RBK KADAPALLI",
+    "mobile": "9502024622",
+    "posPin": "2135"
+  },
+  "KADAPANATHAM": {
+    "dealerId": "1369914",
+    "agencyName": "AP MARKFED RBK KADAPANATHAM",
+    "mobile": "9398537131",
+    "posPin": "6104"
+  },
+  "KAGATHI": {
+    "dealerId": "1359962",
+    "agencyName": "AP MARKFED RBK KAGATHI",
+    "mobile": "9182112540",
+    "posPin": "9172"
+  },
+  "KALAGATOOR": {
+    "dealerId": "1350968",
+    "agencyName": "AP MARKFED RBK KALAGATOOR",
+    "mobile": "9704108449",
+    "posPin": "6137"
+  },
+  "KALAVAGUNTA": {
+    "dealerId": "1366526",
+    "agencyName": "AP MARKFED RBK KALAVAGUNTA",
+    "mobile": "8328095898",
+    "posPin": "6110"
+  },
+  "KALIAMBAKAM": {
+    "dealerId": "1373040",
+    "agencyName": "AP MARKFED RBK KALIAMBAKAM",
+    "mobile": "7794075827",
+    "posPin": "9175"
+  },
+  "KALIGIRI": {
+    "dealerId": "1366528",
+    "agencyName": "AP MARKFED RBK KALIGIRI",
+    "mobile": "7207157894",
+    "posPin": "7194"
+  },
+  "KALIJAVEDU RBK": {
+    "dealerId": "1375401",
+    "agencyName": "AP MARKFED RBK KALIJAVEDU RBK",
+    "mobile": "9989614475",
+    "posPin": "7110"
+  },
+  "KALIKAPURAM": {
+    "dealerId": "1373544",
+    "agencyName": "AP MARKFED RBK KALIKAPURAM",
+    "mobile": "8096369315",
+    "posPin": "1157"
+  },
+  "KALLADAM": {
+    "dealerId": "1369792",
+    "agencyName": "AP MARKFED RBK KALLADAM",
+    "mobile": "7981513947",
+    "posPin": "7176"
+  },
+  "KALLUPALLI": {
+    "dealerId": "1350970",
+    "agencyName": "AP MARKFED RBK KALLUPALLI",
+    "mobile": "9398688392",
+    "posPin": "4153"
+  },
+  "KALLURU": {
+    "dealerId": "1370106",
+    "agencyName": "AP MARKFED RBK KALLURU",
+    "mobile": "9398001789",
+    "posPin": "2179"
+  },
+  "KAMINAYANIPALLI": {
+    "dealerId": "1359996",
+    "agencyName": "AP MARKFED RBK KAMINAYANIPALLI",
+    "mobile": "9985837957",
+    "posPin": "5195"
+  },
+  "KAMMANAPALLI": {
+    "dealerId": "1350860",
+    "agencyName": "AP MARKFED RBK KAMMANAPALLI",
+    "mobile": "7989943531",
+    "posPin": "5141"
+  },
+  "KAMMAPALLI": {
+    "dealerId": "1370108",
+    "agencyName": "AP MARKFED RBK KAMMAPALLI",
+    "mobile": "7095949553",
+    "posPin": "9155"
+  },
+  "KAMMAPALYAM": {
+    "dealerId": "1350932",
+    "agencyName": "AP MARKFED RBK KAMMAPALYAM",
+    "mobile": "9014587284",
+    "posPin": "6196"
+  },
+  "KANAMANAPALLI": {
+    "dealerId": "1369746",
+    "agencyName": "AP MARKFED RBK KANAMANAPALLI",
+    "mobile": "8106373756",
+    "posPin": "7184"
+  },
+  "KANDUR": {
+    "dealerId": "1370915",
+    "agencyName": "AP MARKFED RBK KANDUR",
+    "mobile": "8897851230",
+    "posPin": "8121"
+  },
+  "KANGUNDHI1": {
+    "dealerId": "1369808",
+    "agencyName": "AP MARKFED RBK KANGUNDHI1",
+    "mobile": "6303669548",
+    "posPin": "6146"
+  },
+  "KANGUNDHI2": {
+    "dealerId": "1369810",
+    "agencyName": "AP MARKFED RBK KANGUNDHI2",
+    "mobile": "7075693738",
+    "posPin": "9157"
+  },
+  "KANIPAKAM": {
+    "dealerId": "1360004",
+    "agencyName": "AP MARKFED RBK KANIPAKAM",
+    "mobile": "9030758404",
+    "posPin": "3108"
+  },
+  "KARIDIMADUGU": {
+    "dealerId": "1350856",
+    "agencyName": "AP MARKFED RBK KARIDIMADUGU",
+    "mobile": "9652383763",
+    "posPin": "8121"
+  },
+  "KARLAGATTA": {
+    "dealerId": "1369852",
+    "agencyName": "AP MARKFED RBK KARLAGATTA",
+    "mobile": "8050041893",
+    "posPin": "3191"
+  },
+  "KARVETINAGAR": {
+    "dealerId": "1370122",
+    "agencyName": "AP MARKFED RBK KARVETINAGAR",
+    "mobile": "9705712941",
+    "posPin": "5115"
+  },
+  "KASIRALLA": {
+    "dealerId": "1348725",
+    "agencyName": "AP MARKFED RBK KASIRALLA",
+    "mobile": "8309549579",
+    "posPin": "9133"
+  },
+  "KATHERAPALLI": {
+    "dealerId": "1370092",
+    "agencyName": "AP MARKFED RBK KATHERAPALLI",
+    "mobile": "7032679907",
+    "posPin": "8101"
+  },
+  "KATIKAPALLI": {
+    "dealerId": "1377592",
+    "agencyName": "AP MARKFED RBK KATIKAPALLI",
+    "mobile": "7095251376",
+    "posPin": "6166"
+  },
+  "KATIPERI": {
+    "dealerId": "1359980",
+    "agencyName": "AP MARKFED RBK KATIPERI",
+    "mobile": "9550198426",
+    "posPin": "2186"
+  },
+  "KATTAPAGARIPALL": {
+    "dealerId": "1370016",
+    "agencyName": "AP MARKFED RBK KATTAPAGARIPALL",
+    "mobile": "9493081023",
+    "posPin": "8104"
+  },
+  "KAVANOOR": {
+    "dealerId": "1360064",
+    "agencyName": "AP MARKFED RBK KAVANOOR",
+    "mobile": "6305631682",
+    "posPin": "4105"
+  },
+  "KAVETIGARIPALLI": {
+    "dealerId": "1370112",
+    "agencyName": "AP MARKFED RBK KAVETIGARIPALLI",
+    "mobile": "6302756145",
+    "posPin": "9136"
+  },
+  "KD PALLI": {
+    "dealerId": "1369870",
+    "agencyName": "AP MARKFED RBK KD PALLI",
+    "mobile": "6300814976",
+    "posPin": "8158"
+  },
+  "KEELAPALLI": {
+    "dealerId": "1350984",
+    "agencyName": "AP MARKFED RBK KEELAPALLI",
+    "mobile": "6281855615",
+    "posPin": "2113"
+  },
+  "KEELAPATLA": {
+    "dealerId": "1350942",
+    "agencyName": "AP MARKFED RBK KEELAPATLA",
+    "mobile": "6281073652",
+    "posPin": "6179"
+  },
+  "KEENATAMPALLI": {
+    "dealerId": "1360012",
+    "agencyName": "AP MARKFED RBK KEENATAMPALLI",
+    "mobile": "8143637850",
+    "posPin": "2135"
+  },
+  "KEERAMANDA": {
+    "dealerId": "1370074",
+    "agencyName": "AP MARKFED RBK KEERAMANDA",
+    "mobile": "6305085522",
+    "posPin": "9121"
+  },
+  "KENAMAKULAPALL2": {
+    "dealerId": "1350872",
+    "agencyName": "AP MARKFED RBK KENAMAKULAPALL2",
+    "mobile": "9502004634",
+    "posPin": "6185"
+  },
+  "KENAMAKULAPALLI": {
+    "dealerId": "1369776",
+    "agencyName": "AP MARKFED RBK KENAMAKULAPALLI",
+    "mobile": "8919607276",
+    "posPin": "7132"
+  },
+  "KENCHANBALLA": {
+    "dealerId": "1350892",
+    "agencyName": "AP MARKFED RBK KENCHANBALLA",
+    "mobile": "8341402903",
+    "posPin": "4169"
+  },
+  "KHAMBHAMPALLI": {
+    "dealerId": "1360096",
+    "agencyName": "AP MARKFED RBK KHAMBHAMPALLI",
+    "mobile": "9347705301",
+    "posPin": "6152"
+  },
+  "KODALAMADUGU": {
+    "dealerId": "1370054",
+    "agencyName": "AP MARKFED RBK KODALAMADUGU",
+    "mobile": "9010557619",
+    "posPin": "9176"
+  },
+  "KODATHANAPALLI": {
+    "dealerId": "1369814",
+    "agencyName": "AP MARKFED RBK KODATHANAPALLI",
+    "mobile": "8897504604",
+    "posPin": "7195"
+  },
+  "KOGILERU": {
+    "dealerId": "1350928",
+    "agencyName": "AP MARKFED RBK KOGILERU",
+    "mobile": "9000930669",
+    "posPin": "8198"
+  },
+  "KOLAMADUGU": {
+    "dealerId": "1369788",
+    "agencyName": "AP MARKFED RBK KOLAMADUGU",
+    "mobile": "8050596402",
+    "posPin": "9180"
+  },
+  "KOLAMASANAPALLI": {
+    "dealerId": "1360092",
+    "agencyName": "AP MARKFED RBK KOLAMASANAPALLI",
+    "mobile": "9701124330",
+    "posPin": "1160"
+  },
+  "KOLATHUR": {
+    "dealerId": "1350912",
+    "agencyName": "AP MARKFED RBK KOLATHUR",
+    "mobile": "8184896005",
+    "posPin": "4125"
+  },
+  "KOLLAGUNTA": {
+    "dealerId": "1370094",
+    "agencyName": "AP MARKFED RBK KOLLAGUNTA",
+    "mobile": "6309609350",
+    "posPin": "4143"
+  },
+  "KOMARAGUNTA": {
+    "dealerId": "1377662",
+    "agencyName": "AP MARKFED RBK KOMARAGUNTA",
+    "mobile": "6304034347",
+    "posPin": "4157"
+  },
+  "KONAPALLI": {
+    "dealerId": "1348705",
+    "agencyName": "AP MARKFED RBK KONAPALLI",
+    "mobile": "9160431867",
+    "posPin": "1140"
+  },
+  "KONDAMARRI": {
+    "dealerId": "1359964",
+    "agencyName": "AP MARKFED RBK KONDAMARRI",
+    "mobile": "9133733393",
+    "posPin": "4132"
+  },
+  "KONGANAPALLI": {
+    "dealerId": "1369924",
+    "agencyName": "AP MARKFED RBK KONGANAPALLI",
+    "mobile": "9160540997",
+    "posPin": "5151"
+  },
+  "KONGATAM": {
+    "dealerId": "1369750",
+    "agencyName": "AP MARKFED RBK KONGATAM",
+    "mobile": "8331896784",
+    "posPin": "1180"
+  },
+  "KOPPEDU": {
+    "dealerId": "1369163",
+    "agencyName": "AP MARKFED RBK KOPPEDU",
+    "mobile": "9866010986",
+    "posPin": "2143"
+  },
+  "KOSALANAGARAM": {
+    "dealerId": "1375395",
+    "agencyName": "AP MARKFED RBK KOSALANAGARAM",
+    "mobile": "7093254734",
+    "posPin": "8166"
+  },
+  "KOTAGARAM": {
+    "dealerId": "1377626",
+    "agencyName": "AP MARKFED RBK KOTAGARAM",
+    "mobile": "8096605720",
+    "posPin": "5147"
+  },
+  "KOTALUR": {
+    "dealerId": "1369836",
+    "agencyName": "AP MARKFED RBK KOTALUR",
+    "mobile": "8639107245",
+    "posPin": "6127"
+  },
+  "KOTARAVEDU": {
+    "dealerId": "1370096",
+    "agencyName": "AP MARKFED RBK KOTARAVEDU",
+    "mobile": "8555803013",
+    "posPin": "3149"
+  },
+  "KOTHAPALLI": {
+    "dealerId": "1377602",
+    "agencyName": "AP MARKFED RBK KOTHAPALLI",
+    "mobile": "8106082360",
+    "posPin": "1123"
+  },
+  "KOTHAVENKATAPUR": {
+    "dealerId": "1377640",
+    "agencyName": "AP MARKFED RBK KOTHAVENKATAPUR",
+    "mobile": "6374281390",
+    "posPin": "6137"
+  },
+  "KOTRAKONAM": {
+    "dealerId": "1375399",
+    "agencyName": "AP MARKFED RBK KOTRAKONAM",
+    "mobile": "7989695141",
+    "posPin": "6134"
+  },
+  "KOTTALAM": {
+    "dealerId": "1360110",
+    "agencyName": "AP MARKFED RBK KOTTALAM",
+    "mobile": "8520020863",
+    "posPin": "8155"
+  },
+  "KRISHNA JAMMAPU": {
+    "dealerId": "1379211",
+    "agencyName": "AP MARKFED RBK KRISHNA JAMMAPU",
+    "mobile": "8328085445",
+    "posPin": "5159"
+  },
+  "KRISHNAPURAM": {
+    "dealerId": "1369770",
+    "agencyName": "AP MARKFED RBK KRISHNAPURAM",
+    "mobile": "9014949087",
+    "posPin": "9169"
+  },
+  "KUKKALAPALLI": {
+    "dealerId": "1360010",
+    "agencyName": "AP MARKFED RBK KUKKALAPALLI",
+    "mobile": "9346016078",
+    "posPin": "1169"
+  },
+  "KUMARANATHAM": {
+    "dealerId": "1359968",
+    "agencyName": "AP MARKFED RBK KUMARANATHAM",
+    "mobile": "9347206871",
+    "posPin": "6172"
+  },
+  "KUMBARLAPALLE": {
+    "dealerId": "1369766",
+    "agencyName": "AP MARKFED RBK KUMBARLAPALLE",
+    "mobile": "9100317722",
+    "posPin": "1183"
+  },
+  "KUPPAM": {
+    "dealerId": "1369822",
+    "agencyName": "AP MARKFED RBK KUPPAM",
+    "mobile": "9398090620",
+    "posPin": "7184"
+  },
+  "KUPPIGANIPALLI": {
+    "dealerId": "1369812",
+    "agencyName": "AP MARKFED RBK KUPPIGANIPALLI",
+    "mobile": "8919413555",
+    "posPin": "2191"
+  },
+  "KURMAI": {
+    "dealerId": "1360098",
+    "agencyName": "AP MARKFED RBK KURMAI",
+    "mobile": "8500773807",
+    "posPin": "6121"
+  },
+  "KURMAIPALLI": {
+    "dealerId": "1380333",
+    "agencyName": "AP MARKFED RBK KURMAIPALLI",
+    "mobile": "6305002909",
+    "posPin": "3103"
+  },
+  "LADDIGAM": {
+    "dealerId": "1360078",
+    "agencyName": "AP MARKFED RBK LADDIGAM",
+    "mobile": "9666614560",
+    "posPin": "1122"
+  },
+  "LAKKANPALLI": {
+    "dealerId": "1360088",
+    "agencyName": "AP MARKFED RBK LAKKANPALLI",
+    "mobile": "9014695389",
+    "posPin": "5107"
+  },
+  "LB PURAM": {
+    "dealerId": "1350802",
+    "agencyName": "AP MARKFED RBK LB PURAM",
+    "mobile": "9652685816",
+    "posPin": "2121"
+  },
+  "LINGAPURAM": {
+    "dealerId": "1370104",
+    "agencyName": "AP MARKFED RBK LINGAPURAM",
+    "mobile": "8008592236",
+    "posPin": "3197"
+  },
+  "M BANDAPALLI": {
+    "dealerId": "1350818",
+    "agencyName": "AP MARKFED RBK M BANDAPALLI",
+    "mobile": "9177936172",
+    "posPin": "6168"
+  },
+  "M KOTHUR": {
+    "dealerId": "1348154",
+    "agencyName": "AP MARKFED RBK M KOTHUR",
+    "mobile": "8019567139",
+    "posPin": "3104"
+  },
+  "M PAIPALLI": {
+    "dealerId": "1360006",
+    "agencyName": "AP MARKFED RBK M PAIPALLI",
+    "mobile": "7382095506",
+    "posPin": "1137"
+  },
+  "M R KANDRIGA": {
+    "dealerId": "1373536",
+    "agencyName": "AP MARKFED RBK M R KANDRIGA",
+    "mobile": "9052457684",
+    "posPin": "5140"
+  },
+  "MADAVARAM": {
+    "dealerId": "1348719",
+    "agencyName": "AP MARKFED RBK MADAVARAM",
+    "mobile": "8919742353",
+    "posPin": "9174"
+  },
+  "MADDIMAKULAPALL": {
+    "dealerId": "1369820",
+    "agencyName": "AP MARKFED RBK MADDIMAKULAPALL",
+    "mobile": "9035890265",
+    "posPin": "9142"
+  },
+  "MADIREDDYPALLI": {
+    "dealerId": "1348711",
+    "agencyName": "AP MARKFED RBK MADIREDDYPALLI",
+    "mobile": "6300544454",
+    "posPin": "7156"
+  },
+  "MAGANDLAPALLI": {
+    "dealerId": "1359954",
+    "agencyName": "AP MARKFED RBK MAGANDLAPALLI",
+    "mobile": "9494747004",
+    "posPin": "6118"
+  },
+  "MAHASAMUDRAM": {
+    "dealerId": "1370042",
+    "agencyName": "AP MARKFED RBK MAHASAMUDRAM",
+    "mobile": "9676591297",
+    "posPin": "3140"
+  },
+  "MALLAKUNTA": {
+    "dealerId": "1370038",
+    "agencyName": "AP MARKFED RBK MALLAKUNTA",
+    "mobile": "8919550067",
+    "posPin": "7155"
+  },
+  "MALLANUR1": {
+    "dealerId": "1369892",
+    "agencyName": "AP MARKFED RBK MALLANUR1",
+    "mobile": "7095123730",
+    "posPin": "3165"
+  },
+  "MALLANUR2": {
+    "dealerId": "1369916",
+    "agencyName": "AP MARKFED RBK MALLANUR2",
+    "mobile": "7842397814",
+    "posPin": "1184"
+  },
+  "MAMADUGU": {
+    "dealerId": "1350910",
+    "agencyName": "AP MARKFED RBK MAMADUGU",
+    "mobile": "6301686133",
+    "posPin": "4175"
+  },
+  "MAMBEDU": {
+    "dealerId": "1377674",
+    "agencyName": "AP MARKFED RBK MAMBEDU",
+    "mobile": "9515285690",
+    "posPin": "8107"
+  },
+  "MANDIPETA": {
+    "dealerId": "1383370",
+    "agencyName": "AP MARKFED RBK MANDIPETA",
+    "mobile": "8008723877",
+    "posPin": "6195"
+  },
+  "MANENDRAM": {
+    "dealerId": "1350874",
+    "agencyName": "AP MARKFED RBK MANENDRAM",
+    "mobile": "9703034489",
+    "posPin": "4176"
+  },
+  "MANGALAM": {
+    "dealerId": "1359960",
+    "agencyName": "AP MARKFED RBK MANGALAM",
+    "mobile": "9985609609",
+    "posPin": "4110"
+  },
+  "MANGALAMPETA": {
+    "dealerId": "1370114",
+    "agencyName": "AP MARKFED RBK MANGALAMPETA",
+    "mobile": "8465941511",
+    "posPin": "9156"
+  },
+  "MANKALADODDI": {
+    "dealerId": "1369904",
+    "agencyName": "AP MARKFED RBK MANKALADODDI",
+    "mobile": "8374415842",
+    "posPin": "2138"
+  },
+  "MARAKALAKUPPAM": {
+    "dealerId": "1360008",
+    "agencyName": "AP MARKFED RBK MARAKALAKUPPAM",
+    "mobile": "9618759494",
+    "posPin": "3173"
+  },
+  "MATHUKU VPALLI": {
+    "dealerId": "1370068",
+    "agencyName": "AP MARKFED RBK MATHUKU VPALLI",
+    "mobile": "9949355898",
+    "posPin": "3153"
+  },
+  "MATHYAM": {
+    "dealerId": "1370044",
+    "agencyName": "AP MARKFED RBK MATHYAM",
+    "mobile": "9701388171",
+    "posPin": "2136"
+  },
+  "MATTAM": {
+    "dealerId": "1369866",
+    "agencyName": "AP MARKFED RBK MATTAM",
+    "mobile": "9866459172",
+    "posPin": "5170"
+  },
+  "MD MANGALAM": {
+    "dealerId": "1377590",
+    "agencyName": "AP MARKFED RBK MD MANGALAM",
+    "mobile": "9441866715",
+    "posPin": "5714"
+  },
+  "MELAMBHAKAM": {
+    "dealerId": "1360062",
+    "agencyName": "AP MARKFED RBK MELAMBHAKAM",
+    "mobile": "9100239412",
+    "posPin": "3185"
+  },
+  "MELUMOY": {
+    "dealerId": "1350908",
+    "agencyName": "AP MARKFED RBK MELUMOY",
+    "mobile": "9550703383",
+    "posPin": "3177"
+  },
+  "MELUPATLA": {
+    "dealerId": "1382874",
+    "agencyName": "AP MARKFED RBK MELUPATLA",
+    "mobile": "9441981452",
+    "posPin": "8158"
+  },
+  "MITTACHINTHAVAR": {
+    "dealerId": "1350986",
+    "agencyName": "AP MARKFED RBK MITTACHINTHAVAR",
+    "mobile": "9440272797",
+    "posPin": "7164"
+  },
+  "MITTAPALEM": {
+    "dealerId": "1370913",
+    "agencyName": "AP MARKFED RBK MITTAPALEM",
+    "mobile": "9490071479",
+    "posPin": "9150"
+  },
+  "MITTAPALLI": {
+    "dealerId": "1369790",
+    "agencyName": "AP MARKFED RBK MITTAPALLI",
+    "mobile": "9701953673",
+    "posPin": "5199"
+  },
+  "MK PURAM": {
+    "dealerId": "1369754",
+    "agencyName": "AP MARKFED RBK MK PURAM",
+    "mobile": "7702419646",
+    "posPin": "2198"
+  },
+  "MM VILASAM": {
+    "dealerId": "1377650",
+    "agencyName": "AP MARKFED RBK MM VILASAM",
+    "mobile": "9441036397",
+    "posPin": "3107"
+  },
+  "MODHUGULAPALLI": {
+    "dealerId": "1351013",
+    "agencyName": "AP MARKFED RBK MODHUGULAPALLI",
+    "mobile": "8184966580",
+    "posPin": "2145"
+  },
+  "MOGARALAPALLI": {
+    "dealerId": "1350822",
+    "agencyName": "AP MARKFED RBK MOGARALAPALLI",
+    "mobile": "8500959552",
+    "posPin": "2171"
+  },
+  "MOGILI": {
+    "dealerId": "1370040",
+    "agencyName": "AP MARKFED RBK MOGILI",
+    "mobile": "6300552574",
+    "posPin": "5131"
+  },
+  "MOGILIVARIPALLI": {
+    "dealerId": "1370004",
+    "agencyName": "AP MARKFED RBK MOGILIVARIPALLI",
+    "mobile": "8184981465",
+    "posPin": "5131"
+  },
+  "MORAM": {
+    "dealerId": "1365187",
+    "agencyName": "AP MARKFED RBK MORAM",
+    "mobile": "7673996181",
+    "posPin": "4145"
+  },
+  "MORASANAPALLI": {
+    "dealerId": "1369854",
+    "agencyName": "AP MARKFED RBK MORASANAPALLI",
+    "mobile": "9676693031",
+    "posPin": "7196"
+  },
+  "MORDHANAPALLI": {
+    "dealerId": "1348723",
+    "agencyName": "AP MARKFED RBK MORDHANAPALLI",
+    "mobile": "9346665669",
+    "posPin": "5128"
+  },
+  "MOTUMALLELA": {
+    "dealerId": "1354116",
+    "agencyName": "AP MARKFED RBK MOTUMALLELA",
+    "mobile": "9491579894",
+    "posPin": "9110"
+  },
+  "MUDARAMDODDI": {
+    "dealerId": "1369886",
+    "agencyName": "AP MARKFED RBK MUDARAMDODDI",
+    "mobile": "9849680677",
+    "posPin": "8149"
+  },
+  "MUDDIKUPPAM": {
+    "dealerId": "1377594",
+    "agencyName": "AP MARKFED RBK MUDDIKUPPAM",
+    "mobile": "9160948382",
+    "posPin": "1132"
+  },
+  "MUDIGOLAM": {
+    "dealerId": "1351192",
+    "agencyName": "AP MARKFED RBK MUDIGOLAM",
+    "mobile": "9704411852",
+    "posPin": "2194"
+  },
+  "MUDIPALLI": {
+    "dealerId": "1360068",
+    "agencyName": "AP MARKFED RBK MUDIPALLI",
+    "mobile": "7093366744",
+    "posPin": "2109"
+  },
+  "MUKKALATHUR": {
+    "dealerId": "1377584",
+    "agencyName": "AP MARKFED RBK MUKKALATHUR",
+    "mobile": "9440719764",
+    "posPin": "4198"
+  },
+  "MUTHUKUR": {
+    "dealerId": "1350920",
+    "agencyName": "AP MARKFED RBK MUTHUKUR",
+    "mobile": "9440912463",
+    "posPin": "8126"
+  },
+  "N KOTHAPALLI": {
+    "dealerId": "1369772",
+    "agencyName": "AP MARKFED RBK N KOTHAPALLI",
+    "mobile": "7558145999",
+    "posPin": "5179"
+  },
+  "NADIGADDA": {
+    "dealerId": "1366552",
+    "agencyName": "AP MARKFED RBK NADIGADDA",
+    "mobile": "9390414504",
+    "posPin": "7107"
+  },
+  "NADIMURU": {
+    "dealerId": "1369774",
+    "agencyName": "AP MARKFED RBK NADIMURU",
+    "mobile": "9000690536",
+    "posPin": "2104"
+  },
+  "NAGARI": {
+    "dealerId": "1370905",
+    "agencyName": "AP MARKFED RBK NAGARI",
+    "mobile": "9052974505",
+    "posPin": "1188"
+  },
+  "NAGAVANDLAPALLI": {
+    "dealerId": "1369760",
+    "agencyName": "AP MARKFED RBK NAGAVANDLAPALLI",
+    "mobile": "9966282877",
+    "posPin": "7124"
+  },
+  "NAGIREDDIPALLI": {
+    "dealerId": "1351008",
+    "agencyName": "AP MARKFED RBK NAGIREDDIPALLI",
+    "mobile": "8106055101",
+    "posPin": "1112"
+  },
+  "NALAGAMPALLE": {
+    "dealerId": "1370034",
+    "agencyName": "AP MARKFED RBK NALAGAMPALLE",
+    "mobile": "9652399911",
+    "posPin": "7167"
+  },
+  "NALAVENGANAPALL": {
+    "dealerId": "1359952",
+    "agencyName": "AP MARKFED RBK NALAVENGANAPALL",
+    "mobile": "9618880984",
+    "posPin": "9137"
+  },
+  "NALLAMGADU": {
+    "dealerId": "1370026",
+    "agencyName": "AP MARKFED RBK NALLAMGADU",
+    "mobile": "9963843157",
+    "posPin": "4114"
+  },
+  "NALLISETIPALLI": {
+    "dealerId": "1370014",
+    "agencyName": "AP MARKFED RBK NALLISETIPALLI",
+    "mobile": "9502129657",
+    "posPin": "5128"
+  },
+  "NAMBAKAM": {
+    "dealerId": "1370907",
+    "agencyName": "AP MARKFED RBK NAMBAKAM",
+    "mobile": "6301160060",
+    "posPin": "2180"
+  },
+  "NANGAMANGALAM": {
+    "dealerId": "1360042",
+    "agencyName": "AP MARKFED RBK NANGAMANGALAM",
+    "mobile": "9553649865",
+    "posPin": "9126"
+  },
+  "NANIYALA THAND": {
+    "dealerId": "1369888",
+    "agencyName": "AP MARKFED RBK NANIYALA THAND",
+    "mobile": "8008207919",
+    "posPin": "4144"
+  },
+  "NANJAMPETA": {
+    "dealerId": "1359976",
+    "agencyName": "AP MARKFED RBK NANJAMPETA",
+    "mobile": "9133376979",
+    "posPin": "9119"
+  },
+  "NARAGALLU": {
+    "dealerId": "1360000",
+    "agencyName": "AP MARKFED RBK NARAGALLU",
+    "mobile": "8555012840",
+    "posPin": "6177"
+  },
+  "NARASIMHAPURAM": {
+    "dealerId": "1378522",
+    "agencyName": "AP MARKFED RBK NARASIMHAPURAM",
+    "mobile": "9398142234",
+    "posPin": "2168"
+  },
+  "NEKKONDI": {
+    "dealerId": "1350798",
+    "agencyName": "AP MARKFED RBK NEKKONDI",
+    "mobile": "9652802080",
+    "posPin": "9183"
+  },
+  "NELAVOY": {
+    "dealerId": "1377606",
+    "agencyName": "AP MARKFED RBK NELAVOY",
+    "mobile": "8374460686",
+    "posPin": "2127"
+  },
+  "NELLEPALLI": {
+    "dealerId": "1377616",
+    "agencyName": "AP MARKFED RBK NELLEPALLI",
+    "mobile": "9100384412",
+    "posPin": "9168"
+  },
+  "NELLIMANDA": {
+    "dealerId": "1360074",
+    "agencyName": "AP MARKFED RBK NELLIMANDA",
+    "mobile": "6281922326",
+    "posPin": "9178"
+  },
+  "NELLIPATLA": {
+    "dealerId": "1369906",
+    "agencyName": "AP MARKFED RBK NELLIPATLA",
+    "mobile": "9705844632",
+    "posPin": "7159"
+  },
+  "NERNIPALLI": {
+    "dealerId": "1369874",
+    "agencyName": "AP MARKFED RBK NERNIPALLI",
+    "mobile": "8179354944",
+    "posPin": "5123"
+  },
+  "NETHIGUTLAPALL": {
+    "dealerId": "1350972",
+    "agencyName": "AP MARKFED RBK NETHIGUTLAPALL",
+    "mobile": "7989985266",
+    "posPin": "2149"
+  },
+  "NETTERI": {
+    "dealerId": "1369161",
+    "agencyName": "AP MARKFED RBK NETTERI",
+    "mobile": "9642800275",
+    "posPin": "6171"
+  },
+  "NIDIGUNTA": {
+    "dealerId": "1350976",
+    "agencyName": "AP MARKFED RBK NIDIGUNTA",
+    "mobile": "8978537031",
+    "posPin": "5146"
+  },
+  "NINDRA": {
+    "dealerId": "1360056",
+    "agencyName": "AP MARKFED RBK NINDRA",
+    "mobile": "6301073175",
+    "posPin": "3182"
+  },
+  "NOOLUKUNTA": {
+    "dealerId": "1369798",
+    "agencyName": "AP MARKFED RBK NOOLUKUNTA",
+    "mobile": "9553641834",
+    "posPin": "8128"
+  },
+  "NP THANDA": {
+    "dealerId": "1350870",
+    "agencyName": "AP MARKFED RBK NP THANDA",
+    "mobile": "8309306720",
+    "posPin": "3114"
+  },
+  "O G KUPPAM": {
+    "dealerId": "1382878",
+    "agencyName": "AP MARKFED RBK O G KUPPAM",
+    "mobile": "9052231995",
+    "posPin": "3197"
+  },
+  "ODDEPALLI": {
+    "dealerId": "1349715",
+    "agencyName": "AP MARKFED RBK ODDEPALLI",
+    "mobile": "6300608824",
+    "posPin": "9161"
+  },
+  "OGU": {
+    "dealerId": "1386695",
+    "agencyName": "AP MARKFED RBK OGU",
+    "mobile": "8297356591",
+    "posPin": "5166"
+  },
+  "ON KOTHURU": {
+    "dealerId": "1383368",
+    "agencyName": "AP MARKFED RBK ON KOTHURU",
+    "mobile": "9346477297",
+    "posPin": "1176"
+  },
+  "P ERREPALLI": {
+    "dealerId": "1375405",
+    "agencyName": "AP MARKFED RBK P ERREPALLI",
+    "mobile": "6305413067",
+    "posPin": "9175"
+  },
+  "P KOTHAKOTA": {
+    "dealerId": "1350828",
+    "agencyName": "AP MARKFED RBK P KOTHAKOTA",
+    "mobile": "9346276066",
+    "posPin": "9187"
+  },
+  "PACHIGUNTA": {
+    "dealerId": "1375397",
+    "agencyName": "AP MARKFED RBK PACHIGUNTA",
+    "mobile": "9182879082",
+    "posPin": "2123"
+  },
+  "PACHIKAPALLAM": {
+    "dealerId": "1377670",
+    "agencyName": "AP MARKFED RBK PACHIKAPALLAM",
+    "mobile": "8555864259",
+    "posPin": "4159"
+  },
+  "PADIGALAKUPPAM": {
+    "dealerId": "1370098",
+    "agencyName": "AP MARKFED RBK PADIGALAKUPPAM",
+    "mobile": "7093544771",
+    "posPin": "9119"
+  },
+  "PADIRI": {
+    "dealerId": "1369994",
+    "agencyName": "AP MARKFED RBK PADIRI",
+    "mobile": "8897788380",
+    "posPin": "8132"
+  },
+  "PADMAPURAM": {
+    "dealerId": "1377598",
+    "agencyName": "AP MARKFED RBK PADMAPURAM",
+    "mobile": "9701534348",
+    "posPin": "2141"
+  },
+  "PAIMAGHAM": {
+    "dealerId": "1370032",
+    "agencyName": "AP MARKFED RBK PAIMAGHAM",
+    "mobile": "8074399175",
+    "posPin": "1107"
+  },
+  "PAIPALYAM": {
+    "dealerId": "1369832",
+    "agencyName": "AP MARKFED RBK PAIPALYAM",
+    "mobile": "7337249974",
+    "posPin": "3185"
+  },
+  "PALAMANDA": {
+    "dealerId": "1366546",
+    "agencyName": "AP MARKFED RBK PALAMANDA",
+    "mobile": "8125322108",
+    "posPin": "2122"
+  },
+  "PALAMANER": {
+    "dealerId": "1369840",
+    "agencyName": "AP MARKFED RBK PALAMANER",
+    "mobile": "9705540112",
+    "posPin": "4183"
+  },
+  "PALASAMUDRAM": {
+    "dealerId": "1378524",
+    "agencyName": "AP MARKFED RBK PALASAMUDRAM",
+    "mobile": "8639478566",
+    "posPin": "5197"
+  },
+  "PALEMPALLI": {
+    "dealerId": "1350982",
+    "agencyName": "AP MARKFED RBK PALEMPALLI",
+    "mobile": "7799155164",
+    "posPin": "5157"
+  },
+  "PALERU": {
+    "dealerId": "1370062",
+    "agencyName": "AP MARKFED RBK PALERU",
+    "mobile": "7670925815",
+    "posPin": "5182"
+  },
+  "PALLICHERUVU": {
+    "dealerId": "1370056",
+    "agencyName": "AP MARKFED RBK PALLICHERUVU",
+    "mobile": "8790245932",
+    "posPin": "3138"
+  },
+  "PALLIKUPPAM": {
+    "dealerId": "1385520",
+    "agencyName": "AP MARKFED RBK PALLIKUPPAM",
+    "mobile": "7993424603",
+    "posPin": "2139"
+  },
+  "PALURU": {
+    "dealerId": "1350824",
+    "agencyName": "AP MARKFED RBK PALURU",
+    "mobile": "7780469360",
+    "posPin": "5114"
+  },
+  "PAMUGANIPALLE": {
+    "dealerId": "1369804",
+    "agencyName": "AP MARKFED RBK PAMUGANIPALLE",
+    "mobile": "9866807596",
+    "posPin": "9115"
+  },
+  "PANATUR": {
+    "dealerId": "1360118",
+    "agencyName": "AP MARKFED RBK PANATUR",
+    "mobile": "7075935472",
+    "posPin": "2155"
+  },
+  "PANNUR": {
+    "dealerId": "1360058",
+    "agencyName": "AP MARKFED RBK PANNUR",
+    "mobile": "9985049509",
+    "posPin": "7138"
+  },
+  "PAPASAMUDRAM": {
+    "dealerId": "1366530",
+    "agencyName": "AP MARKFED RBK PAPASAMUDRAM",
+    "mobile": "9440830102",
+    "posPin": "6182"
+  },
+  "PAPIREDDYPALLI": {
+    "dealerId": "1377622",
+    "agencyName": "AP MARKFED RBK PAPIREDDYPALLI",
+    "mobile": "9908745587",
+    "posPin": "8103"
+  },
+  "PARIKIDONA": {
+    "dealerId": "1360084",
+    "agencyName": "AP MARKFED RBK PARIKIDONA",
+    "mobile": "6302454018",
+    "posPin": "3197"
+  },
+  "PASUPATHURU": {
+    "dealerId": "1350904",
+    "agencyName": "AP MARKFED RBK PASUPATHURU",
+    "mobile": "9985430275",
+    "posPin": "7107"
+  },
+  "PATHIKONDA": {
+    "dealerId": "1350940",
+    "agencyName": "AP MARKFED RBK PATHIKONDA",
+    "mobile": "9177165457",
+    "posPin": "3182"
+  },
+  "PATHURNATHAM": {
+    "dealerId": "1360094",
+    "agencyName": "AP MARKFED RBK PATHURNATHAM",
+    "mobile": "9581230254",
+    "posPin": "8199"
+  },
+  "PATNAM": {
+    "dealerId": "1370006",
+    "agencyName": "AP MARKFED RBK PATNAM",
+    "mobile": "8143222628",
+    "posPin": "9193"
+  },
+  "PATRAPALLI": {
+    "dealerId": "1369828",
+    "agencyName": "AP MARKFED RBK PATRAPALLI",
+    "mobile": "9550658087",
+    "posPin": "2143"
+  },
+  "PB NATHAM": {
+    "dealerId": "1369752",
+    "agencyName": "AP MARKFED RBK PB NATHAM",
+    "mobile": "9538601550",
+    "posPin": "3143"
+  },
+  "PB WADA": {
+    "dealerId": "1369890",
+    "agencyName": "AP MARKFED RBK PB WADA",
+    "mobile": "9912162088",
+    "posPin": "6193"
+  },
+  "PC GUNTA": {
+    "dealerId": "1369862",
+    "agencyName": "AP MARKFED RBK PC GUNTA",
+    "mobile": "9581928675",
+    "posPin": "7104"
+  },
+  "PEDDABARINEPALL": {
+    "dealerId": "1369744",
+    "agencyName": "AP MARKFED RBK PEDDABARINEPALL",
+    "mobile": "8688952355",
+    "posPin": "1115"
+  },
+  "PEDDAKALVA": {
+    "dealerId": "1375669",
+    "agencyName": "AP MARKFED RBK PEDDAKALVA",
+    "mobile": "9573519558",
+    "posPin": "5938"
+  },
+  "PEDDAKAPALLI": {
+    "dealerId": "1350938",
+    "agencyName": "AP MARKFED RBK PEDDAKAPALLI",
+    "mobile": "9550060082",
+    "posPin": "8142"
+  },
+  "PEDDAMALLELA": {
+    "dealerId": "1354114",
+    "agencyName": "AP MARKFED RBK PEDDAMALLELA",
+    "mobile": "7330740093",
+    "posPin": "3153"
+  },
+  "PEDDAPANJANI": {
+    "dealerId": "1350914",
+    "agencyName": "AP MARKFED RBK PEDDAPANJANI",
+    "mobile": "9416613051",
+    "posPin": "9182"
+  },
+  "PEDDAUPPARAPALL": {
+    "dealerId": "1359972",
+    "agencyName": "AP MARKFED RBK PEDDAUPPARAPALL",
+    "mobile": "9121049600",
+    "posPin": "8175"
+  },
+  "PEDDAVELAGATUR": {
+    "dealerId": "1370899",
+    "agencyName": "AP MARKFED RBK PEDDAVELAGATUR",
+    "mobile": "9441351420",
+    "posPin": "5116"
+  },
+  "PEDDISETTIPALLI": {
+    "dealerId": "1350844",
+    "agencyName": "AP MARKFED RBK PEDDISETTIPALLI",
+    "mobile": "8106695506",
+    "posPin": "2199"
+  },
+  "PENGARAGUNTA": {
+    "dealerId": "1377672",
+    "agencyName": "AP MARKFED RBK PENGARAGUNTA",
+    "mobile": "9502284747",
+    "posPin": "8107"
+  },
+  "PENUMUR": {
+    "dealerId": "1351194",
+    "agencyName": "AP MARKFED RBK PENUMUR",
+    "mobile": "9047849735",
+    "posPin": "5169"
+  },
+  "PERAIAHGARIPALL": {
+    "dealerId": "1351190",
+    "agencyName": "AP MARKFED RBK PERAIAHGARIPALL",
+    "mobile": "8328139651",
+    "posPin": "5143"
+  },
+  "PERUMALLAPALLI": {
+    "dealerId": "1377170",
+    "agencyName": "AP MARKFED RBK PERUMALLAPALLI",
+    "mobile": "7989649822",
+    "posPin": "8152"
+  },
+  "PETA AGRAHARAM": {
+    "dealerId": "1349721",
+    "agencyName": "AP MARKFED RBK PETA AGRAHARAM",
+    "mobile": "6304547534",
+    "posPin": "8177"
+  },
+  "PILLARIKUPPAM": {
+    "dealerId": "1377644",
+    "agencyName": "AP MARKFED RBK PILLARIKUPPAM",
+    "mobile": "9676299793",
+    "posPin": "8125"
+  },
+  "PMK THANDA": {
+    "dealerId": "1369858",
+    "agencyName": "AP MARKFED RBK PMK THANDA",
+    "mobile": "9963113817",
+    "posPin": "1113"
+  },
+  "PODALAKUNTLAPAL": {
+    "dealerId": "1370903",
+    "agencyName": "AP MARKFED RBK PODALAKUNTLAPAL",
+    "mobile": "7780706441",
+    "posPin": "5168"
+  },
+  "POGURUPALLI": {
+    "dealerId": "1369878",
+    "agencyName": "AP MARKFED RBK POGURUPALLI",
+    "mobile": "7702032993",
+    "posPin": "2192"
+  },
+  "POLAKALA 2": {
+    "dealerId": "1370046",
+    "agencyName": "AP MARKFED RBK POLAKALA 2",
+    "mobile": "9494419550",
+    "posPin": "7168"
+  },
+  "POLAVARAM": {
+    "dealerId": "1360034",
+    "agencyName": "AP MARKFED RBK POLAVARAM",
+    "mobile": "8790463432",
+    "posPin": "7105"
+  },
+  "POTUKANUMA": {
+    "dealerId": "1350816",
+    "agencyName": "AP MARKFED RBK POTUKANUMA",
+    "mobile": "8074989868",
+    "posPin": "5177"
+  },
+  "PULICHERLA": {
+    "dealerId": "1370002",
+    "agencyName": "AP MARKFED RBK PULICHERLA",
+    "mobile": "8106302363",
+    "posPin": "1180"
+  },
+  "PULIKALLU": {
+    "dealerId": "1366538",
+    "agencyName": "AP MARKFED RBK PULIKALLU",
+    "mobile": "7989778992",
+    "posPin": "5183"
+  },
+  "PULLUR": {
+    "dealerId": "1351188",
+    "agencyName": "AP MARKFED RBK PULLUR",
+    "mobile": "9908499695",
+    "posPin": "5109"
+  },
+  "PUNYASAMUDRAM": {
+    "dealerId": "1370058",
+    "agencyName": "AP MARKFED RBK PUNYASAMUDRAM",
+    "mobile": "8142178337",
+    "posPin": "9125"
+  },
+  "PUTHALAPATTU": {
+    "dealerId": "1349719",
+    "agencyName": "AP MARKFED RBK PUTHALAPATTU",
+    "mobile": "9000118876",
+    "posPin": "7131"
+  },
+  "PUTHRAMADDI": {
+    "dealerId": "1360002",
+    "agencyName": "AP MARKFED RBK PUTHRAMADDI",
+    "mobile": "7989122190",
+    "posPin": "4137"
+  },
+  "R K PURAM": {
+    "dealerId": "1360020",
+    "agencyName": "AP MARKFED RBK R K PURAM",
+    "mobile": "8374837297",
+    "posPin": "2129"
+  },
+  "RAGIMANUPENTA": {
+    "dealerId": "1370008",
+    "agencyName": "AP MARKFED RBK RAGIMANUPENTA",
+    "mobile": "7981837275",
+    "posPin": "3137"
+  },
+  "RAJUPALLI": {
+    "dealerId": "1350974",
+    "agencyName": "AP MARKFED RBK RAJUPALLI",
+    "mobile": "9490487248",
+    "posPin": "8115"
+  },
+  "RALLABUDUGUR": {
+    "dealerId": "1369818",
+    "agencyName": "AP MARKFED RBK RALLABUDUGUR",
+    "mobile": "9701919646",
+    "posPin": "4169"
+  },
+  "RAMABADRAPURAM": {
+    "dealerId": "1374035",
+    "agencyName": "AP MARKFED RBK RAMABADRAPURAM",
+    "mobile": "8309040835",
+    "posPin": "5172"
+  },
+  "RAMAKUPPAM": {
+    "dealerId": "1350890",
+    "agencyName": "AP MARKFED RBK RAMAKUPPAM",
+    "mobile": "9347325848",
+    "posPin": "6151"
+  },
+  "RAYALPETA": {
+    "dealerId": "1350994",
+    "agencyName": "AP MARKFED RBK RAYALPETA",
+    "mobile": "9000337939",
+    "posPin": "8126"
+  },
+  "RKVB PETA": {
+    "dealerId": "1377648",
+    "agencyName": "AP MARKFED RBK RKVB PETA",
+    "mobile": "9052009858",
+    "posPin": "7105"
+  },
+  "ROMPICHERLA 1": {
+    "dealerId": "1354130",
+    "agencyName": "AP MARKFED RBK ROMPICHERLA 1",
+    "mobile": "9000412535",
+    "posPin": "7174"
+  },
+  "ROMPICHERLA 2": {
+    "dealerId": "1354105",
+    "agencyName": "AP MARKFED RBK ROMPICHERLA 2",
+    "mobile": "9703258543",
+    "posPin": "2180"
+  },
+  "S R PURAM": {
+    "dealerId": "1377610",
+    "agencyName": "AP MARKFED RBK S R PURAM",
+    "mobile": "8008204313",
+    "posPin": "7115"
+  },
+  "SAMAGUTTAPALLI": {
+    "dealerId": "1369902",
+    "agencyName": "AP MARKFED RBK SAMAGUTTAPALLI",
+    "mobile": "9963282035",
+    "posPin": "5167"
+  },
+  "SAMIREDDIPALLI": {
+    "dealerId": "1366536",
+    "agencyName": "AP MARKFED RBK SAMIREDDIPALLI",
+    "mobile": "9440456000",
+    "posPin": "7170"
+  },
+  "SAMUDRAPALLI": {
+    "dealerId": "1369868",
+    "agencyName": "AP MARKFED RBK SAMUDRAPALLI",
+    "mobile": "8977537877",
+    "posPin": "3179"
+  },
+  "SANGANAPALLI": {
+    "dealerId": "1369842",
+    "agencyName": "AP MARKFED RBK SANGANAPALLI",
+    "mobile": "7989038094",
+    "posPin": "6196"
+  },
+  "SANKARAYALAPET": {
+    "dealerId": "1350926",
+    "agencyName": "AP MARKFED RBK SANKARAYALAPET",
+    "mobile": "9701229065",
+    "posPin": "7159"
+  },
+  "SANKRANTHIPALLI": {
+    "dealerId": "1370072",
+    "agencyName": "AP MARKFED RBK SANKRANTHIPALLI",
+    "mobile": "7780162864",
+    "posPin": "8114"
+  },
+  "SARAKALLU": {
+    "dealerId": "1370028",
+    "agencyName": "AP MARKFED RBK SARAKALLU",
+    "mobile": "7093255459",
+    "posPin": "9106"
+  },
+  "SATAMBAKAM": {
+    "dealerId": "1350826",
+    "agencyName": "AP MARKFED RBK SATAMBAKAM",
+    "mobile": "6300718900",
+    "posPin": "6123"
+  },
+  "SETTERI": {
+    "dealerId": "1350804",
+    "agencyName": "AP MARKFED RBK SETTERI",
+    "mobile": "7981163128",
+    "posPin": "2189"
+  },
+  "SIDDAREDDYPALLI": {
+    "dealerId": "1360040",
+    "agencyName": "AP MARKFED RBK SIDDAREDDYPALLI",
+    "mobile": "9676504841",
+    "posPin": "3134"
+  },
+  "SINGASAMUDRAM": {
+    "dealerId": "1350880",
+    "agencyName": "AP MARKFED RBK SINGASAMUDRAM",
+    "mobile": "7760921749",
+    "posPin": "5136"
+  },
+  "SINGIRIGUNTA": {
+    "dealerId": "1350944",
+    "agencyName": "AP MARKFED RBK SINGIRIGUNTA",
+    "mobile": "9390058767",
+    "posPin": "8182"
+  },
+  "SIVARAMAPURAM": {
+    "dealerId": "1350852",
+    "agencyName": "AP MARKFED RBK SIVARAMAPURAM",
+    "mobile": "9392930964",
+    "posPin": "3143"
+  },
+  "SIVUNIKUPPAM": {
+    "dealerId": "1377168",
+    "agencyName": "AP MARKFED RBK SIVUNIKUPPAM",
+    "mobile": "9014775672",
+    "posPin": "3143"
+  },
+  "SODAM1": {
+    "dealerId": "1366556",
+    "agencyName": "AP MARKFED RBK SODAM1",
+    "mobile": "7731822833",
+    "posPin": "8122"
+  },
+  "SODAM2": {
+    "dealerId": "1366540",
+    "agencyName": "AP MARKFED RBK SODAM2",
+    "mobile": "9550526971",
+    "posPin": "3158"
+  },
+  "SODIGANIPALLE": {
+    "dealerId": "1369768",
+    "agencyName": "AP MARKFED RBK SODIGANIPALLE",
+    "mobile": "8886542729",
+    "posPin": "3148"
+  },
+  "SOMALA1": {
+    "dealerId": "1370897",
+    "agencyName": "AP MARKFED RBK SOMALA1",
+    "mobile": "9502799578",
+    "posPin": "3180"
+  },
+  "SRIHARIPURAM": {
+    "dealerId": "1378526",
+    "agencyName": "AP MARKFED RBK SRIHARIPURAM",
+    "mobile": "8019569831",
+    "posPin": "6140"
+  },
+  "SRIKAVERIRAJAPU": {
+    "dealerId": "1377624",
+    "agencyName": "AP MARKFED RBK SRIKAVERIRAJAPU",
+    "mobile": "6281221627",
+    "posPin": "4174"
+  },
+  "SUDDALAKUPPAM": {
+    "dealerId": "1383364",
+    "agencyName": "AP MARKFED RBK SUDDALAKUPPAM",
+    "mobile": "7899402373",
+    "posPin": "4136"
+  },
+  "SUGALAMITTA": {
+    "dealerId": "1350998",
+    "agencyName": "AP MARKFED RBK SUGALAMITTA",
+    "mobile": "9182352573",
+    "posPin": "5192"
+  },
+  "T N PALLI": {
+    "dealerId": "1366524",
+    "agencyName": "AP MARKFED RBK T N PALLI",
+    "mobile": "8099755158",
+    "posPin": "5158"
+  },
+  "T VADDURU": {
+    "dealerId": "1349383",
+    "agencyName": "AP MARKFED RBK T VADDURU",
+    "mobile": "7598003146",
+    "posPin": "4123"
+  },
+  "TEKUMANDA": {
+    "dealerId": "1373540",
+    "agencyName": "AP MARKFED RBK TEKUMANDA",
+    "mobile": "6300717403",
+    "posPin": "4168"
+  },
+  "THAGGUVARIPALLI": {
+    "dealerId": "1370076",
+    "agencyName": "AP MARKFED RBK THAGGUVARIPALLI",
+    "mobile": "9640237247",
+    "posPin": "8150"
+  },
+  "THALAMBEDU": {
+    "dealerId": "1350862",
+    "agencyName": "AP MARKFED RBK THALAMBEDU",
+    "mobile": "6301238622",
+    "posPin": "3162"
+  },
+  "THALAPULAPALLI": {
+    "dealerId": "1349717",
+    "agencyName": "AP MARKFED RBK THALAPULAPALLI",
+    "mobile": "9182871009",
+    "posPin": "3142"
+  },
+  "THALLAPALLI": {
+    "dealerId": "1350996",
+    "agencyName": "AP MARKFED RBK THALLAPALLI",
+    "mobile": "9703420061",
+    "posPin": "7170"
+  },
+  "THAMMINAYANIPAL": {
+    "dealerId": "1359982",
+    "agencyName": "AP MARKFED RBK THAMMINAYANIPAL",
+    "mobile": "7993428255",
+    "posPin": "7160"
+  },
+  "THATIMAKULAPALI": {
+    "dealerId": "1350800",
+    "agencyName": "AP MARKFED RBK THATIMAKULAPALI",
+    "mobile": "8790885545",
+    "posPin": "9197"
+  },
+  "THAVANAMPALLI": {
+    "dealerId": "1370080",
+    "agencyName": "AP MARKFED RBK THAVANAMPALLI",
+    "mobile": "8919047905",
+    "posPin": "6175"
+  },
+  "THAYYUR": {
+    "dealerId": "1377574",
+    "agencyName": "AP MARKFED RBK THAYYUR",
+    "mobile": "8374547633",
+    "posPin": "8119"
+  },
+  "THEERTHAM": {
+    "dealerId": "1360102",
+    "agencyName": "AP MARKFED RBK THEERTHAM",
+    "mobile": "9182650091",
+    "posPin": "2136"
+  },
+  "THELLARALLAPALL": {
+    "dealerId": "1360120",
+    "agencyName": "AP MARKFED RBK THELLARALLAPALL",
+    "mobile": "7095910062",
+    "posPin": "4172"
+  },
+  "THENEPALLI": {
+    "dealerId": "1349723",
+    "agencyName": "AP MARKFED RBK THENEPALLI",
+    "mobile": "9346080873",
+    "posPin": "8106"
+  },
+  "THERANI": {
+    "dealerId": "1370909",
+    "agencyName": "AP MARKFED RBK THERANI",
+    "mobile": "8522857387",
+    "posPin": "4108"
+  },
+  "THIMMAIAHPALLI": {
+    "dealerId": "1350806",
+    "agencyName": "AP MARKFED RBK THIMMAIAHPALLI",
+    "mobile": "6303435088",
+    "posPin": "3180"
+  },
+  "THIMMOJIPALLI": {
+    "dealerId": "1350814",
+    "agencyName": "AP MARKFED RBK THIMMOJIPALLI",
+    "mobile": "7207004004",
+    "posPin": "4179"
+  },
+  "THOTAKANUMA": {
+    "dealerId": "1369876",
+    "agencyName": "AP MARKFED RBK THOTAKANUMA",
+    "mobile": "7093230980",
+    "posPin": "3195"
+  },
+  "THUGUNDRAM": {
+    "dealerId": "1377628",
+    "agencyName": "AP MARKFED RBK THUGUNDRAM",
+    "mobile": "6304201761",
+    "posPin": "7162"
+  },
+  "THUMBAKUPPAM": {
+    "dealerId": "1369850",
+    "agencyName": "AP MARKFED RBK THUMBAKUPPAM",
+    "mobile": "6300432181",
+    "posPin": "8171"
+  },
+  "THUMMINDA": {
+    "dealerId": "1348010",
+    "agencyName": "AP MARKFED RBK THUMMINDA",
+    "mobile": "8056437979",
+    "posPin": "6119"
+  },
+  "THURLAPALLE": {
+    "dealerId": "1350850",
+    "agencyName": "AP MARKFED RBK THURLAPALLE",
+    "mobile": "7601093845",
+    "posPin": "3160"
+  },
+  "TIRUMALAIHPALLI": {
+    "dealerId": "1377172",
+    "agencyName": "AP MARKFED RBK TIRUMALAIHPALLI",
+    "mobile": "9177579991",
+    "posPin": "6173"
+  },
+  "TIRUMALARAJAPUR": {
+    "dealerId": "1377642",
+    "agencyName": "AP MARKFED RBK TIRUMALARAJAPUR",
+    "mobile": "9440138869",
+    "posPin": "8184"
+  },
+  "TPUTTUR": {
+    "dealerId": "1370050",
+    "agencyName": "AP MARKFED RBK TPUTTUR",
+    "mobile": "9550103693",
+    "posPin": "6126"
+  },
+  "URLAOBANAPALLI": {
+    "dealerId": "1369796",
+    "agencyName": "AP MARKFED RBK URLAOBANAPALLI",
+    "mobile": "9676085908",
+    "posPin": "9120"
+  },
+  "V D PALLE": {
+    "dealerId": "1370116",
+    "agencyName": "AP MARKFED RBK V D PALLE",
+    "mobile": "7661828192",
+    "posPin": "9177"
+  },
+  "V K R PURAM": {
+    "dealerId": "1370911",
+    "agencyName": "AP MARKFED RBK V K R PURAM",
+    "mobile": "9966457227",
+    "posPin": "6169"
+  },
+  "V KOTA": {
+    "dealerId": "1369756",
+    "agencyName": "AP MARKFED RBK V KOTA",
+    "mobile": "9014159954",
+    "posPin": "1160"
+  },
+  "V N R PETA": {
+    "dealerId": "1360046",
+    "agencyName": "AP MARKFED RBK V N R PETA",
+    "mobile": "7013513902",
+    "posPin": "2171"
+  },
+  "VALLIGATLA": {
+    "dealerId": "1359956",
+    "agencyName": "AP MARKFED RBK VALLIGATLA",
+    "mobile": "7330746234",
+    "posPin": "9108"
+  },
+  "VANADURGAPURAM": {
+    "dealerId": "1377596",
+    "agencyName": "AP MARKFED RBK VANADURGAPURAM",
+    "mobile": "8074453495",
+    "posPin": "5177"
+  },
+  "VANAGUTTAPALLI": {
+    "dealerId": "1369762",
+    "agencyName": "AP MARKFED RBK VANAGUTTAPALLI",
+    "mobile": "9676377467",
+    "posPin": "1110"
+  },
+  "VANAMALADINNE": {
+    "dealerId": "1350902",
+    "agencyName": "AP MARKFED RBK VANAMALADINNE",
+    "mobile": "9494045158",
+    "posPin": "3158"
+  },
+  "VARADARAJULAPAL": {
+    "dealerId": "1360036",
+    "agencyName": "AP MARKFED RBK VARADARAJULAPAL",
+    "mobile": "8008089878",
+    "posPin": "3194"
+  },
+  "VARATHUR": {
+    "dealerId": "1377586",
+    "agencyName": "AP MARKFED RBK VARATHUR",
+    "mobile": "8341600581",
+    "posPin": "6186"
+  },
+  "VASANTHAPURAM": {
+    "dealerId": "1350820",
+    "agencyName": "AP MARKFED RBK VASANTHAPURAM",
+    "mobile": "8374946245",
+    "posPin": "7175"
+  },
+  "VAVILTHOTA": {
+    "dealerId": "1350810",
+    "agencyName": "AP MARKFED RBK VAVILTHOTA",
+    "mobile": "8142553694",
+    "posPin": "8159"
+  },
+  "VEDURUKUPPAM": {
+    "dealerId": "1377652",
+    "agencyName": "AP MARKFED RBK VEDURUKUPPAM",
+    "mobile": "6281182890",
+    "posPin": "6130"
+  },
+  "VEERAKANELLORE": {
+    "dealerId": "1379207",
+    "agencyName": "AP MARKFED RBK VEERAKANELLORE",
+    "mobile": "9985443712",
+    "posPin": "6158"
+  },
+  "VEERAPALLI": {
+    "dealerId": "1370919",
+    "agencyName": "AP MARKFED RBK VEERAPALLI",
+    "mobile": "9052004180",
+    "posPin": "7103"
+  },
+  "VEERNAMALA": {
+    "dealerId": "1369824",
+    "agencyName": "AP MARKFED RBK VEERNAMALA",
+    "mobile": "7981658677",
+    "posPin": "3168"
+  },
+  "VEJJUPALLI": {
+    "dealerId": "1377620",
+    "agencyName": "AP MARKFED RBK VEJJUPALLI",
+    "mobile": "9441327251",
+    "posPin": "8152"
+  },
+  "VELKUR": {
+    "dealerId": "1377632",
+    "agencyName": "AP MARKFED RBK VELKUR",
+    "mobile": "9701729309",
+    "posPin": "6113"
+  },
+  "VELUTHURUCHENU": {
+    "dealerId": "1370066",
+    "agencyName": "AP MARKFED RBK VELUTHURUCHENU",
+    "mobile": "8926767186",
+    "posPin": "6175"
+  },
+  "VENDUGAMPALLI": {
+    "dealerId": "1369864",
+    "agencyName": "AP MARKFED RBK VENDUGAMPALLI",
+    "mobile": "8332033742",
+    "posPin": "7122"
+  },
+  "VENGALAPALLI": {
+    "dealerId": "1359986",
+    "agencyName": "AP MARKFED RBK VENGALAPALLI",
+    "mobile": "9573712612",
+    "posPin": "9184"
+  },
+  "VENGALARAJAKUPP": {
+    "dealerId": "1378993",
+    "agencyName": "AP MARKFED RBK VENGALARAJAKUPP",
+    "mobile": "9494858938",
+    "posPin": "9147"
+  },
+  "VENGAMPALLI": {
+    "dealerId": "1370020",
+    "agencyName": "AP MARKFED RBK VENGAMPALLI",
+    "mobile": "9381707242",
+    "posPin": "8114"
+  },
+  "VENGAMVARIPALLI": {
+    "dealerId": "1369898",
+    "agencyName": "AP MARKFED RBK VENGAMVARIPALLI",
+    "mobile": "6303754776",
+    "posPin": "4173"
+  },
+  "VENKATAPURAM": {
+    "dealerId": "1377604",
+    "agencyName": "AP MARKFED RBK VENKATAPURAM",
+    "mobile": "9676059018",
+    "posPin": "2143"
+  },
+  "VEPANAPALLI": {
+    "dealerId": "1349725",
+    "agencyName": "AP MARKFED RBK VEPANAPALLI",
+    "mobile": "8639291312",
+    "posPin": "9114"
+  },
+  "VEPANJERI": {
+    "dealerId": "1374033",
+    "agencyName": "AP MARKFED RBK VEPANJERI",
+    "mobile": "8688055340",
+    "posPin": "4137"
+  },
+  "VIJALAPURAM": {
+    "dealerId": "1350946",
+    "agencyName": "AP MARKFED RBK VIJALAPURAM",
+    "mobile": "9000116230",
+    "posPin": "4132"
+  },
+  "VIJAYAPURAM": {
+    "dealerId": "1375403",
+    "agencyName": "AP MARKFED RBK VIJAYAPURAM",
+    "mobile": "9866575961",
+    "posPin": "5141"
+  },
+  "VOOTUPALLI": {
+    "dealerId": "1366554",
+    "agencyName": "AP MARKFED RBK VOOTUPALLI",
+    "mobile": "9989762188",
+    "posPin": "7183"
+  },
+  "VV PURAM": {
+    "dealerId": "1377588",
+    "agencyName": "AP MARKFED RBK VV PURAM",
+    "mobile": "9618441724",
+    "posPin": "1159"
+  },
+  "Y V PALLI": {
+    "dealerId": "1366522",
+    "agencyName": "AP MARKFED RBK Y V PALLI",
+    "mobile": "7337048010",
+    "posPin": "4114"
+  },
+  "YADAMARI": {
+    "dealerId": "1348697",
+    "agencyName": "AP MARKFED RBK YADAMARI",
+    "mobile": "8309317014",
+    "posPin": "1170"
+  },
+  "YALAKALLU": {
+    "dealerId": "1369872",
+    "agencyName": "AP MARKFED RBK YALAKALLU",
+    "mobile": "8309812351",
+    "posPin": "9165"
+  },
+  "YAMAGANIPALLI": {
+    "dealerId": "1369816",
+    "agencyName": "AP MARKFED RBK YAMAGANIPALLI",
+    "mobile": "8074544759",
+    "posPin": "1138"
+  },
+  "YELLANKI VPALLI": {
+    "dealerId": "1370064",
+    "agencyName": "AP MARKFED RBK YELLANKI VPALLI",
+    "mobile": "6301453013",
+    "posPin": "5181"
+  },
+  "PATHAGUNTA": {
+    "dealerId": "1377654",
+    "agencyName": "AP MARKFED RBL PATHAGUNTA",
+    "mobile": "9908122258",
+    "posPin": "6193"
+  }
+}
