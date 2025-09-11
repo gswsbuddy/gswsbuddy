@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Know your Sachivalayam (Rural)</title>
+</head>
+<body>
+<h2>Know your Sachivalayam (Rural)</h2>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f4faff;
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+  color: #005a9c;
+}
+
+label {
+  font-weight: bold;
+}
+
+form {
+  max-width: 200px;
+  margin: auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+select {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0 16px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#output {
+  margin-top: 30px;
+  background: #e8f0fe;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.button-group button,
+#nameSubmitBtn,
+#codeLookupBtn {
+  padding: 10px 20px;
+  margin: 10px 5px;
+  background-color: #0078D4; /* Microsoft blue */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.button-group button:hover,
+#nameSubmitBtn:hover,
+#codeLookupBtn:hover {
+  background-color: #005a9e; /* Darker on hover */
+}
+
+.button-group button.active {
+  background-color: #004a8f;
+  box-shadow: 0 0 5px rgba(0, 120, 212, 0.6);
+}
+</style>
+<div class="button-group">
+    <button id="nameSearchBtn">Search by Name</button>
+    <button id="codeSearchBtn">Search by Secretariat Code</button>
+</div>
+<div id="nameSearchSection" style="display: none;">
+    <label for="district">District:</label>
+    <select id="district"><option>-- Select District --</option></select>
+
+    <label for="mandal">Mandal:</label>
+    <select id="mandal"><option>-- Select Mandal --</option></select>
+
+    <label for="secretariat">Secretariat:</label>
+    <select id="secretariat"><option>-- Select Secretariat --</option></select>
+
+    <div class="submit-container">
+      <button id="nameSubmitBtn">Submit</button>
+    </div>
+
+
+    <div id="rationalised-output" style="margin-top: 20px; padding: 10px; background-color: #e9eff0; border-radius: 6px;"></div>
+</div>
+<div id="codeSearchSection" style="display: none;">
+    <label for="sachCodeInput">Enter Secretariat Code:</label>
+    <input type="text" id="sachCodeInput" placeholder="e.g. 11290193">
+    <button type="button" id="codeLookupBtn">Submit</button>
+
+    <div id="code-output" style="margin-top: 20px; padding: 10px; background-color:  #f1fafc; border-radius: 6px;"></div>
+</div>
+<script>
+document.getElementById("nameSearchBtn").addEventListener("click", () => {
+  document.getElementById("nameSearchSection").style.display = "block";
+  document.getElementById("codeSearchSection").style.display = "none";
+});
+
+document.getElementById("codeSearchBtn").addEventListener("click", () => {
+  document.getElementById("nameSearchSection").style.display = "none";
+  document.getElementById("codeSearchSection").style.display = "block";
+});
+
+fetch("annexrural1.json")
+  .then(response => response.json())
+  .then(data => {
+    const districtSelect = document.getElementById("district");
+    const mandalSelect = document.getElementById("mandal");
+    const secretariatSelect = document.getElementById("secretariat");
+    const output = document.getElementById("rationalised-output");
+    const codeOutput = document.getElementById("code-output");
+
+    // ✅ Convert once after loading
+    const codeMap = convertToCodeMap(data);
+
+    // 🔍 Populate District dropdown
+    Object.keys(data).forEach(district => {
+      const opt = document.createElement("option");
+      opt.value = district;
+      opt.textContent = district;
+      districtSelect.appendChild(opt);
+    });
+
+    districtSelect.addEventListener("change", () => {
+      mandalSelect.innerHTML = '<option>-- Select Mandal --</option>';
+      secretariatSelect.innerHTML = '<option>-- Select Secretariat --</option>';
+      output.innerHTML = '';
+
+      const mandals = data[districtSelect.value];
+      Object.keys(mandals).forEach(mandal => {
+        const opt = document.createElement("option");
+        opt.value = mandal;
+        opt.textContent = mandal;
+        mandalSelect.appendChild(opt);
+      });
+    });
+
+    mandalSelect.addEventListener("change", () => {
+      secretariatSelect.innerHTML = '<option>-- Select Secretariat --</option>';
+      output.innerHTML = '';
+
+      const secretariats = data[districtSelect.value][mandalSelect.value];
+      Object.keys(secretariats).forEach(secretariat => {
+        const opt = document.createElement("option");
+        opt.value = secretariat;
+        opt.textContent = secretariat;
+        secretariatSelect.appendChild(opt);
+      });
+    });
+
+    document.getElementById("nameSubmitBtn").addEventListener("click", () => {
+  const district = districtSelect.value;
+  const mandal = mandalSelect.value;
+  const secretariat = secretariatSelect.value;
+
+  if (
+    district === "-- Select District --" ||
+    mandal === "-- Select Mandal --" ||
+    secretariat === "-- Select Secretariat --"
+  ) {
+    output.innerHTML = `<p style="color:red;">Please select all fields before submitting.</p>`;
+    return;
+  }
+
+  const details = data[district][mandal][secretariat];
+  output.innerHTML = `
+    <h3>📌 Secretariat: ${secretariat}</h3>
+    <p><strong>🆔 Code:</strong> ${details["Seccretariat Code"]}</p>
+    <p><strong>🏡 Rural/Urban:</strong> ${details["Rural / Urban"]}</p>
+    <p><strong>📊 Population Category:</strong> ${details["Population Category"]}</p>
+    <h4>👥 Designated Roles:</h4>
+    <ul>
+      ${Object.entries(details.Designations)
+        .map(([role, status]) => `<li>${role}: ${status === "YES" ? "✅" : "❌"}</li>`)
+        .join("")}
+    </ul>
+  `;
+});
+
+    // 🔢 Code-based lookup
+    document.getElementById("codeLookupBtn").addEventListener("click", () => {
+      const codeInput = document.getElementById("sachCodeInput").value.trim();
+      const result = codeMap[codeInput];
+
+      if (result) {
+        codeOutput.innerHTML = `
+          <h3>📌 Secretariat: ${result.sachivalayam}</h3>
+          <p><strong>🆔 Code:</strong> ${codeInput}</p>
+          <p><strong>📍 District:</strong> ${result.district}</p>
+          <p><strong>🗺️ Mandal:</strong> ${result.mandal}</p>
+          <p><strong>🏡 Rural/Urban:</strong> ${result.type}</p>
+          <p><strong>📊 Population Category:</strong> ${result.category}</p>
+          <h4>👥 Designated Roles:</h4>
+          <ul>
+            ${Object.entries(result.designations)
+              .map(([role, status]) => `<li>${role}: ${status === "YES" ? "✅" : "❌"}</li>`)
+              .join("")}
+          </ul>
+        `;
+      } else {
+        codeOutput.innerHTML = `<p style="color:red;">Code not found. Please check and try again.</p>`;
+      }
+    });
+
+    // 🧠 Flattening function
+    function convertToCodeMap(data) {
+      const codeMap = {};
+      for (const district in data) {
+        for (const mandal in data[district]) {
+          for (const sachivalayam in data[district][mandal]) {
+            const entry = data[district][mandal][sachivalayam];
+            const code = entry["Seccretariat Code"];
+            codeMap[code] = {
+              district,
+              mandal,
+              sachivalayam,
+              category: entry["Population Category"],
+              type: entry["Rural / Urban"],
+              designations: entry["Designations"]
+            };
+          }
+        }
+      }
+      return codeMap;
+    }
+  });
+</script>
+</body>
+</html>
+
+
