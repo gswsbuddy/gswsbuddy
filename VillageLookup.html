@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+  <meta charset="UTF-8">
+  <title>Village Code Lookup</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      padding: 20px;
+      background: #f0f4f8;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      color: #0078D4;
+    }
+    .dropdowns {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    select {
+      padding: 8px;
+      font-size: 16px;
+    }
+    button {
+      display: block;
+      margin: 0 auto;
+      padding: 10px 20px;
+      background-color: #0078D4;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #output {
+      margin-top: 30px;
+      background: #e8f0fe;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 18px;
+      line-height: 1.6;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <h1>🏡 Village Code Finder</h1>
+
+  <div class="dropdowns">
+    <select id="districtSelect"><option>జిల్లా ఎంచుకోండి</option></select>
+    <select id="mandalSelect"><option>మండలం ఎంచుకోండి</option></select>
+    <select id="villageSelect"><option>గ్రామం ఎంచుకోండి</option></select>
+  </div>
+
+  <button onclick="showCodes()">🔍 Show Codes</button>
+
+  <div id="output"></div>
+
+  <script>
+    let lookup = {};
+
+    fetch("VillageLookup.json")
+      .then(res => res.json())
+      .then(data => {
+        lookup = data;
+        populateDistricts();
+      });
+
+    function populateDistricts() {
+      const districtSelect = document.getElementById("districtSelect");
+      districtSelect.innerHTML = `<option>జిల్లా ఎంచుకోండి</option>`;
+      Object.keys(lookup).forEach(dist => {
+        const opt = document.createElement("option");
+        opt.value = dist;
+        opt.textContent = dist;
+        districtSelect.appendChild(opt);
+      });
+
+      districtSelect.onchange = populateMandals;
+    }
+
+    function populateMandals() {
+      const dist = document.getElementById("districtSelect").value;
+      const mandalSelect = document.getElementById("mandalSelect");
+      mandalSelect.innerHTML = `<option>మండలం ఎంచుకోండి</option>`;
+      document.getElementById("villageSelect").innerHTML = `<option>గ్రామం ఎంచుకోండి</option>`;
+
+      if (!lookup[dist]) return;
+
+      Object.keys(lookup[dist]).forEach(mandal => {
+        const opt = document.createElement("option");
+        opt.value = mandal;
+        opt.textContent = mandal;
+        mandalSelect.appendChild(opt);
+      });
+
+      mandalSelect.onchange = populateVillages;
+    }
+
+    function populateVillages() {
+      const dist = document.getElementById("districtSelect").value;
+      const mandal = document.getElementById("mandalSelect").value;
+      const villageSelect = document.getElementById("villageSelect");
+      villageSelect.innerHTML = `<option>గ్రామం ఎంచుకోండి</option>`;
+
+      if (!lookup[dist] || !lookup[dist][mandal]) return;
+
+      Object.keys(lookup[dist][mandal]).forEach(village => {
+        const opt = document.createElement("option");
+        opt.value = village;
+        opt.textContent = village;
+        villageSelect.appendChild(opt);
+      });
+    }
+
+    function showCodes() {
+      const dist = document.getElementById("districtSelect").value;
+      const mandal = document.getElementById("mandalSelect").value;
+      const village = document.getElementById("villageSelect").value;
+      const output = document.getElementById("output");
+
+      if (!lookup[dist] || !lookup[dist][mandal] || !lookup[dist][mandal][village]) {
+        output.textContent = "దయచేసి అన్ని ఎంపికలు పూర్తి చేయండి.";
+        return;
+      }
+
+      const codes = lookup[dist][mandal][village];
+      output.innerHTML = `
+        <strong>District :   ${dist}  ||Mandal:  ${mandal}||  Village:  ${village}</strong><br>
+        📍 District Code: ${codes.DIST_CODE}<br>
+        🏢 District Census Code: ${codes.DIST_CENSUSCODE}<br>
+        🏞️ Mandal Code: ${codes.MAND_CODE}<br>
+        🗂️ Mandal Census Code: ${codes.MAND_CENSUSCODE}<br>
+        🏡 Village Code: ${codes.VILL_CODE}<br>
+        🧾 Census Village Code: ${codes.CENSUS_VILLAGECODE}
+      `;
+    }
+  </script>
+</body>
+</html>
