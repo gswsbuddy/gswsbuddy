@@ -104,14 +104,19 @@
       table.style.display = "none";
 
       if (!aadhaar || !dispatchData[aadhaar]) {
-        infoBox.textContent = "❌ No records found for this Aadhaar number.";
-        return;
-      }
+  infoBox.innerHTML = `
+    ❌ No records found for this Aadhaar number.<br>
+    <strong>మీ రైతు సేవా కేంద్రాన్ని సంప్రదించగలరు.</strong>
+  `;
+  return;
+}
+
 
       const farmer = dispatchData[aadhaar];
 
       // Show farmer details
       infoBox.innerHTML = `
+      <strong>క్రింది వివరాలు 18-10-2025 తేధీ నాటివి మరిన్ని తాజా వివరాల కొరకు మీ రైతు సేవా కేంద్రాన్ని సంప్రదించగలరు.</strong><br>
         ✅ <strong>${farmer.farmer_name}</strong><br>
         🏡 Village: ${farmer.village_name}<br>
         🏞️ Mandal: ${farmer.mandal_name}<br>
