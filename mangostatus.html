@@ -85,13 +85,24 @@
   </div>
 
   <script>
-    let dispatchData = {};
+  let dispatchData = {};
+  
+  Promise.all([
+  fetch("nestedmangodata.json").then(res => res.json()),
+  fetch("nestedmangodata2.json").then(res => res.json())
+]).then(([mainData, additionalData]) => {
+  dispatchData = mainData;
+  
+  Object.entries(additionalData).forEach(([aadhaar, newFarmer]) => {
+  if (!dispatchData[aadhaar]) {
+    dispatchData[aadhaar] = newFarmer;
+  } else {
+    dispatchData[aadhaar].records.push(...newFarmer.records);
+  }
+});
 
-    fetch("nestedmangodata.json")
-      .then(res => res.json())
-      .then(data => {
-        dispatchData = data;
-      });
+});
+
 
     function lookupDispatch() {
       const aadhaar = document.getElementById("aadhaarInput").value.trim();
