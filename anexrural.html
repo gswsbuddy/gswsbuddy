@@ -50,7 +50,11 @@ select {
 }
 
 </style>
-
+<div class="button-group">
+  <button id="nameSearchBtn">Search by Name</button>
+  <button id="codeSearchBtn">Search by Secretariat Code</button>
+</div>
+<div> id="nameSearchBtn"</div>
 <label for="district">District:</label>
 <select id="district"><option>-- Select District --</option></select>
 
@@ -61,6 +65,13 @@ select {
 <select id="secretariat"><option>-- Select Secretariat --</option></select>
 
 <div id="rationalised-output" style="margin-top: 20px; padding: 10px; background-color: #f9f9f9; border-radius: 6px;"></div>
+<div id="codeSearchSection" style="display: none;">
+  <label for="sachCodeInput">Enter Secretariat Code:</label>
+  <input type="text" id="sachCodeInput" placeholder="e.g. 11290193">
+  <button type="button" id="codeLookupBtn">Lookup</button>
+
+  <div id="code-output" style="margin-top: 20px; padding: 10px; background-color: #f9f9f9; border-radius: 6px;"></div>
+</div>
 <script>
 fetch("annexrural1.json")
   .then(response => response.json())
@@ -125,6 +136,7 @@ fetch("annexrural1.json")
       `;
     });
   });
+  fetch("https://api.countapi.xyz/hit/gswsbuddy/total-visits");
 </script>
 </body>
 </html>

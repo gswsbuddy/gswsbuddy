@@ -63,10 +63,19 @@
           <h1>Hello, GSWS EMPLYOEES!</h1>
 
     <p>This is your one-stop place for all the stuff.</p>
-    <footer>
-      <p>© GSWSBUDDY All rights reserved.</p>
-      <p>Contact us: gswsbuddy2019@gmail.com</p>
-    </footer>
+<footer style="text-align:center; margin-top:40px; font-size:16px;">
+  <p>© GSWSBUDDY All rights reserved.</p>
+  <div id="visitorCount">👥 Total Visitors: Loading...</div>
+  <p>Contact us: gswsbuddy2019@gmail.com</p>
+</footer>
+
+<script>
+  fetch("https://api.countapi.xyz/hit/gswsbuddy/total-visits")
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("visitorCount").textContent = `👥 Total Visitors: ${data.value}`;
+    });
+</script>
     
   </body>
 </html>
