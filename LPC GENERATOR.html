@@ -11,6 +11,15 @@
     button { margin-top: 20px; background: #005a9c; color: white; padding: 10px; border-radius: 5px; border: none; cursor: pointer; }
     h2 { text-align: center; color: #005a9c; }
   </style>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FKVZ9P09W5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FKVZ9P09W5');
+</script>
 </head>
 <body>
 
@@ -261,6 +270,5 @@ document.getElementById("downloadBtn").addEventListener("click", function () {
     document.getElementById("designation").addEventListener("change", toggleCustomDesignation);
     toggleCustomDesignation(); // handle autofill or preset selection
   });
-  fetch("https://api.countapi.xyz/hit/gswsbuddy/total-visits");
 </script>
 </html>

@@ -3,6 +3,15 @@
   <head>
     <title>GSWS Buddy</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FKVZ9P09W5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FKVZ9P09W5');
+</script>
 
   </head>
   <body>
@@ -68,14 +77,5 @@
   <div id="visitorCount">👥 Total Visitors: Loading...</div>
   <p>Contact us: gswsbuddy2019@gmail.com</p>
 </footer>
-
-<script>
-  fetch("https://api.countapi.xyz/hit/gswsbuddy/total-visits")
-    .then(res => res.json())
-    .then(data => {
-      document.getElementById("visitorCount").textContent = `👥 Total Visitors: ${data.value}`;
-    });
-</script>
-    
   </body>
 </html>
