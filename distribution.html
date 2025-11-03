@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Urea Distribution Tracker</title>
+  <style>
+    body { font-family: Arial; padding: 20px; max-width: 500px; margin: auto; }
+    input, select, button { margin: 10px 0; width: 100%; padding: 8px; }
+    .section { margin-top: 20px; border-top: 1px solid #ccc; padding-top: 10px; }
+  </style>
+</head>
+<body>
+  <div id="lockScreen">
+    <h3>Enter Passcode to Access</h3>
+    <input type="password" id="passcodeInput" placeholder="Enter passcode" />
+    <button onclick="checkPasscode()">Unlock</button>
+    <p id="passcodeStatus" style="color:red;"></p>
+  </div>
+
+  <div id="mainApp" style="display:none;">
+    <h2>Urea Distribution Tracker</h2>
+
+    <label>Aadhaar Number:</label>
+    <input type="text" id="aadhaar" placeholder="Enter Aadhaar number" />
+
+    <label>Pattadar Passbook Number:</label>
+    <input type="text" id="passbook" placeholder="Enter Pattadar Passbook number" />
+
+    <label>Village:</label>
+    <select id="villageDropdown">
+      <option disabled selected>Select village</option>
+    </select>
+
+    <input type="text" id="villageInput" placeholder="Add new village name" />
+    <button onclick="addVillage()">Add Village</button>
+
+    <button onclick="issueBag()">Issue Bag</button>
+
+    <div class="section">
+      <button onclick="downloadCSV()">Download CSV Log</button>
+      <p id="status"></p>
+    </div>
+  </div>
+
+  <script>
+    function checkPasscode() {
+      const input = document.getElementById("passcodeInput").value;
+      const correct = "rbk@123"; // You can change this passcode anytime
+
+      if (input === correct) {
+        document.getElementById("lockScreen").style.display = "none";
+        document.getElementById("mainApp").style.display = "block";
+      } else {
+        document.getElementById("passcodeStatus").textContent = "Incorrect passcode.";
+      }
+    }
+
+    let villageList = [];
+    let issuedList = [];
+
+    function addVillage() {
+      const input = document.getElementById("villageInput").value.trim();
+      if (input && !villageList.includes(input)) {
+        villageList.push(input);
+        updateDropdown();
+        document.getElementById("villageInput").value = "";
+      } else {
+        alert("Village already exists or input is empty");
+      }
+    }
+
+    function updateDropdown() {
+      const dropdown = document.getElementById("villageDropdown");
+      dropdown.innerHTML = '<option disabled selected>Select village</option>';
+      villageList.forEach(v => {
+        const option = document.createElement("option");
+        option.value = v;
+        option.textContent = v;
+        dropdown.appendChild(option);
+      });
+    }
+
+    function issueBag() {
+      const aadhaar = document.getElementById("aadhaar").value.trim();
+      const passbook = document.getElementById("passbook").value.trim();
+      const village = document.getElementById("villageDropdown").value;
+
+      if (!aadhaar || !passbook || !village || village === "Select village") {
+        alert("Please fill all fields and select a village");
+        return;
+      }
+
+      const duplicateAadhaar = issuedList.find(entry => entry.aadhaar === aadhaar);
+      const duplicateCombo = issuedList.find(entry => entry.passbook === passbook && entry.village === village);
+
+      if (duplicateAadhaar) {
+        alert("Duplicate Aadhaar detected. Bag already issued.");
+        return;
+      }
+
+      if (duplicateCombo) {
+        alert("Duplicate Pattadar Passbook in same village. Bag already issued.");
+        return;
+      }
+
+      issuedList.push({ aadhaar, passbook, village, timestamp: new Date().toLocaleString() });
+      document.getElementById("status").textContent = `Bag issued to Aadhaar ${aadhaar}`;
+      document.getElementById("aadhaar").value = "";
+      document.getElementById("passbook").value = "";
+    }
+
+    function downloadCSV() {
+      if (issuedList.length === 0) {
+        alert("No data to export");
+        return;
+      }
+
+      let csv = "Aadhaar,Passbook,Village,Timestamp\n";
+      issuedList.forEach(entry => {
+        csv += `${entry.aadhaar},${entry.passbook},${entry.village},${entry.timestamp}\n`;
+      });
+
+      const blob = new Blob([csv], { type: "text/csv" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "urea_distribution_log.csv";
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+  </script>
+</body>
+</html>
