@@ -3,35 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <title>APMARKFED Account Lookup</title>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FKVZ9P09W5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-FKVZ9P09W5');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FKVZ9P09W5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FKVZ9P09W5');
+  </script>
   <style>
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
       background-color: #f4f6f8;
     }
-
     h2 {
       color: #0078D4;
       text-align: center;
       margin-bottom: 20px;
     }
-
     label {
       display: block;
       margin-top: 15px;
       font-weight: bold;
       color: #333;
     }
-
     select {
       width: 100%;
       padding: 10px;
@@ -41,20 +36,17 @@
       font-size: 14px;
       background-color: #fff;
     }
-
     select:focus {
       outline: none;
       border-color: #0078D4;
       box-shadow: 0 0 4px rgba(0, 120, 212, 0.3);
     }
-
     .dropdown-group {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
       margin-top: 20px;
     }
-
     #lookupBtn {
       margin-top: 30px;
       padding: 10px 20px;
@@ -65,11 +57,9 @@
       font-size: 16px;
       cursor: pointer;
     }
-
     #lookupBtn:hover {
       background-color: #005a9e;
     }
-
     #accountDetails {
       margin-top: 30px;
       padding: 20px;
@@ -80,25 +70,22 @@
       color: #333;
       box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
-
     #accountDetails p {
       margin: 8px 0;
     }
     #resetBtn {
-  margin-left: 10px;
-  padding: 10px 20px;
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-#resetBtn:hover {
-  background-color: #c82333;
-}
-
+      margin-left: 10px;
+      padding: 10px 20px;
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #resetBtn:hover {
+      background-color: #c82333;
+    }
   </style>
 </head>
 <body>
@@ -122,39 +109,48 @@
   <button id="lookupBtn">🔎 Submit</button>
   <button id="resetBtn">🔄 Reset</button>
 
-
   <div id="accountDetails"></div>
 
   <script>
-    let data = [];
+    // This array holds only the safe mapping structure (District -> Mandal -> RBK Name)
+    // No sensitive bank account details are loaded here!
+    let dropdownMapping = [];
 
-    async function loadData() {
-      const response = await fetch('rbkaccounts.json');
-      data = await response.json();
+    async function loadDropdowns() {
+      try {
+        // Ask our backend chef for just the menu layout mapping list
+        const response = await fetch('/api/accounts?action=get_mapping'); 
+        dropdownMapping = await response.json();
 
-      const districts = [...new Set(data.map(d => d.District))];
-      const districtDropdown = document.getElementById("districtDropdown");
-      districts.forEach(d => {
-        const opt = document.createElement("option");
-        opt.value = opt.textContent = d;
-        districtDropdown.appendChild(opt);
-      });
+        const districts = [...new Set(dropdownMapping.map(d => d.District))];
+        const districtDropdown = document.getElementById("districtDropdown");
+        districts.forEach(d => {
+          const opt = document.createElement("option");
+          opt.value = opt.textContent = d;
+          districtDropdown.appendChild(opt);
+        });
+      } catch (e) {
+        console.error("Error initializing dropdown items from backend:", e);
+      }
     }
 
-    loadData();
+    loadDropdowns();
 
     const districtDropdown = document.getElementById("districtDropdown");
     const mandalDropdown = document.getElementById("mandalDropdown");
     const rbkDropdown = document.getElementById("rbkDropdown");
     const accountDetails = document.getElementById("accountDetails");
 
+    // Cascading Filter: When District changes, populate Mandals
     districtDropdown.addEventListener("change", () => {
       mandalDropdown.innerHTML = "<option>Select Mandal</option>";
       rbkDropdown.innerHTML = "<option>Select RBK</option>";
       accountDetails.innerHTML = "";
 
       const selectedDistrict = districtDropdown.value;
-      const mandals = [...new Set(data.filter(d => d.District === selectedDistrict).map(d => d.MANDAL))];
+      if(selectedDistrict === "Select District") return;
+
+      const mandals = [...new Set(dropdownMapping.filter(d => d.District === selectedDistrict).map(d => d.MANDAL))];
       mandals.forEach(m => {
         const opt = document.createElement("option");
         opt.value = opt.textContent = m;
@@ -162,13 +158,16 @@
       });
     });
 
+    // Cascading Filter: When Mandal changes, populate RBKs
     mandalDropdown.addEventListener("change", () => {
       rbkDropdown.innerHTML = "<option>Select RBK</option>";
       accountDetails.innerHTML = "";
 
       const selectedDistrict = districtDropdown.value;
       const selectedMandal = mandalDropdown.value;
-      const rbks = data
+      if(selectedMandal === "Select Mandal") return;
+
+      const rbks = dropdownMapping
         .filter(d => d.District === selectedDistrict && d.MANDAL === selectedMandal)
         .map(d => d["RBK Name"]);
 
@@ -179,46 +178,52 @@
       });
     });
 
-    document.getElementById("lookupBtn").addEventListener("click", () => {
-  const selectedDistrict = districtDropdown.value;
-  const selectedMandal = mandalDropdown.value;
-  const selectedRBK = rbkDropdown.value;
+    // The secure lookup handler: request the row information only upon submission click
+    document.getElementById("lookupBtn").addEventListener("click", async () => {
+      const selectedDistrict = districtDropdown.value;
+      const selectedMandal = mandalDropdown.value;
+      const selectedRBK = rbkDropdown.value;
 
-  if (
-    selectedDistrict === "Select District" ||
-    selectedMandal === "Select Mandal" ||
-    selectedRBK === "Select RBK"
-  ) {
-    accountDetails.innerHTML = `<p style="color:red;">⚠️ Please select all fields before submitting.</p>`;
-    return;
-  }
+      if (
+        selectedDistrict === "Select District" ||
+        selectedMandal === "Select Mandal" ||
+        selectedRBK === "Select RBK"
+      ) {
+        accountDetails.innerHTML = `<p style="color:red;">⚠️ Please select all fields before submitting.</p>`;
+        return;
+      }
 
-  const match = data.find(d =>
-    d.District === selectedDistrict &&
-    d.MANDAL === selectedMandal &&
-    d["RBK Name"] === selectedRBK
-  );
+      accountDetails.innerHTML = "🔍 Querying secure cloud vault...";
 
-  if (match) {
-    accountDetails.innerHTML = `
-      <p><strong>District:</strong> ${match.District}</p>
-      <p><strong>Mandal:</strong> ${match.MANDAL}</p>
-      <p><strong>RBK Name:</strong> ${match["RBK Name"]}</p>
-      <p><strong>Account Number:</strong> ${match["Account Numbers"]}</p>
-      <p><strong>IFSC Code:</strong> ${match["IFSC code"]}</p>
-      <p><strong>SBU Name:</strong> ${match["SBU Name"]}</p>
-    `;
-  } else {
-    accountDetails.innerHTML = `<p style="color:red;">❌ No matching record found.</p>`;
-  }
-});
-document.getElementById("resetBtn").addEventListener("click", () => {
-  districtDropdown.selectedIndex = 0;
-  mandalDropdown.innerHTML = "<option>Select Mandal</option>";
-  rbkDropdown.innerHTML = "<option>Select RBK</option>";
-  accountDetails.innerHTML = "";
-});
+      try {
+        const url = `/api/accounts?action=lookup&district=${encodeURIComponent(selectedDistrict)}&mandal=${encodeURIComponent(selectedMandal)}&rbk=${encodeURIComponent(selectedRBK)}`;
+        
+        const response = await fetch(url);
+        const result = await response.json();
 
+        if (result.error) {
+          accountDetails.innerHTML = `<p style="color:red;">❌ ${result.error}</p>`;
+        } else {
+          accountDetails.innerHTML = `
+            <p><strong>District:</strong> ${selectedDistrict}</p>
+            <p><strong>Mandal:</strong> ${selectedMandal}</p>
+            <p><strong>RBK Name:</strong> ${selectedRBK}</p>
+            <p><strong>Account Number:</strong> <span style="color: #2e7d32; font-weight: bold; font-size: 1.1em;">${result.account}</span></p>
+            <p><strong>IFSC Code:</strong> ${result.ifsc}</p>
+            <p><strong>SBU Name:</strong> ${result.sbu}</p>
+          `;
+        }
+      } catch (error) {
+        accountDetails.innerHTML = `<p style="color:red;">❌ Cloud connection error. Please try again.</p>`;
+      }
+    });
+
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      districtDropdown.selectedIndex = 0;
+      mandalDropdown.innerHTML = "<option>Select Mandal</option>";
+      rbkDropdown.innerHTML = "<option>Select RBK</option>";
+      accountDetails.innerHTML = "";
+    });
   </script>
 </body>
 </html>
