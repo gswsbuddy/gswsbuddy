@@ -3,67 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <title>GSWS Buddy Salary Calculator</title>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FKVZ9P09W5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-FKVZ9P09W5');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FKVZ9P09W5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FKVZ9P09W5');
+  </script>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4faff;
-      padding: 20px;
-    }
-    h2 {
-      text-align: center;
-      color: #005a9c;
-    }
-    label {
-      font-weight: bold;
-    }
-    form {
-      max-width: 500px;
-      margin: auto;
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
-    }
-    input, select {
-      width: 100%;
-      padding: 8px;
-      margin: 8px 0 16px 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-    button {
-      background: #005a9c;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    #output {
-      margin-top: 30px;
-      background: #e8f0fe;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+    body { font-family: Arial, sans-serif; background: #f4faff; padding: 20px; }
+    h2 { text-align: center; color: #005a9c; }
+    label { font-weight: bold; display: block; margin-top: 10px; }
+    .form-container { max-width: 500px; margin: auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 8px rgba(0,0,0,0.1); }
+    input, select, button { width: 100%; padding: 10px; margin: 8px 0 16px 0; border-radius: 5px; border: 1px solid #ccc; box-sizing: border-box; font-size: 15px; }
+    button { background: #005a9c; color: white; border: none; font-weight: bold; cursor: pointer; margin-top: 10px; }
+    button:hover { background-color: #004475; }
+    
+    /* Toggleable Advanced Section Styles */
+    .advanced-toggle { color: #005a9c; font-weight: bold; cursor: pointer; text-align: center; margin: 15px 0; user-select: none; font-size: 14px; }
+    .advanced-toggle:hover { text-decoration: underline; }
+    .deduction-drawer { display: none; background: #f9f9f9; padding: 15px; border-radius: 8px; border: 1px dashed #bbb; margin-bottom: 16px; }
+    .deduction-drawer label { font-size: 13px; color: #555; }
+    .deduction-drawer input { background: #fff; margin: 4px 0 12px 0; padding: 8px; font-size: 14px; }
+    
+    #output { margin-top: 30px; background: #e8f0fe; padding: 20px; border-radius: 10px; max-width: 500px; margin-left: auto; margin-right: auto; display: none; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
   </style>
 </head>
 <body>
+
   <h2>GSWS Buddy Salary Calculator</h2>
-  <form id="salaryForm">
+  
+  <div class="form-container">
     <label for="basic">Basic Pay (₹):</label>
-    <input type="number" id="basic" required>
+    <input type="number" id="basic" placeholder="e.g. 22460" required>
 
     <label for="hra">HRA Rate (%):</label>
     <select id="hra" required>
@@ -73,57 +45,83 @@
     </select>
 
     <label for="apgli">APGLI (₹):</label>
-    <input type="number" id="apgli" required>
+    <input type="number" id="apgli" placeholder="e.g. 500" required>
+
+    <div class="advanced-toggle" onclick="toggleDrawer()">⚙️ View / Edit Standard Deductions</div>
+    
+    <div id="deductionDrawer" class="deduction-drawer">
+      <label for="gis">GIS Fund (₹):</label>
+      <input type="number" id="gis" value="15">
+
+      <label for="pt">Professional Tax (₹):</label>
+      <input type="number" id="pt" value="200">
+
+      <label for="ehs">EHS Subscription (₹):</label>
+      <input type="number" id="ehs" value="225">
+    </div>
 
     <button type="button" onclick="calculateSalary()">Calculate</button>
-  </form>
+  </div>
 
   <div id="output"></div>
 
   <script>
-  function calculateSalary() {
-  const basic = parseFloat(document.getElementById('basic').value);
-  const hraRate = parseFloat(document.getElementById('hra').value);
-  const apgli = parseFloat(document.getElementById('apgli').value);
+    function toggleDrawer() {
+      const drawer = document.getElementById("deductionDrawer");
+      if (drawer.style.display === "block") {
+        drawer.style.display = "none";
+      } else {
+        drawer.style.display = "block";
+      }
+    }
 
-  if (isNaN(basic) || isNaN(hraRate) || isNaN(apgli)) {
-    alert("Please fill in all fields correctly.");
-    return;
-  }
+    async function calculateSalary() {
+      const basicVal = document.getElementById('basic').value.trim();
+      const hraRateVal = document.getElementById('hra').value;
+      const apgliVal = document.getElementById('apgli').value.trim();
+      
+      // Reading dynamic deduction user overrides
+      const gisVal = document.getElementById('gis').value.trim();
+      const ptVal = document.getElementById('pt').value.trim();
+      const ehsVal = document.getElementById('ehs').value.trim();
+      
+      const outputDiv = document.getElementById("output");
 
-  // Earnings
-  const hra = (hraRate / 100) * basic;
-  const da = (37.31 / 100) * basic;
-  const totalEarnings = basic + hra + da;
+      if (!basicVal || !apgliVal || isNaN(basicVal) || isNaN(apgliVal)) {
+        outputDiv.style.display = "block";
+        outputDiv.innerHTML = "<p style='color:red; font-weight:bold;'>⚠️ Please fill in Basic Pay and APGLI parameters before calculating.</p>";
+        return;
+      }
 
-  // Deductions
-  const gis = 15;
-  const pt = 200;
-  const ehs = 225;
-  const cps = 0.10 * (basic + da);
-  const totalDeductions = apgli + gis + pt + ehs + cps;
+      outputDiv.style.display = "block";
+      outputDiv.innerHTML = "📊 Computing official salary breakdowns across cloud systems...";
 
-  const netSalary = totalEarnings - totalDeductions;
+      try {
+        // Appending user overrides into the query string parameters array safely
+        const url = `/api/salary_calculator?basic=${encodeURIComponent(basicVal)}&hra_rate=${encodeURIComponent(hraRateVal)}&apgli=${encodeURIComponent(apgliVal)}&gis=${encodeURIComponent(gisVal)}&pt=${encodeURIComponent(ptVal)}&ehs=${encodeURIComponent(ehsVal)}`;
+        const res = await fetch(url);
+        const data = await res.json();
 
-  // Display Output
-  document.getElementById("output").innerHTML = `
-    <h3>Salary Summary</h3>
-    <p><strong>Basic Pay:</strong> ₹${basic.toFixed(2)}</p>
-    <p><strong>HRA (${hraRate}%):</strong> ₹${hra.toFixed(2)}</p>
-    <p><strong>DA (37.31%):</strong> ₹${da.toFixed(2)}</p>
-    <p><strong>Total Earnings:</strong> ₹${totalEarnings.toFixed(2)}</p>
-    <hr>
-    <p><strong>APGLI:</strong> ₹${apgli.toFixed(2)}</p>
-    <p><strong>GIS Fund:</strong> ₹15.00</p>
-    <p><strong>Professional Tax:</strong> ₹200.00</p>
-    <p><strong>EHS Subscription:</strong> ₹225.00</p>
-    <p><strong>CPS (10% of Basic + DA):</strong> ₹${cps.toFixed(2)}</p>
-    <p><strong>Total Deductions:</strong> ₹${totalDeductions.toFixed(2)}</p>
-    <hr>
-    <h3><strong>Net Salary:</strong> ₹${netSalary.toFixed(2)}</h3>
-  `;
-}
-
-</script>
+        outputDiv.innerHTML = `
+          <h3>Salary Summary</h3>
+          <p><strong>Basic Pay:</strong> ₹${data.basic.toFixed(2)}</p>
+          <p><strong>HRA (${data.hra_rate}%):</strong> ₹${data.hra.toFixed(2)}</p>
+          <p><strong>DA (${data.da_percent}%):</strong> ₹${data.da.toFixed(2)}</p>
+          <p><strong>Total Earnings (Gross):</strong> ₹${data.total_earnings.toFixed(2)}</p>
+          <hr style='border: 0; border-top: 1px solid #ccc;'>
+          <p><strong>APGLI Recovery:</strong> ₹${data.apgli.toFixed(2)}</p>
+          <p><strong>GIS Fund:</strong> ₹${data.gis.toFixed(2)}</p>
+          <p><strong>Professional Tax (PT):</strong> ₹${data.pt.toFixed(2)}</p>
+          <p><strong>EHS Subscription:</strong> ₹${data.ehs.toFixed(2)}</p>
+          <p><strong>CPS Subscription (10% of Basic+DA):</strong> ₹${data.cps.toFixed(2)}</p>
+          <p><strong>Total Deductions:</strong> ₹${data.total_deductions.toFixed(2)}</p>
+          <hr style='border: 0; border-top: 2px solid #005a9c;'>
+          <h3 style='color:#005a9c; margin-bottom:0;'><strong>Take-Home Net Salary:</strong> ₹${data.net_salary.toFixed(2)}</h3>
+        `;
+      } catch (err) {
+        outputDiv.innerHTML = "<p style='color:red;'>❌ Cloud connection timeout error. Please check backend execution status.</p>";
+      }
+    }
+  </script>
 </body>
 </html>
