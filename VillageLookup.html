@@ -40,7 +40,7 @@
     // 1. Initial page boot loader handshake config
     async function initPage() {
       try {
-        const res = await fetch('/api/village_finder?action=get_dropdowns');
+        const res = await fetch('/api/villagelookup?action=get_dropdowns');
         lookupStructure = await res.json();
         
         const districtSelect = document.getElementById("districtSelect");
