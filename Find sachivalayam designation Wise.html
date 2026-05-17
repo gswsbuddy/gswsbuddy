@@ -3,244 +3,140 @@
 <head>
   <meta charset="UTF-8">
   <title>Sachivalayam Finder</title>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FKVZ9P09W5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-FKVZ9P09W5');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FKVZ9P09W5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FKVZ9P09W5');
+  </script>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4faff;
-      padding: 20px;
-    }
-
-    h2 {
-      text-align: center;
-      color: #005a9c;
-    }
-
-    label {
-      font-weight: bold;
-    }
-
-    form {
-      max-width: 300px;
-      margin: auto;
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
-    }
-
-    select {
-      width: 100%;
-      padding: 8px;
-      margin: 8px 0 16px 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-
-    .filter-options {
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    .filter-options select {
-      padding: 6px;
-      border-radius: 5px;
-      border: 1px solid #aaa;
-    }
-
-    #output {
-      margin-top: 30px;
-      background: #e8f0fe;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-    }
-
-    th, td {
-      padding: 10px;
-      text-align: left;
-      border-bottom: 1px solid #ccc;
-    }
-
-    th {
-      background-color: #dbe9ff;
-      color: #003366;
-    }
-
-    .yes {
-      color: green;
-      font-weight: bold;
-    }
-
-    .no {
-      color: red;
-      font-weight: bold;
-    }
-    #submitBtn {
-        padding: 8px 16px;
-        background-color: #0078D4;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
+    body { font-family: Arial, sans-serif; background: #f4faff; padding: 20px; }
+    h2 { text-align: center; color: #005a9c; }
+    label { font-weight: bold; display: block; margin-top: 10px; }
+    .form-container { max-width: 400px; margin: auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 8px rgba(0,0,0,0.1); }
+    select, button { width: 100%; padding: 10px; margin: 8px 0 16px 0; border-radius: 5px; border: 1px solid #ccc; box-sizing: border-box; font-size: 14px; }
+    #submitBtn { background-color: #0078D4; color: white; border: none; font-weight: bold; cursor: pointer; margin-top: 10px; }
+    #submitBtn:hover { background-color: #005a9e; }
+    #output { margin-top: 30px; background: #e8f0fe; padding: 20px; border-radius: 10px; max-width: 600px; margin-left: auto; margin-right: auto; display: none; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; background: white; }
+    th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ccc; }
+    th { background-color: #dbe9ff; color: #003366; }
+    .yes { color: green; font-weight: bold; }
+    .no { color: red; font-weight: bold; }
   </style>
 </head>
 <body>
+
   <h2>Find Sachivalayams by Designation</h2>
 
-  <form id="searchForm">
+  <div class="form-container">
     <label for="district">District:</label>
-    <select id="district"></select>
+    <select id="district"><option value="">-- Select District --</option></select>
 
     <label for="mandal">Mandal:</label>
-    <select id="mandal"></select>
+    <select id="mandal"><option value="">-- Select Mandal --</option></select>
 
     <label for="designation">Designation:</label>
-    <select id="designation"></select>
-  </form>
-    <div class="filter-options">
+    <select id="designation"><option value="">-- Select Designation --</option></select>
+
     <label for="filter">Show Results:</label>
     <select id="filter">
       <option value="ALL">All</option>
       <option value="YES">YES POSITIONS ONLY</option>
       <option value="NO">NO POSITIONS ONLY</option> 
     </select>
+    
     <button id="submitBtn">Submit</button>
   </div>
 
   <div id="output"></div>
 
   <script>
-  let sachivalayamData = {};
+    let mappingData = {};
 
-  // Load JSON data
-  fetch('annexrural1.json')
-    .then(response => response.json())
-    .then(data => {
-      sachivalayamData = data;
-      populateDropdowns();
-    })
-    .catch(error => {
-      console.error("Failed to load data:", error);
-      document.getElementById("output").innerHTML = "<p>Error loading data.</p>";
-    });
+    async function initPage() {
+      try {
+        const res = await fetch('/api/designation_finder?action=get_dropdowns');
+        const data = await res.json();
+        
+        mappingData = data.mapping;
+        
+        // Populate Districts
+        const districtSelect = document.getElementById("district");
+        Object.keys(mappingData).forEach(dist => {
+          const opt = document.createElement("option");
+          opt.value = opt.textContent = dist;
+          districtSelect.appendChild(opt);
+        });
 
-  // Populate District dropdown only
-  function populateDropdowns() {
+        // Populate Designations
+        const desigSelect = document.getElementById("designation");
+        data.designations.forEach(d => {
+          const opt = document.createElement("option");
+          opt.value = opt.textContent = d;
+          desigSelect.appendChild(opt);
+        });
+      } catch (err) {
+        console.error("Initialization error:", err);
+      }
+    }
+    initPage();
+
     const districtSelect = document.getElementById("district");
-    districtSelect.innerHTML = `<option value="">-- Select District --</option>`;
-    Object.keys(sachivalayamData).forEach(district => {
-      districtSelect.innerHTML += `<option value="${district}">${district}</option>`;
-    });
-
-    // Clear other dropdowns
-    document.getElementById("mandal").innerHTML = `<option value="">-- Select Mandal --</option>`;
-    document.getElementById("designation").innerHTML = `<option value="">-- Select Designation --</option>`;
-  }
-
-  // Populate Mandals based on selected District
-  function updateMandals() {
-    const district = document.getElementById("district").value;
     const mandalSelect = document.getElementById("mandal");
-    mandalSelect.innerHTML = `<option value="">-- Select Mandal --</option>`;
+    const outputDiv = document.getElementById("output");
 
-    if (!district || !sachivalayamData[district]) return;
-
-    Object.keys(sachivalayamData[district]).forEach(mandal => {
-      mandalSelect.innerHTML += `<option value="${mandal}">${mandal}</option>`;
+    districtSelect.addEventListener("change", () => {
+      mandalSelect.innerHTML = '<option value="">-- Select Mandal --</option>';
+      outputDiv.style.display = "none";
+      
+      if (!mappingData[districtSelect.value]) return;
+      Object.keys(mappingData[districtSelect.value]).forEach(mandal => {
+        const opt = document.createElement("option");
+        opt.value = opt.textContent = mandal;
+        mandalSelect.appendChild(opt);
+      });
     });
 
-    // Clear designations
-    document.getElementById("designation").innerHTML = `<option value="">-- Select Designation --</option>`;
-  }
+    document.getElementById("submitBtn").addEventListener("click", async () => {
+      const dist = districtSelect.value;
+      const mnd = mandalSelect.value;
+      const desig = document.getElementById("designation").value;
+      const filterVal = document.getElementById("filter").value;
 
-  // Populate Designations based on selected Mandal
-  function updateDesignations() {
-    const district = document.getElementById("district").value;
-    const mandal = document.getElementById("mandal").value;
-    const designationSelect = document.getElementById("designation");
-    designationSelect.innerHTML = `<option value="">-- Select Designation --</option>`;
-
-    const mandalData = sachivalayamData[district]?.[mandal];
-    if (!mandalData) return;
-
-    const designationSet = new Set();
-    for (const details of Object.values(mandalData)) {
-      if (details.Designations) {
-        Object.keys(details.Designations).forEach(d => designationSet.add(d));
+      if (!dist || !mnd || !desig) {
+        outputDiv.style.display = "block";
+        outputDiv.innerHTML = "<p style='color:red; font-weight:bold;'>⚠️ Please select all fields before submitting.</p>";
+        return;
       }
-    }
 
-    Array.from(designationSet).sort().forEach(designation => {
-      designationSelect.innerHTML += `<option value="${designation}">${designation}</option>`;
-    });
-  }
+      outputDiv.style.display = "block";
+      outputDiv.innerHTML = "🔍 Fetching designations from secure database...";
 
-  // Render results only after Submit
-  function renderResults() {
-    const district = document.getElementById("district").value;
-    const mandal = document.getElementById("mandal").value;
-    const designation = document.getElementById("designation").value;
-    const filter = document.getElementById("filter").value;
+      try {
+        const url = `/api/designation_finder?action=filter_by_designation&district=${encodeURIComponent(dist)}&mandal=${encodeURIComponent(mnd)}&designation=${encodeURIComponent(desig)}&filter=${filterVal}`;
+        const res = await fetch(url);
+        const results = await res.json();
 
-    if (!district || !mandal || !designation) {
-      document.getElementById("output").innerHTML = "<p>Please select all fields before submitting.</p>";
-      return;
-    }
+        if (results.length === 0) {
+          outputDiv.innerHTML = "<p style='color:red;'>No matching records found.</p>";
+          return;
+        }
 
-    const mandalData = sachivalayamData[district]?.[mandal];
-    if (!mandalData) return;
-
-    let results = [];
-
-    for (const [sachivalayam, details] of Object.entries(mandalData)) {
-      const status = details.Designations?.[designation] || "NO";
-      if (
-        filter === "ALL" ||
-        (filter === "YES" && status === "YES") ||
-        (filter === "NO" && status === "NO")
-      ) {
-        results.push({ name: sachivalayam, approved: status });
+        let html = `<table><tr><th>Sachivalayam Name</th><th>${desig}</th></tr>`;
+        results.forEach(r => {
+          html += `<tr>
+            <td>${r.name}</td>
+            <td class="${r.approved === 'YES' ? 'yes' : 'no'}">${r.approved}</td>
+          </tr>`;
+        });
+        html += `</table>`;
+        outputDiv.innerHTML = html;
+      } catch (err) {
+        outputDiv.innerHTML = "<p style='color:red;'>Cloud connection error.</p>";
       }
-    }
-
-    results.sort((a, b) => (a.approved === "YES" ? -1 : 1));
-
-    let html = `<table>
-      <tr><th>Sachivalayam Name</th><th>${designation}</th></tr>`;
-    results.forEach(r => {
-      html += `<tr>
-        <td>${r.name}</td>
-        <td class="${r.approved === 'YES' ? 'yes' : 'no'}">${r.approved}</td>
-      </tr>`;
     });
-    html += `</table>`;
-
-    document.getElementById("output").innerHTML = html;
-  }
-
-  // Event listeners
-  document.getElementById("district").addEventListener("change", updateMandals);
-  document.getElementById("mandal").addEventListener("change", updateDesignations);
-  document.getElementById("submitBtn").addEventListener("click", renderResults);
-</script>
+  </script>
 </body>
 </html>
