@@ -37,6 +37,9 @@
     <label for="basic">Basic Pay (₹):</label>
     <input type="number" id="basic" placeholder="e.g. 22460" required>
 
+    <label for="daRate">Dearness Allowance (DA) Rate (%):</label>
+    <input type="number" id="daRate" value="37.31" step="0.01" required>
+
     <label for="hra">HRA Rate (%):</label>
     <select id="hra" required>
       <option value="10">10%</option>
@@ -47,7 +50,7 @@
     <label for="apgli">APGLI (₹):</label>
     <input type="number" id="apgli" placeholder="e.g. 500" required>
 
-    <div class="advanced-toggle" onclick="toggleDrawer()">⚙️ View / Edit Standard Deductions</div>
+    <div class="advanced-toggle" onclick="toggleDrawer()">⚙️ View / Edit Standard Statutory Deductions</div>
     
     <div id="deductionDrawer" class="deduction-drawer">
       <label for="gis">GIS Fund (₹):</label>
@@ -68,28 +71,25 @@
   <script>
     function toggleDrawer() {
       const drawer = document.getElementById("deductionDrawer");
-      if (drawer.style.display === "block") {
-        drawer.style.display = "none";
-      } else {
-        drawer.style.display = "block";
-      }
+      drawer.style.display = (drawer.style.display === "block") ? "none" : "block";
     }
 
     async function calculateSalary() {
       const basicVal = document.getElementById('basic').value.trim();
+      const daRateVal = document.getElementById('daRate').value.trim();
       const hraRateVal = document.getElementById('hra').value;
       const apgliVal = document.getElementById('apgli').value.trim();
       
-      // Reading dynamic deduction user overrides
+      // Reading dynamic standard recovery values from the drawer
       const gisVal = document.getElementById('gis').value.trim();
       const ptVal = document.getElementById('pt').value.trim();
       const ehsVal = document.getElementById('ehs').value.trim();
       
       const outputDiv = document.getElementById("output");
 
-      if (!basicVal || !apgliVal || isNaN(basicVal) || isNaN(apgliVal)) {
+      if (!basicVal || !daRateVal || !apgliVal || isNaN(basicVal) || isNaN(daRateVal) || isNaN(apgliVal)) {
         outputDiv.style.display = "block";
-        outputDiv.innerHTML = "<p style='color:red; font-weight:bold;'>⚠️ Please fill in Basic Pay and APGLI parameters before calculating.</p>";
+        outputDiv.innerHTML = "<p style='color:red; font-weight:bold;'>⚠️ Please fill in Basic Pay, DA Rate, and APGLI parameters before calculating.</p>";
         return;
       }
 
@@ -97,8 +97,7 @@
       outputDiv.innerHTML = "📊 Computing official salary breakdowns across cloud systems...";
 
       try {
-        // Appending user overrides into the query string parameters array safely
-        const url = `/api/salary_calculator?basic=${encodeURIComponent(basicVal)}&hra_rate=${encodeURIComponent(hraRateVal)}&apgli=${encodeURIComponent(apgliVal)}&gis=${encodeURIComponent(gisVal)}&pt=${encodeURIComponent(ptVal)}&ehs=${encodeURIComponent(ehsVal)}`;
+        const url = `/api/salary_calculator?basic=${encodeURIComponent(basicVal)}&hra_rate=${encodeURIComponent(hraRateVal)}&apgli=${encodeURIComponent(apgliVal)}&da_rate=${encodeURIComponent(daRateVal)}&gis=${encodeURIComponent(gisVal)}&pt=${encodeURIComponent(ptVal)}&ehs=${encodeURIComponent(ehsVal)}`;
         const res = await fetch(url);
         const data = await res.json();
 
