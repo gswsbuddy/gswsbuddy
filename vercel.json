@@ -1,27 +1,13 @@
 {
   "version": 2,
-  "builds": [
+  "rewrites": [
     {
-      "src": "api/*.py",
-      "use": "@vercel/python"
+      "source": "/api/designation_finder",
+      "destination": "/api/designation_finder.py"
     },
     {
-      "src": "*.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "*.css",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "api/$1.py"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
+      "source": "/api/accounts",
+      "destination": "/api/accounts.py"
     }
   ]
 }
