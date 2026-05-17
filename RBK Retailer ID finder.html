@@ -3,218 +3,139 @@
 <head>
   <meta charset="UTF-8">
   <title>RBK Retailer ID Finder</title>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FKVZ9P09W5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-FKVZ9P09W5');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FKVZ9P09W5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FKVZ9P09W5');
+  </script>
   <style>
-    /* Your provided CSS */
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4faff;
-      padding: 20px;
-    }
-
-    h2 {
-      text-align: center;
-      color: #005a9c;
-    }
-
-    label {
-      font-weight: bold;
-    }
-
-    form {
-      max-width: 350px;
-      margin: auto;
-      background: #fff;
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
-    }
-
-    select {
-      width: 100%;
-      padding: 40px;
-      margin: 8px 0 16px 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-
-    .filter-options {
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    .filter-options select {
-      padding: 6px;
-      border-radius: 5px;
-      border: 1px solid #aaa;
-    }
-
-    #output {
-      margin-top: 30px;
-      background: #e8f0fe;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-    }
-
-    th, td {
-      padding: 10px;
-      text-align: left;
-      border-bottom: 1px solid #ccc;
-    }
-
-    th {
-      background-color: #dbe9ff;
-      color: #003366;
-    }
-
-    .yes {
-      color: green;
-      font-weight: bold;
-    }
-
-    .no {
-      color: red;
-      font-weight: bold;
-    }
-
-    #submitBtn {
-      padding: 8px 16px;
-      background-color: #0078D4;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      margin-top: 40px;
-    }
-    #resetBtn {
-  padding: 8px 16px;
-  background-color: #8d0808;
-  color: #f2eded;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-left: 10px;
-}
-    #suggestions {
-      border: 1px solid #ccc;
-      border-radius: 3px;
-      background: #fff;
-      max-height: 200px;
-      overflow-y: auto;
-      margin-top: -10px;
-      position: relative;
-      z-index: 10;
-    }
-
-    .suggestion {
-      padding: 8px;
-      cursor: pointer;
-    }
-    #rskInput {
-    width: 100%;         /* Full width of the form container */
-    padding: 8px 16px;  /* More inner space for comfort */
-    font-size: 18px;     /* Bigger text for visibility */
-    border-radius: 6px;  /* Slightly rounder corners */
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    }
-
-    .suggestion:hover {
-      background-color: #e0e0e0;
-    }
+    body { font-family: Arial, sans-serif; background: #f4faff; padding: 20px; }
+    h2 { text-align: center; color: #005a9c; }
+    label { font-weight: bold; }
+    form { max-width: 450px; margin: auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
+    #output { margin-top: 30px; background: #e8f0fe; padding: 20px; border-radius: 10px; max-width: 600px; margin-left: auto; margin-right: auto; display: none; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; background: white; }
+    th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ccc; }
+    th { background-color: #dbe9ff; color: #003366; width: 35%; }
+    #submitBtn { padding: 10px 20px; background-color: #0078D4; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+    #submitBtn:hover { background-color: #005a9e; }
+    #resetBtn { padding: 10px 20px; background-color: #8d0808; color: white; border: none; border-radius: 4px; cursor: pointer; margin-left: 10px; font-weight: bold; }
+    #resetBtn:hover { background-color: #6b0505; }
+    #suggestions { border: 1px solid #ccc; border-top: none; border-radius: 0 0 5px 5px; background: #fff; max-height: 200px; overflow-y: auto; margin-top: -16px; margin-bottom: 16px; display: none; }
+    .suggestion { padding: 10px; cursor: pointer; }
+    .suggestion:hover { background-color: #e8f0fe; }
+    #rskInput { width: 100%; padding: 12px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc; box-sizing: border-box; margin: 8px 0 16px 0; }
   </style>
 </head>
 <body>
+
   <h2>RBK Retailer ID Finder</h2>
-  <form>
+  <form id="rbkForm" onsubmit="return false;">
     <label for="rskInput">Enter RBK Name:</label>
     <input type="text" id="rskInput" placeholder="Enter Your RBK NAME..." autocomplete="off">
-    <hr>
     <div id="suggestions"></div>
+    
     <button type="button" id="submitBtn">Submit</button>
     <button type="button" id="resetBtn">Reset</button>
-
   </form>
 
   <div id="output"></div>
 
   <script>
-    let rskData = {};
-
-    // Load external JSON file
-    fetch('dbt pins.json')
-      .then(response => response.json())
-      .then(data => {
-        rskData = data;
-      })
-      .catch(error => {
-        console.error("Error loading JSON:", error);
-        document.getElementById("output").innerHTML = "<p style='color:red;'>Failed to load RSK data.</p>";
-      });
-
     const input = document.getElementById("rskInput");
     const suggestionsBox = document.getElementById("suggestions");
     const outputBox = document.getElementById("output");
+    let typingTimer;
 
+    // Typeahead Autocomplete Listener
     input.addEventListener("input", () => {
-      const query = input.value.trim().toLowerCase();
-      suggestionsBox.innerHTML = "";
+      clearTimeout(typingTimer);
+      const query = input.value.trim();
 
-      if (query.length === 0) return;
+      if (query.length === 0) {
+        suggestionsBox.innerHTML = "";
+        suggestionsBox.style.display = "none";
+        return;
+      }
 
-      const matches = Object.keys(rskData).filter(rsk =>
-        rsk.toLowerCase().includes(query)
-      );
+      // Debounce request to avoid hammering your serverless quota limits
+      typingTimer = setTimeout(async () => {
+        try {
+          const res = await fetch(`/api/markfedid?action=suggest&q=${encodeURIComponent(query)}`);
+          const matches = await res.json();
 
-      matches.forEach(match => {
-        const div = document.createElement("div");
-        div.classList.add("suggestion");
-        div.textContent = match;
-        div.addEventListener("click", () => {
-          input.value = match;
           suggestionsBox.innerHTML = "";
-        });
-        suggestionsBox.appendChild(div);
-      });
+          if (matches.length > 0) {
+            suggestionsBox.style.display = "block";
+            matches.forEach(match => {
+              const div = document.createElement("div");
+              div.classList.add("suggestion");
+              div.textContent = match;
+              div.addEventListener("click", () => {
+                input.value = match;
+                suggestionsBox.innerHTML = "";
+                suggestionsBox.style.display = "none";
+              });
+              suggestionsBox.appendChild(div);
+            });
+          } else {
+            suggestionsBox.style.display = "none";
+          }
+        } catch (err) {
+          console.error("Error fetching autocomplete strings.");
+        }
+      }, 250);
     });
 
-    document.getElementById("submitBtn").addEventListener("click", () => {
-      const rsk = input.value.trim();
-      const entry = rskData[rsk];
+    // Submit Handler
+    document.getElementById("submitBtn").addEventListener("click", async () => {
+      const rskVal = input.value.trim();
+      if (!rskVal) {
+        outputBox.style.display = "block";
+        outputBox.innerHTML = "<p style='color:red; font-weight:bold;'>⚠️ Please enter an RBK name.</p>";
+        return;
+      }
+
+      outputBox.style.display = "block";
+      outputBox.innerHTML = "🔍 Fetching secure merchant configurations...";
+
+      try {
+        const url = `/api/markfedid?action=lookup&rbk=${encodeURIComponent(rskVal)}`;
+        const res = await fetch(url);
+        const entry = await res.json();
+
+        if (entry.error) {
+          outputBox.innerHTML = `<p style='color:red;'>❌ ${entry.error}</p>`;
+        } else {
+          outputBox.innerHTML = `
+            <table>
+              <tr><th>Dealer ID</th><td>${entry.dealerId}</td></tr>
+              <tr><th>Agency Name</th><td>${entry.agencyName}</td></tr>
+              <tr><th>POS Pin</th><td><strong>${entry.posPin}</strong></td></tr>
+            </table>
+          `;
+        }
+      } catch (err) {
+        outputBox.innerHTML = "<p style='color:red;'>Cloud connection failure.</p>";
+      }
+    });
+
+    // Reset Handler (Fixed nested script bugs)
     document.getElementById("resetBtn").addEventListener("click", () => {
-    document.getElementById("rskInput").value = "";
-    document.getElementById("suggestions").innerHTML = "";
-    document.getElementById("output").innerHTML = "";
+      input.value = "";
+      suggestionsBox.innerHTML = "";
+      suggestionsBox.style.display = "none";
+      outputBox.innerHTML = "";
+      outputBox.style.display = "none";
     });
 
-
-      if (entry) {
-        outputBox.innerHTML = `
-          <table>
-            <tr><th>Dealer ID</th><td>${entry.dealerId}</td></tr>
-            <tr><th>Agency Name</th><td>${entry.agencyName}</td></tr>
-            <tr><th>POS Pin</th><td>${entry.posPin}</td></tr>
-          </table>
-        `;
-      } else {
-        outputBox.innerHTML = `<p style="color:red;">RSK not found. Please check the name.</p>`;
+    // Close suggestions box when clicking outside
+    document.addEventListener("click", (e) => {
+      if (e.target !== input) {
+        suggestionsBox.innerHTML = "";
+        suggestionsBox.style.display = "none";
       }
     });
   </script>
