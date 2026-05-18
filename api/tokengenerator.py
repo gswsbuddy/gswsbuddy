@@ -88,8 +88,8 @@ class handler(BaseHTTPRequestHandler):
 
                         # Line 1: Dynamic Commodity/Service Context Header
                         r1 = p.add_run(f"{commodity} – {formatted_date}\n")
-                        r1.font.name = 'Arial'
-                        r1.font.size = Pt(9)
+                        r1.font.name = 'ArialBlack'
+                        r1.font.size = Pt(10)
                         r1.font.bold = True
 
                         # Line 2: Giant Token ID
@@ -100,14 +100,14 @@ class handler(BaseHTTPRequestHandler):
 
                         # 🔥 Line 3: Dynamic Designation Text Run Injection
                         r3 = p.add_run(f"{designation}\n")
-                        r3.font.name = 'Arial'
-                        r3.font.size = Pt(9)
+                        r3.font.name = 'ArialBlack'
+                        r3.font.size = Pt(10)
                         r3.font.bold = True
 
                         # Line 4: Office Localizer
-                        r4 = p.add_run(f"{rsk} | {mandal} Mdl")
-                        r4.font.name = 'Arial'
-                        r4.font.size = Pt(9)
+                        r4 = p.add_run(f"{rsk} | {mandal} Mandal")
+                        r4.font.name = 'ArialBlack'
+                        r4.font.size = Pt(10)
                         r4.font.bold = True
                         
                         token_index += 1
