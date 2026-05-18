@@ -16,9 +16,16 @@ class handler(BaseHTTPRequestHandler):
         query = urlparse(self.path).query
         params = parse_qs(query)
         
-        rsk = params.get('rsk', ['Unknown RBK'])[0].strip()
+        # 1. Fetch Dynamic Parameters
+        rsk = params.get('rsk', ['Unknown Office'])[0].strip()
         mandal = params.get('mandal', ['Unknown Mandal'])[0].strip()
         raw_date = params.get('date', [''])[0].strip()
+        commodity = params.get('commodity', ['Urea'])[0].strip()
+        if not commodity: commodity = "Urea"
+        
+        # 🔥 Dynamic Designation Title Override Input (Defaults to VAA/MAO baseline)
+        designation = params.get('designation', ['Signature of VAA / MAO'])[0].strip()
+        if not designation: designation = "Signature of VAA / MAO"
         
         try:
             token_count = int(params.get('count', [100])[0])
@@ -34,7 +41,6 @@ class handler(BaseHTTPRequestHandler):
 
         doc = Document()
         
-        # 1. Strict Page Alignment (A4 dimensions with 0.5-inch margins)
         for section in doc.sections:
             section.page_width = Inches(8.27)
             section.page_height = Inches(11.69)
@@ -46,12 +52,10 @@ class handler(BaseHTTPRequestHandler):
         token_index = 1
 
         while token_index <= token_count:
-            # 2. Generate a perfectly dimensioned 4x3 Table Grid
             table = doc.add_table(rows=4, cols=3)
             table.alignment = WD_ALIGN_PARAGRAPH.CENTER
             table.autofit = False
             
-            # Apply standard borders to table XML so cutting guidelines are visible
             tblPr = table._tbl.tblPr
             borders = parse_xml(
                 f'<w:tblBorders {nsdecls("w")}>\n'
@@ -67,7 +71,7 @@ class handler(BaseHTTPRequestHandler):
 
             for row_idx in range(4):
                 row = table.rows[row_idx]
-                row.height = Inches(2.6) # Strict fixed token height target to distribute 4 rows on a page
+                row.height = Inches(2.6)
                 
                 for col_idx in range(3):
                     cell = row.cells[col_idx]
@@ -78,34 +82,32 @@ class handler(BaseHTTPRequestHandler):
                         p = cell.paragraphs[0]
                         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
                         
-                        # CRITICAL: Strip out Word's automatic spacing gaps entirely
                         p.paragraph_format.space_before = Pt(0)
                         p.paragraph_format.space_after = Pt(0)
                         p.paragraph_format.line_spacing = 1.15
 
-                        # Line 1: Header Context
-                        r1 = p.add_run(f"Urea Distribution – {formatted_date}\n")
-                        r1.font.name = 'ArialBlack'
-                        r1.font.size = Pt(10)
+                        # Line 1: Dynamic Commodity/Service Context Header
+                        r1 = p.add_run(f"{commodity} – {formatted_date}\n")
+                        r1.font.name = 'Arial'
+                        r1.font.size = Pt(9)
                         r1.font.bold = True
-                        r1.font.color.rgb = None
 
                         # Line 2: Giant Token ID
                         r2 = p.add_run(f"\n{token_index}\n\n")
-                        r2.font.name = 'ArialBlack'
+                        r2.font.name = 'Arial'
                         r2.font.size = Pt(28)
                         r2.font.bold = True
 
-                        # Line 3: Validation baseline
-                        r3 = p.add_run("Signature of VAA / MAO\n")
-                        r3.font.name = 'ArialBlack'
-                        r3.font.size = Pt(10)
+                        # 🔥 Line 3: Dynamic Designation Text Run Injection
+                        r3 = p.add_run(f"{designation}\n")
+                        r3.font.name = 'Arial'
+                        r3.font.size = Pt(9)
                         r3.font.bold = True
 
-                        # Line 4: Organization Tracker Localizer
-                        r4 = p.add_run(f"{rsk} RSK | {mandal} Mandal")
-                        r4.font.name = 'ArialBlack'
-                        r4.font.size = Pt(10)
+                        # Line 4: Office Localizer
+                        r4 = p.add_run(f"{rsk} | {mandal} Mdl")
+                        r4.font.name = 'Arial'
+                        r4.font.size = Pt(9)
                         r4.font.bold = True
                         
                         token_index += 1
@@ -115,7 +117,6 @@ class handler(BaseHTTPRequestHandler):
                         p.paragraph_format.space_before = Pt(0)
                         p.paragraph_format.space_after = Pt(0)
 
-            # Prevent trailing empty pages on the last loop pass
             if token_index <= token_count:
                 doc.add_page_break()
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Urea Tokens Generator</title>
+  <title>Universal Sachivalayam Tokens Generator</title>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FKVZ9P09W5"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -23,17 +23,23 @@
 </head>
 <body>
 
-  <h2>🧾 Urea Tokens Generator</h2>
+  <h2>🧾 Universal Tokens Generator</h2>
 
   <div class="form-container">
     <form id="tokenForm">
       <label for="distDate">Distribution Date:</label>
       <input type="date" id="distDate" required>
 
-      <label for="rskName">RSK Name:</label>
-      <input type="text" id="rskName" placeholder="e.g. Chittoor" required>
+      <label for="commodityName">Token Purpose / Commodity:</label>
+      <input type="text" id="commodityName" value="Urea Distribution" placeholder="e.g. Urea Distribution, Pension Token, Housing Scheme" required>
 
-      <label for="mandal">Mandal:</label>
+      <label for="designationTitle">Designation / Authority Text:</label>
+      <input type="text" id="designationTitle" value="Signature of VAA / MAO" placeholder="e.g. Signature of PS / WedS, Signature of WAS" required>
+
+      <label for="rskName">Secretariat / Office Name:</label>
+      <input type="text" id="rskName" placeholder="e.g. Chittoor-1" required>
+
+      <label for="mandal">Mandal / Town:</label>
       <input type="text" id="mandal" placeholder="e.g. Chittoor" required>
 
       <label for="tokenCount">Number of Tokens to Print:</label>
@@ -50,31 +56,31 @@
       e.preventDefault();
 
       const dateVal = document.getElementById("distDate").value;
+      const commodityVal = document.getElementById("commodityName").value.trim();
+      const designationVal = document.getElementById("designationTitle").value.trim();
       const rskVal = document.getElementById("rskName").value.trim();
       const mandalVal = document.getElementById("mandal").value.trim();
       const countVal = document.getElementById("tokenCount").value;
       const msgBox = document.getElementById("statusMessage");
       const btn = document.getElementById("genBtn");
 
-      if (!dateVal || !rskVal || !mandalVal || !countVal) {
-        alert("Please complete all parameter settings fields properly.");
+      if (!dateVal || !commodityVal || !designationVal || !rskVal || !mandalVal || !countVal) {
+        alert("Please complete all input parameter fields correctly.");
         return;
       }
 
       msgBox.style.display = "block";
-      msgBox.innerHTML = "⏳ Compiling structural document alignment elements on cloud backends...";
+      msgBox.innerHTML = "⏳ Compiling universal document elements on cloud backends...";
       btn.disabled = true;
       btn.style.background = "#aaaaaa";
 
-      // Direct clean file-download generation request URL structure sequence
-      const targetUrl = `/api/tokengenerator?date=${encodeURIComponent(dateVal)}&rsk=${encodeURIComponent(rskVal)}&mandal=${encodeURIComponent(mandalVal)}&count=${encodeURIComponent(countVal)}`;
+      // Piping the new designation override value securely into the query sequence string execution URL
+      const targetUrl = `/api/token_generator?date=${encodeURIComponent(dateVal)}&commodity=${encodeURIComponent(commodityVal)}&designation=${encodeURIComponent(designationVal)}&rsk=${encodeURIComponent(rskVal)}&mandal=${encodeURIComponent(mandalVal)}&count=${encodeURIComponent(countVal)}`;
       
-      // Prompt the browser window engine to treat the server request directly as an explicit file download link
       window.location.href = targetUrl;
 
-      // Restore form button state after transmission handoff completes smoothly
       setTimeout(() => {
-        msgBox.innerHTML = "✅ Token compilation download processing initialized!";
+        msgBox.innerHTML = "✅ Document download processing initialized successfully!";
         btn.disabled = false;
         btn.style.background = "#0078D4";
       }, 3000);
