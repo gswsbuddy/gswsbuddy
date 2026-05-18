@@ -85,8 +85,8 @@ class handler(BaseHTTPRequestHandler):
 
                         # Line 1: Header Context
                         r1 = p.add_run(f"Urea Distribution – {formatted_date}\n")
-                        r1.font.name = 'Arial'
-                        r1.font.size = Pt(9)
+                        r1.font.name = 'ArialBlack'
+                        r1.font.size = Pt(11)
                         r1.font.bold = True
                         r1.font.color.rgb = None
 
