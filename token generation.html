@@ -3,201 +3,81 @@
 <head>
   <meta charset="UTF-8">
   <title>Urea Tokens Generator</title>
-  <script src="https://cdn.jsdelivr.net/npm/docx@7.7.0/build/index.min.js"></script>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FKVZ9P09W5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-FKVZ9P09W5');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FKVZ9P09W5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FKVZ9P09W5');
+  </script>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background-color: #f4f6f8;
-    }
-
-    h2 {
-      color: #0078D4;
-      text-align: center;
-    }
-
-    label {
-      display: block;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-
-    input {
-      width: 100%;
-      padding: 8px;
-      margin-top: 4px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-    }
-
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      cursor: pointer;
-      background-color: #0078D4;
-      color: white;
-    }
-
-    button:hover {
-      background-color: #005a9e;
-    }
+    body { font-family: Arial, sans-serif; padding: 20px; background-color: #f4f6f8; }
+    h2 { color: #0078D4; text-align: center; }
+    label { display: block; margin-top: 15px; font-weight: bold; }
+    .form-container { max-width: 450px; margin: auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 0 12px rgba(0,0,0,0.1); }
+    input { width: 100%; padding: 10px; margin-top: 6px; border-radius: 5px; border: 1px solid #ccc; box-sizing: border-box; font-size: 15px; }
+    button { width: 100%; margin-top: 25px; padding: 12px; border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; background-color: #0078D4; color: white; transition: background 0.3s ease; }
+    button:hover { background-color: #005a9e; }
+    #statusMessage { text-align: center; margin-top: 15px; font-weight: bold; color: #005a9c; display: none; }
   </style>
 </head>
 <body>
 
   <h2>🧾 Urea Tokens Generator</h2>
 
-  <form id="tokenForm">
-    <label>Date:</label>
-    <input type="date" id="distDate" required>
+  <div class="form-container">
+    <form id="tokenForm">
+      <label for="distDate">Distribution Date:</label>
+      <input type="date" id="distDate" required>
 
-    <label>RSK Name:</label>
-    <input type="text" id="rskName" required>
+      <label for="rskName">RSK Name:</label>
+      <input type="text" id="rskName" placeholder="e.g. Chittoor" required>
 
-    <label>Mandal:</label>
-    <input type="text" id="mandal" required>
+      <label for="mandal">Mandal:</label>
+      <input type="text" id="mandal" placeholder="e.g. Chittoor" required>
 
-    <label>Number of Tokens:</label>
-    <input type="number" id="tokenCount" min="1" max="500" required>
+      <label for="tokenCount">Number of Tokens to Print:</label>
+      <input type="number" id="tokenCount" min="1" max="500" value="100" required>
 
-    <button type="submit">Generate Word File</button>
-  </form>
+      <button type="submit" id="genBtn">🚀 Generate Print-Ready Word File</button>
+    </form>
+    
+    <div id="statusMessage"></div>
+  </div>
 
   <script>
-    document.getElementById("tokenForm").addEventListener("submit", async function(e) {
+    document.getElementById("tokenForm").addEventListener("submit", function(e) {
       e.preventDefault();
 
-      const rawDate = new Date(document.getElementById("distDate").value);
-      const date = `${rawDate.getDate()}-${rawDate.toLocaleString('en-us', { month: 'short' })}-${rawDate.getFullYear()}`;
-      const rsk = document.getElementById("rskName").value.trim();
-      const mandal = document.getElementById("mandal").value.trim();
-      const count = parseInt(document.getElementById("tokenCount").value);
+      const dateVal = document.getElementById("distDate").value;
+      const rskVal = document.getElementById("rskName").value.trim();
+      const mandalVal = document.getElementById("mandal").value.trim();
+      const countVal = document.getElementById("tokenCount").value;
+      const msgBox = document.getElementById("statusMessage");
+      const btn = document.getElementById("genBtn");
 
-      const { Document, Packer, Paragraph, Table, TableRow, TableCell, WidthType, TextRun, PageBreak, HeightRule } = window.docx;
-
-      const sections = [];
-      let tokenIndex = 1;
-
-      while (tokenIndex <= count) {
-        const rows = [];
-
-        for (let r = 0; r < 4; r++) {
-          const cells = [];
-
-          for (let c = 0; c < 3; c++) {
-  if (tokenIndex <= count) {
-    const cellContent = [
-      new Paragraph({
-        children: [new TextRun({
-          text: `Urea Distribution – ${date}`,
-          font: "Arial",
-          size: 20,
-          bold: true
-        })],
-        alignment: "center",
-        spacing: { after: 400 }
-      }),
-      new Paragraph({
-        children: [new TextRun({
-          text: `${tokenIndex}`,
-          font: "Arial",
-          size: 38,
-          bold: true
-        })],
-        alignment: "center",
-        spacing: { after: 800 }
-      }),
-      new Paragraph({
-        children: [new TextRun({
-          text: "Signature of VAA / MAO",
-          font: "Arial",
-          size: 24,
-          bold: true
-        })],
-        alignment: "center",
-        spacing: { after: 100 }
-      }),
-      new Paragraph({
-        children: [new TextRun({
-          text: `${rsk} RSK`,
-          font: "Arial",
-          size: 24,
-          bold: true
-        })],
-        alignment: "center"
-      }),
-      new Paragraph({
-        children: [new TextRun({
-          text: `${mandal} Mandal`,
-          font: "Arial",
-          size: 28,
-          bold: true
-        })],
-        alignment: "center"
-      })
-    ];
-              cells.push(new TableCell({
-                width: { size: 3968, type: WidthType.DXA }, // ~7cm
-                children: cellContent,
-                margins: { top: 100, bottom: 100, left: 100, right: 100 }
-              }));
-
-              tokenIndex++;
-            } else {
-              cells.push(new TableCell({
-                width: { size: 3968, type: WidthType.DXA },
-                children: [new Paragraph("")],
-              }));
-            }
-          }
-
-          rows.push(new TableRow({
-            children: cells,
-            height: { value: 3205, rule: HeightRule.EXACT } // ~3.3cm
-          }));
-        }
-
-        const table = new Table({
-          rows,
-          width: { size: 9906, type: WidthType.DXA } // full A4 width
-        });
-
-        sections.push({
-          properties: {
-            page: {
-              size: { width: 11906, height: 16838 }, // A4
-              margin: { top: 720, bottom: 720, left: 720, right: 720 } // 1.5cm
-            }
-          },
-          children: [
-            new Paragraph({ text: "", spacing: { after: 200 } }),
-            table,
-            new Paragraph({ children: [new PageBreak()] })
-          ]
-        });
+      if (!dateVal || !rskVal || !mandalVal || !countVal) {
+        alert("Please complete all parameter settings fields properly.");
+        return;
       }
 
-      const doc = new Document({ sections });
+      msgBox.style.display = "block";
+      msgBox.innerHTML = "⏳ Compiling structural document alignment elements on cloud backends...";
+      btn.disabled = true;
+      btn.style.background = "#aaaaaa";
 
-      const blob = await Packer.toBlob(doc);
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `${rsk.replace(/\s+/g, "_")}_Tokens.docx`;
-      a.click();
-      URL.revokeObjectURL(url);
+      // Direct clean file-download generation request URL structure sequence
+      const targetUrl = `/api/tokengenerator?date=${encodeURIComponent(dateVal)}&rsk=${encodeURIComponent(rskVal)}&mandal=${encodeURIComponent(mandalVal)}&count=${encodeURIComponent(countVal)}`;
+      
+      // Prompt the browser window engine to treat the server request directly as an explicit file download link
+      window.location.href = targetUrl;
+
+      // Restore form button state after transmission handoff completes smoothly
+      setTimeout(() => {
+        msgBox.innerHTML = "✅ Token compilation download processing initialized!";
+        btn.disabled = false;
+        btn.style.background = "#0078D4";
+      }, 3000);
     });
   </script>
 
