@@ -86,26 +86,26 @@ class handler(BaseHTTPRequestHandler):
                         # Line 1: Header Context
                         r1 = p.add_run(f"Urea Distribution – {formatted_date}\n")
                         r1.font.name = 'ArialBlack'
-                        r1.font.size = Pt(11)
+                        r1.font.size = Pt(10)
                         r1.font.bold = True
                         r1.font.color.rgb = None
 
                         # Line 2: Giant Token ID
                         r2 = p.add_run(f"\n{token_index}\n\n")
-                        r2.font.name = 'Arial'
+                        r2.font.name = 'ArialBlack'
                         r2.font.size = Pt(28)
                         r2.font.bold = True
 
                         # Line 3: Validation baseline
                         r3 = p.add_run("Signature of VAA / MAO\n")
-                        r3.font.name = 'Arial'
-                        r3.font.size = Pt(9)
+                        r3.font.name = 'ArialBlack'
+                        r3.font.size = Pt(10)
                         r3.font.bold = True
 
                         # Line 4: Organization Tracker Localizer
-                        r4 = p.add_run(f"{rsk} RSK | {mandal} Mdl")
-                        r4.font.name = 'Arial'
-                        r4.font.size = Pt(9)
+                        r4 = p.add_run(f"{rsk} RSK | {mandal} Mandal")
+                        r4.font.name = 'ArialBlack'
+                        r4.font.size = Pt(10)
                         r4.font.bold = True
                         
                         token_index += 1
