@@ -90,7 +90,7 @@
     outputDiv.innerHTML = "⏳ నిబంధనల ప్రకారం లెక్కించబడుతోంది. దయచేసి వేచి ఉండండి...";
 
     try {
-      const targetUrl = `/api/apgli_caluclator?name=${encodeURIComponent(nameVal)}&dob=${encodeURIComponent(dobVal)}&premium=${encodeURIComponent(premiumVal)}`;
+      const targetUrl = `/api/apgli_calculator?name=${encodeURIComponent(nameVal)}&dob=${encodeURIComponent(dobVal)}&premium=${encodeURIComponent(premiumVal)}`;
       const res = await fetch(targetUrl);
       const data = await res.json();
 
