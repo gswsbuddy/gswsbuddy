@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>APGLI Maturity Wealth Calculator</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FKVZ9P09W5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FKVZ9P09W5');
+  </script>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4faff; padding: 20px; margin: 0; color: #333; }
+    .container { max-width: 550px; margin: auto; }
+    h2 { color: #005a9c; text-align: center; margin-bottom: 5px; }
+    
+    /* Scrolling Marquee Header Notice */
+    .marquee-container { background: #fff3cd; border: 1px solid #ffeeba; color: #856404; padding: 10px; border-radius: 6px; margin-bottom: 20px; font-size: 13px; font-weight: bold; overflow: hidden; white-space: nowrap; }
+    .marquee-text { display: inline-block; animation: marquee 20s linear infinite; padding-left: 100%; }
+    @keyframes marquee { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
+
+    .card { background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    
+    label { font-weight: bold; font-size: 14px; margin-top: 15px; display: block; color: #003366; }
+    input { width: 100%; padding: 12px; margin-top: 6px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 15px; }
+    
+    /* Premium Instruction Note Box */
+    .telugu-instruction-box { background: #e2f0fd; color: #004085; border-left: 4px solid #005a9c; padding: 12px; font-size: 12.5px; line-height: 1.5; border-radius: 4px; margin-top: 8px; margin-bottom: 5px; }
+    
+    .btn-calc { background: #005a9c; color: white; border: none; font-weight: bold; cursor: pointer; width: 100%; padding: 14px; font-size: 16px; margin-top: 20px; border-radius: 6px; transition: background 0.2s; }
+    .btn-calc:hover { background: #004475; }
+    .back-link { display: inline-block; text-decoration: none; color: #005a9c; font-weight: bold; font-size: 14px; margin-bottom: 15px; }
+    
+    /* Result Dashboard Plates */
+    #output { display: none; margin-top: 25px; background: #f0f7ff; padding: 20px; border-radius: 8px; border: 1px solid #b4cffa; }
+    .result-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed #ceddf2; font-size: 14px; }
+    .result-row:last-of-type { border-bottom: none; }
+    .bounty-card { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; padding: 15px; border-radius: 6px; text-align: center; margin-top: 15px; }
+    .bounty-val { font-size: 26px; font-weight: bold; display: block; margin-top: 5px; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <a href="/apgli_hub.html" class="back-link">⬅️ Back to APGLI Service Suite</a>
+  <h2>💰 APGLI Maturity Wealth Calculator</h2>
+  
+  <div class="marquee-container">
+    <div class="marquee-text">
+      📜 ఈ క్యాలిక్యులేటర్ G.O.Ms.No.198, Finance Department, తేదీ: 18.10.2022 నియమ నిబంధనల ప్రకారం సరిచూడబడుతుంది.
+    </div>
+  </div>
+
+  <div class="card">
+    <form id="simpleMaturityForm" onsubmit="return false;">
+      <label for="empName">Employee Name (ఆప్షనల్):</label>
+      <input type="text" id="empName" placeholder="ఉద్యోగి పేరు ఎంటర్ చేయండి...">
+
+      <label for="empDob">Date of Birth (పుట్టిన తేదీ):</label>
+      <input type="date" id="empDob" required>
+
+      <label for="premiumAmt">Incremental Premium (పెంచుతున్న ప్రీమియం):</label>
+      <input type="number" id="premiumAmt" placeholder="e.g. 600" required>
+      
+      <div class="telugu-instruction-box">
+        <strong>గమనిక:</strong> ఒకవేళ మీరు పాలసీ ప్రీమియం పెంచుతున్నట్లయితే (Enhancement), పాత ప్రీమియం <strong>తీసివేసి</strong> కేవలం పెరిగిన అదనపు మొత్తాన్ని మాత్రమే ఇక్కడ నమోదు చేయాలి. (ఉదాహరణకు: పాత ప్రీమియం ₹1,000 ఉండి, ఇప్పుడు ₹1,600 కి పెంచితే, ఇక్కడ కేవలం <strong>₹600</strong> మాత్రమే ఎంటర్ చేయండి).
+      </div>
+
+      <button type="button" class="btn-calc" onclick="computeMaturityWealth()">Calculate Retirement Maturity Wealth</button>
+    </form>
+
+    <div id="output"></div>
+  </div>
+</div>
+
+<script>
+  async function computeMaturityWealth() {
+    const nameVal = document.getElementById("empName").value.trim();
+    const dobVal = document.getElementById("empDob").value;
+    const premiumVal = document.getElementById("premiumAmt").value.trim();
+    const outputDiv = document.getElementById("output");
+
+    if (!dobVal || !premiumVal || isNaN(premiumVal) || premiumVal <= 0) {
+      alert("దయచేసి పుట్టిన తేదీ మరియు ప్రీమియం వివరాలను ఖచ్చితంగా నమోదు చేయండి.");
+      return;
+    }
+
+    outputDiv.style.display = "block";
+    outputDiv.innerHTML = "⏳ నిబంధనల ప్రకారం లెక్కించబడుతోంది. దయచేసి వేచి ఉండండి...";
+
+    try {
+      const targetUrl = `/api/apgli_maturity?name=${encodeURIComponent(nameVal)}&dob=${encodeURIComponent(dobVal)}&premium=${encodeURIComponent(premiumVal)}`;
+      const res = await fetch(targetUrl);
+      const data = await res.json();
+
+      if (data.error) {
+        outputDiv.innerHTML = `<p style="color:red; font-weight:bold;">⚠️ Error: ${data.error}</p>`;
+        return;
+      }
+
+      outputDiv.innerHTML = `
+        <h3 style="color:#005a9c; margin-top:5px; text-align:left; border-bottom:2px solid #005a9c; padding-bottom:5px;">📋 APGLI అంచనా నివేదిక</h3>
+        ${data.name ? `<div class="result-row"><strong>ఉద్యోగి పేరు (Employee Name):</strong> <span>${data.name}</span></div>` : ''}
+        <div class="result-row"><strong>రిటైర్మెంట్ తేదీ (Retirement Date):</strong> <span>${data.official_retirement_date}</span></div>
+        <div class="result-row"><strong>లెక్కించబడిన వయస్సు (Age Next Birthday):</strong> <span>${data.age_next_birthday} సంవత్సరాలు</span></div>
+        <div class="result-row"><strong>మిగిలిన సర్వీస్ కాలం (Remaining Service):</strong> <span>${data.service_months} నెలలు (${data.service_years} సం.)</span></div>
+        
+        <hr style="border:0; border-top: 1px solid #ccc; margin: 15px 0;">
+        
+        <div class="result-row"><strong>1) మొత్తం రికవరీ ప్రీమియం (Total Deductions):</strong> <span style="font-weight:bold;">₹${data.total_deductions.toLocaleString('en-IN', {minimumFractionDigits: 2})}</span></div>
+        <div class="result-row"><strong>2) హామీ మొత్తం (Sum Assured):</strong> <span style="font-weight:bold;">₹${data.sum_assured.toLocaleString('en-IN', {minimumFractionDigits: 2})}</span></div>
+        <div class="result-row"><strong>3) అంచనా బోనస్ (Bonus - 10%/Yr):</strong> <span style="font-weight:bold;">₹${data.bonus.toLocaleString('en-IN', {minimumFractionDigits: 2})}</span></div>
+        
+        <div class="bounty-card">
+          <strong>రిటైర్మెంట్ సమయం లో లభించే మొత్తం (Total Maturity Payout):</strong>
+          <span class="bounty-val">₹${data.total_maturity.toLocaleString('en-IN', {minimumFractionDigits: 2})}</span>
+          <span style="font-size:11px; display:block; margin-top:5px; color:#555;">(హామీ మొత్తం + బోనస్)</span>
+        </div>
+      `;
+
+    } catch (err) {
+      outputDiv.innerHTML = "<p style='color:red;'>❌ కనెక్షన్ విఫలమైంది. దయచేసి మళ్లీ ప్రయత్నించండి.</p>";
+    }
+  }
+</script>
+</body>
+</html>
