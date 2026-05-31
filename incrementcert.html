@@ -7,9 +7,14 @@
     body { font-family: 'Times New Roman', serif; background: #f4faff; padding: 20px; color: #333; }
     form { background: #fff; padding: 25px; max-width: 750px; margin: auto; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
     label { font-weight: bold; display: block; margin-top: 12px; color: #003366; }
-    input, select { width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 14px; }
+    input, select { width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 14px; background-color: #fff; }
     input[type="checkbox"] { width: auto; margin-top: 0; transform: scale(1.2); cursor: pointer; }
     
+    /* Segment Switcher Tabs */
+    .scope-switcher { display: flex; background: #e2ebf0; padding: 5px; border-radius: 8px; margin-top: 5px; margin-bottom: 15px; }
+    .scope-btn { flex: 1; padding: 10px; border: none; background: transparent; font-size: 14px; font-weight: bold; color: #555; cursor: pointer; border-radius: 6px; transition: all 0.2s ease; }
+    .scope-btn.active { background: #005a9c; color: white; box-shadow: 0 2px 5px rgba(0,0,0,0.15); }
+
     .leave-matrix-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
     .leave-matrix-table th, .leave-matrix-table td { border: 1px solid #ddd; padding: 10px; text-align: left; font-size: 13.5px; }
     .leave-matrix-table th { background: #f2f7fc; color: #003366; }
@@ -21,11 +26,10 @@
     .btn-download { background-color: #28a745; }
     .btn-download:hover { background-color: #218838; }
     
-    /* 1. Added Clean Left and Right Margins Side Padding to the Preview Board */
     #output { 
       display: none; 
       background: #fff; 
-      padding: 50px 60px; /* Spacious margins around the body print text */
+      padding: 50px 60px; 
       margin-top: 30px; 
       white-space: pre-wrap; 
       max-width: 750px; 
@@ -50,9 +54,16 @@
 
 <div style="max-width: 850px; margin: auto;">
   <a href="/index.html" class="back-btn">⬅️ Back to Main Dashboard</a>
-  <h2 style="text-align:center; color:#005a9c; margin-top: 0;">Smart Increment Certificate Generator</h2>
+  <h2 style="text-align:center; color:#005a9c; margin-top: 0;">Increment Service Certificate Generator</h2>
   
   <form id="certificateForm" onsubmit="return false;">
+    <!-- Area Scope Switcher Segment Field -->
+    <div class="scope-switcher">
+      <button type="button" class="scope-btn active" id="scopeRuralBtn" onclick="toggleAreaScope('RURAL')">🌾 Rural (Grama)</button>
+      <button type="button" class="scope-btn" id="scopeUrbanBtn" onclick="toggleAreaScope('URBAN')">🏢 Urban (Ward)</button>
+    </div>
+    <input type="hidden" id="areaScope" value="RURAL">
+
     <label>Employee Name</label>
     <input type="text" id="name" placeholder="e.g. I. Sai Simha Reddy">
 
@@ -62,17 +73,25 @@
       <option value="Female">Female (Smt / She / Her)</option>
     </select>
 
-    <label>Designation</label>
-    <input type="text" id="designation" placeholder="e.g. Panchayat Secretary">
-
-    <label>Place of Working (Village Secretariat Name)</label>
-    <input type="text" id="placeOfWorking" placeholder="e.g. Kasiralla">
+    <label>District</label>
+    <select id="district" onchange="handleDistrictChange()">
+      <option value="">-- Select District --</option>
+    </select>
 
     <label>Mandal</label>
-    <input type="text" id="mandal" placeholder="e.g. Yadamari">
+    <select id="mandal" onchange="handleMandalChange()">
+      <option value="">-- Select District First --</option>
+    </select>
 
-    <label>District</label>
-    <input type="text" id="district" placeholder="e.g. Chittoor">
+    <label id="workingPlaceLabel">Place of Working (Grama Secretariat Name)</label>
+    <select id="placeOfWorking">
+      <option value="">-- Select Mandal First --</option>
+    </select>
+
+    <label>Designation</label>
+    <select id="designation">
+      <option value="">-- Loading Positions... --</option>
+    </select>
 
     <label>Date of Working in Present Station</label>
     <input type="date" id="dateOfJoining">
@@ -146,6 +165,83 @@
 </div>
 
 <script>
+  let dataDropdownStructure = null;
+
+  function toggleAreaScope(scope) {
+    document.getElementById("areaScope").value = scope;
+    document.getElementById("scopeRuralBtn").classList.toggle("active", scope === "RURAL");
+    document.getElementById("scopeUrbanBtn").classList.toggle("active", scope === "URBAN");
+    
+    const label = document.getElementById("workingPlaceLabel");
+    label.textContent = scope === "RURAL" ? "Place of Working (Grama Secretariat Name)" : "Place of Working (Ward Secretariat Name)";
+
+    document.getElementById("district").innerHTML = '<option value="">-- Select District --</option>';
+    document.getElementById("mandal").innerHTML = '<option value="">-- Select District First --</option>';
+    document.getElementById("placeOfWorking").innerHTML = '<option value="">-- Select Mandal First --</option>';
+    document.getElementById("designation").innerHTML = '<option value="">-- Loading... --</option>';
+    document.getElementById("output").style.display = "none";
+
+    loadDynamicDropdownAssets();
+  }
+
+  async function loadDynamicDropdownAssets() {
+    const activeScope = document.getElementById("areaScope").value;
+    try {
+      const res = await fetch(`/api/designation_finder?action=get_dropdowns&scope=${activeScope}`);
+      const payload = await res.json();
+      
+      dataDropdownStructure = payload.mapping;
+
+      const distSelect = document.getElementById("district");
+      Object.keys(dataDropdownStructure).sort().forEach(d => {
+        const opt = document.createElement("option");
+        opt.value = opt.textContent = d;
+        distSelect.appendChild(opt);
+      });
+
+      const desigSelect = document.getElementById("designation");
+      desigSelect.innerHTML = '<option value="">-- Select Designation --</option>';
+      payload.designations.forEach(job => {
+        const opt = document.createElement("option");
+        opt.value = opt.textContent = job;
+        desigSelect.appendChild(job);
+      });
+
+    } catch (err) {
+      console.error("Failed loading dynamic menu layout streams.", err);
+    }
+  }
+
+  function handleDistrictChange() {
+    const distVal = document.getElementById("district").value;
+    const mandalSelect = document.getElementById("mandal");
+    document.getElementById("placeOfWorking").innerHTML = '<option value="">-- Select Mandal First --</option>';
+    
+    mandalSelect.innerHTML = '<option value="">-- Select Mandal --</option>';
+    if (!dataDropdownStructure || !dataDropdownStructure[distVal]) return;
+
+    Object.keys(dataDropdownStructure[distVal]).sort().forEach(mnd => {
+      const opt = document.createElement("option");
+      opt.value = opt.textContent = mnd;
+      mandalSelect.appendChild(opt);
+    });
+  }
+
+  function handleMandalChange() {
+    const distVal = document.getElementById("district").value;
+    const mndVal = document.getElementById("mandal").value;
+    const workingSelect = document.getElementById("placeOfWorking");
+
+    workingSelect.innerHTML = '<option value="">-- Select Secretariat --</option>';
+    if (!dataDropdownStructure || !dataDropdownStructure[distVal] || !dataDropdownStructure[distVal][mndVal]) return;
+
+    dataDropdownStructure[distVal][mndVal].sort().forEach(sec => {
+      const opt = document.createElement("option");
+      opt.value = opt.textContent = sec;
+      workingSelect.appendChild(opt);
+    });
+  }
+
   function toggleLeaveRow(type) {
     const isChecked = document.getElementById(`check_${type}`).checked;
     const row = document.getElementById(`row_${type}`);
@@ -182,6 +278,7 @@
     });
 
     return {
+      scope: document.getElementById("areaScope").value,
       name: document.getElementById("name").value,
       gender: document.getElementById("gender").value,
       designation: document.getElementById("designation").value,
@@ -231,6 +328,10 @@
       oneYear = `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}/${d.getFullYear()}`;
     }
 
+    // Fixed Branding Mapping Rules
+    const brandingLabel = p.scope === "RURAL" ? "Swarna Gramam" : "Swarna Ward";
+    const authorityLabel = p.scope === "RURAL" ? "Panchayath Secretary (DDO)" : "Ward Administrative Secretary";
+
     const leaveTypesMap = [
       { key: "maternity", label: "Maternity Leave" },
       { key: "eol", label: "EOL - ExtraOrdinary Leave" },
@@ -267,7 +368,7 @@
     outBox.style.display = "block";
     outBox.innerHTML = `
       <h3 style="text-align:center; margin-bottom: 25px;"><u>EMPLOYEE SERVICE CERTIFICATE</u></h3>
-      <p style="text-indent: 50px; text-align: justify; line-height: 2; margin-bottom: 15px;">This is to certify that ${prefix} ${p.name || '[Name]'} working as ${p.designation || '[Designation]'} at ${p.placeOfWorking || '[Secretariat]'} Grama Sachivalayam, ${p.mandal || '[Mandal]'} (M), ${p.district || '[District]'} District from ${joined}. ${heShe} has regularised from service on ${regularised}. ${hisHer} basic pay is Rs. ${p.basicPay || '[Amount]'}/- wef ${incremented}. ${heShe} has completed one year of ${hisHer.toLowerCase()} service without any break. ${heShe} has paid and drawn salary for the period from ${incremented} to ${oneYear}.</p>
+      <p style="text-indent: 50px; text-align: justify; line-height: 2; margin-bottom: 15px;">This is to certify that ${prefix} ${p.name || '[Name]'} working as ${p.designation || '[Designation]'} at ${p.placeOfWorking || '[Secretariat]'} ${brandingLabel}, ${p.mandal || '[Mandal]'} (M), ${p.district || '[District]'} District from ${joined}. ${heShe} has regularised from service on ${regularised}. ${hisHer} basic pay is Rs. ${p.basicPay || '[Amount]'}/- wef ${incremented}. ${heShe} has completed one year of ${hisHer.toLowerCase()} service without any break. ${heShe} has paid and drawn salary for the period from ${incremented} to ${oneYear}.</p>
       
       <p style="margin-top: 0; margin-bottom: 6px; line-height: 2;">${hisHer} leave availed details are as follows from the period ${incremented} to ${oneYear}:</p>
       
@@ -288,7 +389,7 @@
       </table>
       
       <p style="margin-top: 0; margin-bottom: 0; line-height: 2;">So ${prefix} ${p.name || '[Name]'}, ${p.designation || '[Designation]'} is eligible for Annual Grade Increment wef ${oneYear} as per our records.</p>
-      <p style="margin-top: 45px; text-align:right; font-weight:bold; line-height: 1.5;">Panchayath Secretary (DDO)<br>${p.placeOfWorking || '[Secretariat]'} Village Secretariat<br>${p.mandal || '[Mandal]'} (M.), ${p.district || '[District]'} Dist.</p>
+      <p style="margin-top: 45px; text-align:right; font-weight:bold; line-height: 1.5;">${authorityLabel}<br>${p.placeOfWorking || '[Secretariat]'} ${brandingLabel}<br>${p.mandal || '[Mandal]'} (M.), ${p.district || '[District]'} Dist.</p>
     `;
     outBox.scrollIntoView({ behavior: 'smooth' });
   }
@@ -315,6 +416,8 @@
       alert("❌ Failed to output native word document from server container.");
     }
   }
+
+  window.addEventListener('DOMContentLoaded', loadDynamicDropdownAssets);
 </script>
 </body>
 </html>
