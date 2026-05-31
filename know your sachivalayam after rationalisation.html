@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Know your Sachivalayam after Rationalisation (Rural & Urban)</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FKVZ9P09W5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FKVZ9P09W5');
+  </script>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4faff; padding: 20px; }
+    h2 { text-align: center; color: #005a9c; margin-bottom: 5px; }
+    .tagline { text-align: center; color: #666; font-size: 14px; margin-bottom: 25px; }
+    
+    /* 👑 Top Tier Navigation: Rural vs Urban Scope Switcher */
+    .scope-switcher { display: flex; max-width: 490px; margin: 0 auto 25px auto; background: #e2ebf0; padding: 5px; border-radius: 8px; }
+    .scope-btn { flex: 1; padding: 12px; border: none; background: transparent; font-size: 15px; font-weight: bold; color: #555; cursor: pointer; border-radius: 6px; transition: all 0.3s ease; }
+    .scope-btn.active { background: #005a9c; color: white; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+
+    /* Secondary Navigation: Search Method Buttons */
+    .button-group { text-align: center; margin-bottom: 20px; }
+    .button-group button, .submit-btn { padding: 10px 20px; margin: 5px; background-color: #0078D4; color: white; border: none; border-radius: 6px; font-size: 15px; cursor: pointer; transition: background-color 0.2s ease; }
+    .button-group button:hover, .submit-btn:hover { background-color: #005a9e; }
+    .button-group button.active-method { background-color: #003366; box-shadow: inset 0 2px 4px rgba(0,0,0,0.2); }
+    
+    label { font-weight: bold; display: block; margin-top: 12px; color: #333; }
+    select, input { width: 100%; padding: 10px; margin: 6px 0 14px 0; border-radius: 5px; border: 1px solid #ccc; box-sizing: border-box; font-size: 14px; }
+    .form-container { max-width: 480px; margin: auto; background: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+    
+    #output-pane { margin-top: 25px; padding: 20px; background-color: #e9eff0; border-radius: 6px; max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.6; display: none; border-left: 5px solid #005a9c; }
+    #output-pane h3 { margin-top: 0; color: #003366; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+    #output-pane ul { padding-left: 20px; margin-bottom: 0; }
+    .back-link { display: block; max-width: 480px; margin: 0 auto 15px auto; text-decoration: none; color: #005a9c; font-weight: bold; font-size: 14px; }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="back-link">⬅️ Back to Main Dashboard</a>
+  
+  <h2>🔍 Know Your Sachivalayam</h2>
+
+  <div class="scope-switcher">
+    <button class="scope-btn active" id="scopeRuralBtn" onclick="switchScope('RURAL')">🌾 Rural</button>
+    <button class="scope-btn" id="scopeUrbanBtn" onclick="switchScope('URBAN')">🏢 Urban</button>
+  </div>
+
+  <div class="button-group">
+    <button id="searchByNameBtn" class="active-method" onclick="switchMethod('NAME')">Search by Name</button>
+    <button id="searchByCodeBtn" onclick="switchMethod('CODE')">Search by Code</button>
+  </div>
+
+  <div id="formWrapper" class="form-container">
+    
+    <div id="nameSearchSection">
+      <label for="districtSelect">District:</label>
+      <select id="districtSelect"><option value="">-- Select District --</option></select>
+
+      <label for="mandalSelect">Mandal:</label>
+      <select id="mandalSelect"><option value="">-- Select Mandal --</option></select>
+
+      <label id="secretariatLabel" for="secretariatSelect">Secretariat:</label>
+      <select id="secretariatSelect"><option value="">-- Select Secretariat --</option></select>
+
+      <button class="submit-btn" style="width:100%; margin: 10px 0 0 0;" onclick="handleNameSubmit()">Search</button>
+    </div>
+
+    <div id="codeSearchSection" style="display: none;">
+      <label id="codeInputLabel" for="codeFieldInput">Enter Secretariat Code:</label>
+      <input type="text" id="codeFieldInput" placeholder="e.g. 11290193">
+      <button type="button" class="submit-btn" style="width:100%; margin: 5px 0 0 0;" onclick="handleCodeSubmit()">Search</button>
+    </div>
+
+  </div>
+
+  <div id="output-pane"></div>
+
+<script>
+  // Dynamic Global State Engine Trackers
+  let currentScope = "RURAL";   // Active Context: RURAL or URBAN
+  let currentMethod = "NAME";   // Active Search: NAME or CODE
+  let ruralStructureCache = null;
+  let urbanStructureCache = null;
+
+  // Handles switching context between the main tabs (Rural vs Urban)
+  function switchScope(scope) {
+    currentScope = scope;
+    
+    // UI Tab Class Adjustments
+    document.getElementById("scopeRuralBtn").classList.toggle("active", scope === "RURAL");
+    document.getElementById("scopeUrbanBtn").classList.toggle("active", scope === "URBAN");
+    
+    // Update input field placeholder hints based on active scope context
+    const isRural = scope === "RURAL";
+    document.getElementById("secretariatLabel").textContent = isRural ? "Secretariat:" : "Ward Secretariat:";
+    document.getElementById("codeInputLabel").textContent = isRural ? "Enter Secretariat Code:" : "Enter Ward Secretariat Code:";
+    document.getElementById("codeFieldInput").placeholder = isRural ? "e.g. 11290193" : "e.g. 21001001";
+    
+    // Reset selections and update drop-down options automatically
+    resetFormInputs();
+    populateDistrictDropdown();
+  }
+
+  // Handles switching search options (Search by Name vs Search by Code)
+  function switchMethod(method) {
+    currentMethod = method;
+    document.getElementById("searchByNameBtn").classList.toggle("active-method", method === "NAME");
+    document.getElementById("searchByCodeBtn").classList.toggle("active-method", method === "CODE");
+    
+    document.getElementById("nameSearchSection").style.display = method === "NAME" ? "block" : "none";
+    document.getElementById("codeSearchSection").style.display = method === "CODE" ? "block" : "none";
+    
+    document.getElementById("output-pane").style.display = "none";
+  }
+
+  function resetFormInputs() {
+    document.getElementById("districtSelect").innerHTML = '<option value="">-- Select District --</option>';
+    document.getElementById("mandalSelect").innerHTML = '<option value="">-- Select Mandal --</option>';
+    document.getElementById("secretariatSelect").innerHTML = '<option value="">-- Select Secretariat --</option>';
+    document.getElementById("codeFieldInput").value = "";
+    document.getElementById("output-pane").style.display = "none";
+  }
+
+  // Pre-fetch asset maps for both environments right when page initializes
+  async function initializeDataPipelines() {
+    try {
+      const [ruralRes, urbanRes] = await Promise.all([
+        fetch("/api/sachivalayam?action=get_dropdowns"),
+        fetch("/api/sachivalayam_urban?action=get_dropdowns")
+      ]);
+      
+      if(ruralRes.ok) ruralStructureCache = await ruralRes.json();
+      if(urbanRes.ok) urbanStructureCache = await urbanRes.json();
+      
+      populateDistrictDropdown();
+    } catch (err) {
+      console.error("Critical error mapping infrastructure lookups:", err);
+    }
+  }
+
+  function populateDistrictDropdown() {
+    const distSelect = document.getElementById("districtSelect");
+    distSelect.innerHTML = '<option value="">-- Select District --</option>';
+    
+    const activeDataset = (currentScope === "RURAL") ? ruralStructureCache : urbanStructureCache;
+    if (!activeDataset) return;
+
+    Object.keys(activeDataset).forEach(dist => {
+      const opt = document.createElement("option");
+      opt.value = opt.textContent = dist;
+      distSelect.appendChild(opt);
+    });
+  }
+
+  // Intercept selection cascade actions dynamically inside active scope
+  document.getElementById("districtSelect").addEventListener("change", function() {
+    const mandalSelect = document.getElementById("mandalSelect");
+    const secretariatSelect = document.getElementById("secretariatSelect");
+    
+    mandalSelect.innerHTML = '<option value="">-- Select Mandal --</option>';
+    secretariatSelect.innerHTML = '<option value="">-- Select Secretariat --</option>';
+    
+    const activeDataset = (currentScope === "RURAL") ? ruralStructureCache : urbanStructureCache;
+    if (!activeDataset || !activeDataset[this.value]) return;
+
+    Object.keys(activeDataset[this.value]).forEach(mandal => {
+      const opt = document.createElement("option");
+      opt.value = opt.textContent = mandal;
+      mandalSelect.appendChild(opt);
+    });
+  });
+
+  document.getElementById("mandalSelect").addEventListener("change", function() {
+    const distVal = document.getElementById("districtSelect").value;
+    const secretariatSelect = document.getElementById("secretariatSelect");
+    secretariatSelect.innerHTML = '<option value="">-- Select Secretariat --</option>';
+    
+    const activeDataset = (currentScope === "RURAL") ? ruralStructureCache : urbanStructureCache;
+    if (!activeDataset || !activeDataset[distVal] || !activeDataset[distVal][this.value]) return;
+
+    activeDataset[distVal][this.value].forEach(sach => {
+      const opt = document.createElement("option");
+      opt.value = opt.textContent = sach;
+      secretariatSelect.appendChild(opt);
+    });
+  });
+
+  // Action Logic Route Trigger: Dropdown Submit
+  async function handleNameSubmit() {
+    const dist = document.getElementById("districtSelect").value;
+    const mnd = document.getElementById("mandalSelect").value;
+    const sec = document.getElementById("secretariatSelect").value;
+    const pane = document.getElementById("output-pane");
+
+    if (!dist || !mnd || !sec) {
+      pane.style.display = "block";
+      pane.innerHTML = `<p style="color:red; font-weight:bold; margin:0;">⚠️ Please fill all dropdown levels completely.</p>`;
+      return;
+    }
+
+    pane.style.display = "block";
+    pane.innerHTML = "🔍 Checking Cloud Master Registry...";
+
+    // Dynamically route endpoint URL structure based on context scope
+    const apiEndpoint = (currentScope === "RURAL") ? "/api/sachivalayam" : "/api/sachivalayam_urban";
+    const url = `${apiEndpoint}?action=lookup_by_name&district=${encodeURIComponent(dist)}&mandal=${encodeURIComponent(mnd)}&secretariat=${encodeURIComponent(sec)}`;
+
+    try {
+      const res = await fetch(url);
+      const details = await res.json();
+      renderDetailsPayload(details, sec);
+    } catch(err) {
+      pane.innerHTML = "<p style='color:red;'>Error fetching registry information from data container.</p>";
+    }
+  }
+
+  // Action Logic Route Trigger: Code Submit Input
+  async function handleCodeSubmit() {
+    const codeVal = document.getElementById("codeFieldInput").value.trim();
+    const pane = document.getElementById("output-pane");
+
+    if (!codeVal) {
+      pane.style.display = "block";
+      pane.innerHTML = `<p style="color:red; font-weight:bold; margin:0;">⚠️ Please enter a numeric check code.</p>`;
+      return;
+    }
+
+    pane.style.display = "block";
+    pane.innerHTML = "🔍 Decrypting Code Vault...";
+
+    const apiEndpoint = (currentScope === "RURAL") ? "/api/sachivalayam" : "/api/sachivalayam_urban";
+    const url = `${apiEndpoint}?action=lookup_by_code&code=${encodeURIComponent(codeVal)}`;
+
+    try {
+      const res = await fetch(url);
+      const result = await res.json();
+      
+      if(result.error) {
+        pane.innerHTML = `<p style="color:red; font-weight:bold; margin:0;">❌ ${result.error}</p>`;
+      } else {
+        // Flatten parameters smoothly for code results presentation
+        renderDetailsPayload(result, result.sachivalayam, result);
+      }
+    } catch(err) {
+      pane.innerHTML = "<p style='color:red;'>Server connection error.</p>";
+    }
+  }
+
+  // Render Result Logic Engine
+  function renderDetailsPayload(details, nameLabel, codeContext = null) {
+    const pane = document.getElementById("output-pane");
+    
+    // Abstract the structural field variants cleanly between sheets layouts
+    const codeNumber = codeContext ? codeContext.code : (details["Seccretariat Code"] || details["Ward sachivalayam Code"]);
+    const optionalWardId = details["Ward ID"] ? `<p><strong>📦 Ward ID:</strong> ${details["Ward ID"]}</p>` : "";
+    const districtInfo = codeContext ? `<p><strong>📍 District:</strong> ${codeContext.district}</p>` : "";
+    const mandalInfo = codeContext ? `<p><strong>🗺️ Mandal:</strong> ${codeContext.mandal}</p>` : "";
+    const typeLabel = codeContext ? codeContext.type : (details["Rural / Urban"]);
+    const populationCat = codeContext ? codeContext.category : (details["Population Category"]);
+    const designationsMap = codeContext ? codeContext.designations : (details.Designations || {});
+
+    pane.innerHTML = `
+      <h3>📌 ${currentScope === 'RURAL' ? 'Secretariat' : 'Ward'}: ${nameLabel}</h3>
+      ${optionalWardId}
+      <p><strong>🆔 Code:</strong> ${codeNumber}</p>
+      ${districtInfo}
+      ${mandalInfo}
+      <p><strong>🏡 Type:</strong> ${typeLabel}</p>
+      <p><strong>📊 Population Category:</strong> ${populationCat}</p>
+      <h4>👥 Designated Functional Roles:</h4>
+      <ul>
+        ${Object.entries(designationsMap)
+          .map(([role, status]) => `<li>${role}: ${status === "YES" ? "✅" : "❌"}</li>`)
+          .join("")}
+      </ul>
+    `;
+  }
+
+  // Kickstart mapping allocations asynchronously at window assembly instantiation
+  window.addEventListener('DOMContentLoaded', initializeDataPipelines);
+</script>
+</body>
+</html>
