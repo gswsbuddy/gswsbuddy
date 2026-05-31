@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Sachivalayam Finder</title>
+  <title>Sachivalayam Finder by Designation</title>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FKVZ9P09W5"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -12,23 +12,39 @@
   </script>
   <style>
     body { font-family: Arial, sans-serif; background: #f4faff; padding: 20px; }
-    h2 { text-align: center; color: #005a9c; }
-    label { font-weight: bold; display: block; margin-top: 10px; }
-    .form-container { max-width: 400px; margin: auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 8px rgba(0,0,0,0.1); }
+    h2 { text-align: center; color: #005a9c; margin-bottom: 5px; }
+    .tagline { text-align: center; color: #666; font-size: 14px; margin-bottom: 25px; }
+    
+    /* 👑 Top Tier Navigation: Rural vs Urban Scope Switcher Layout */
+    .scope-switcher { display: flex; max-width: 400px; margin: 0 auto 25px auto; background: #e2ebf0; padding: 5px; border-radius: 8px; }
+    .scope-btn { flex: 1; padding: 12px; border: none; background: transparent; font-size: 15px; font-weight: bold; color: #555; cursor: pointer; border-radius: 6px; transition: all 0.3s ease; }
+    .scope-btn.active { background: #005a9c; color: white; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+
+    label { font-weight: bold; display: block; margin-top: 10px; color: #333; }
+    .form-container { max-width: 400px; margin: auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
     select, button { width: 100%; padding: 10px; margin: 8px 0 16px 0; border-radius: 5px; border: 1px solid #ccc; box-sizing: border-box; font-size: 14px; }
-    #submitBtn { background-color: #0078D4; color: white; border: none; font-weight: bold; cursor: pointer; margin-top: 10px; }
+    #submitBtn { background-color: #0078D4; color: white; border: none; font-weight: bold; cursor: pointer; margin-top: 10px; border-radius: 6px; padding: 12px; }
     #submitBtn:hover { background-color: #005a9e; }
-    #output { margin-top: 30px; background: #e8f0fe; padding: 20px; border-radius: 10px; max-width: 600px; margin-left: auto; margin-right: auto; display: none; }
+    
+    #output { margin-top: 30px; background: white; padding: 20px; border-radius: 10px; max-width: 600px; margin-left: auto; margin-right: auto; display: none; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
     table { width: 100%; border-collapse: collapse; margin-top: 10px; background: white; }
-    th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ccc; }
-    th { background-color: #dbe9ff; color: #003366; }
-    .yes { color: green; font-weight: bold; }
-    .no { color: red; font-weight: bold; }
+    th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
+    th { background-color: #005a9c; color: white; font-weight: 600; }
+    .yes { color: #155724; font-weight: bold; background-color: #d4edda; padding: 4px 8px; border-radius: 4px; display: inline-block; font-size: 12px; }
+    .no { color: #721c24; font-weight: bold; background-color: #f8d7da; padding: 4px 8px; border-radius: 4px; display: inline-block; font-size: 12px; }
+    .back-link { display: block; max-width: 400px; margin: 0 auto 15px auto; text-decoration: none; color: #005a9c; font-weight: bold; font-size: 14px; }
   </style>
 </head>
 <body>
 
-  <h2>Find Sachivalayams by Designation</h2>
+  <a href="index.html" class="back-link">⬅️ Back to Main Dashboard</a>
+  <h2 id="pageTitle">Find Sachivalayams by Designation</h2>
+
+  <!-- 👑 Core Switcher Container: Toggles Between Operational Scopes -->
+  <div class="scope-switcher">
+    <button class="scope-btn active" id="scopeRuralBtn" onclick="switchScope('RURAL')">🌾 Rural</button>
+    <button class="scope-btn" id="scopeUrbanBtn" onclick="switchScope('URBAN')">🏢 Urban</button>
+  </div>
 
   <div class="form-container">
     <label for="district">District:</label>
@@ -42,7 +58,7 @@
 
     <label for="filter">Show Results:</label>
     <select id="filter">
-      <option value="ALL">All</option>
+      <option value="ALL">All Positions</option>
       <option value="YES">YES POSITIONS ONLY</option>
       <option value="NO">NO POSITIONS ONLY</option> 
     </select>
@@ -52,91 +68,113 @@
 
   <div id="output"></div>
 
-  <script>
-    let mappingData = {};
+<script>
+  let currentScope = "RURAL"; // Master tracking variable
+  let mappingData = {};
 
-    async function initPage() {
-      try {
-        const res = await fetch('/api/designation_finder?action=get_dropdowns');
-        const data = await res.json();
-        
-        mappingData = data.mapping;
-        
-        // Populate Districts
-        const districtSelect = document.getElementById("district");
-        Object.keys(mappingData).forEach(dist => {
-          const opt = document.createElement("option");
-          opt.value = opt.textContent = dist;
-          districtSelect.appendChild(opt);
-        });
+  // 1. Toggles active environment and refreshes option tree structures
+  async function switchScope(scope) {
+    currentScope = scope;
+    
+    // UI Tab State Handling
+    document.getElementById("scopeRuralBtn").classList.toggle("active", scope === "RURAL");
+    document.getElementById("scopeUrbanBtn").classList.toggle("active", scope === "URBAN");
+    document.getElementById("pageTitle").textContent = scope === "RURAL" ? "Find Sachivalayams by Designation (Rural)" : "Find Ward Sachivalayams by Designation (Urban)";
+    
+    // Clear out active layout options to prepare for fresh data fetch
+    document.getElementById("district").innerHTML = '<option value="">-- Select District --</option>';
+    document.getElementById("mandal").innerHTML = '<option value="">-- Select Mandal --</option>';
+    document.getElementById("designation").innerHTML = '<option value="">-- Select Designation --</option>';
+    document.getElementById("output").style.display = "none";
+    
+    await fetchDropdownData();
+  }
 
-        // Populate Designations
-        const desigSelect = document.getElementById("designation");
-        data.designations.forEach(d => {
-          const opt = document.createElement("option");
-          opt.value = opt.textContent = d;
-          desigSelect.appendChild(opt);
-        });
-      } catch (err) {
-        console.error("Initialization error:", err);
-      }
-    }
-    initPage();
-
-    const districtSelect = document.getElementById("district");
-    const mandalSelect = document.getElementById("mandal");
-    const outputDiv = document.getElementById("output");
-
-    districtSelect.addEventListener("change", () => {
-      mandalSelect.innerHTML = '<option value="">-- Select Mandal --</option>';
-      outputDiv.style.display = "none";
+  // 2. Fetch data parameters cleanly based on scope parameter strings
+  async function fetchDropdownData() {
+    try {
+      const res = await fetch(`/api/designation_finder?action=get_dropdowns&scope=${currentScope}`);
+      const data = await res.json();
       
-      if (!mappingData[districtSelect.value]) return;
-      Object.keys(mappingData[districtSelect.value]).forEach(mandal => {
+      mappingData = data.mapping || {};
+      
+      // Populate Districts
+      const districtSelect = document.getElementById("district");
+      Object.keys(mappingData).sort().forEach(dist => {
         const opt = document.createElement("option");
-        opt.value = opt.textContent = mandal;
-        mandalSelect.appendChild(opt);
+        opt.value = opt.textContent = dist;
+        districtSelect.appendChild(opt);
       });
+
+      // Populate Designations
+      const desigSelect = document.getElementById("designation");
+      (data.designations || []).forEach(d => {
+        const opt = document.createElement("option");
+        opt.value = opt.textContent = d;
+        desigSelect.appendChild(opt);
+      });
+    } catch (err) {
+      console.error("Failed to map dynamic menu payloads:", err);
+    }
+  }
+
+  const districtSelect = document.getElementById("district");
+  const mandalSelect = document.getElementById("mandal");
+  const outputDiv = document.getElementById("output");
+
+  districtSelect.addEventListener("change", () => {
+    mandalSelect.innerHTML = '<option value="">-- Select Mandal --</option>';
+    outputDiv.style.display = "none";
+    
+    if (!mappingData[districtSelect.value]) return;
+    Object.keys(mappingData[districtSelect.value]).sort().forEach(mandal => {
+      const opt = document.createElement("option");
+      opt.value = opt.textContent = mandal;
+      mandalSelect.appendChild(opt);
     });
+  });
 
-    document.getElementById("submitBtn").addEventListener("click", async () => {
-      const dist = districtSelect.value;
-      const mnd = mandalSelect.value;
-      const desig = document.getElementById("designation").value;
-      const filterVal = document.getElementById("filter").value;
+  document.getElementById("submitBtn").addEventListener("click", async () => {
+    const dist = districtSelect.value;
+    const mnd = mandalSelect.value;
+    const desig = document.getElementById("designation").value;
+    const filterVal = document.getElementById("filter").value;
 
-      if (!dist || !mnd || !desig) {
-        outputDiv.style.display = "block";
-        outputDiv.innerHTML = "<p style='color:red; font-weight:bold;'>⚠️ Please select all fields before submitting.</p>";
+    if (!dist || !mnd || !desig) {
+      outputDiv.style.display = "block";
+      outputDiv.innerHTML = "<p style='color:red; font-weight:bold; margin:0;'>⚠️ Please select all dropdown properties completely before continuing.</p>";
+      return;
+    }
+
+    outputDiv.style.display = "block";
+    outputDiv.innerHTML = "🔍 Fetching designations from secure database...";
+
+    try {
+      const url = `/api/designation_finder?action=filter_by_designation&scope=${currentScope}&district=${encodeURIComponent(dist)}&mandal=${encodeURIComponent(mnd)}&designation=${encodeURIComponent(desig)}&filter=${filterVal}`;
+      const res = await fetch(url);
+      const results = await res.json();
+
+      if (results.length === 0) {
+        outputDiv.innerHTML = "<p style='color:red; font-weight:bold; margin:0;'>No matching post records found within this region selector frame.</p>";
         return;
       }
 
-      outputDiv.style.display = "block";
-      outputDiv.innerHTML = "🔍 Fetching designations from secure database...";
+      let html = `<table><tr><th>${currentScope === 'RURAL' ? 'Sachivalayam Name' : 'Ward Secretariat'}</th><th style="text-align:center;">${desig} Status</th></tr>`;
+      results.forEach(r => {
+        html += `<tr>
+          <td style="font-weight:bold; color:#003366;">${r.name}</td>
+          <td style="text-align:center;"><span class="${r.approved === 'YES' ? 'yes' : 'no'}">${r.approved}</span></td>
+        </tr>`;
+      });
+      html += `</table>`;
+      outputDiv.innerHTML = html;
+    } catch (err) {
+      outputDiv.innerHTML = "<p style='color:red; margin:0;'>Cloud database connection timeout error.</p>";
+    }
+  });
 
-      try {
-        const url = `/api/designation_finder?action=filter_by_designation&district=${encodeURIComponent(dist)}&mandal=${encodeURIComponent(mnd)}&designation=${encodeURIComponent(desig)}&filter=${filterVal}`;
-        const res = await fetch(url);
-        const results = await res.json();
-
-        if (results.length === 0) {
-          outputDiv.innerHTML = "<p style='color:red;'>No matching records found.</p>";
-          return;
-        }
-
-        let html = `<table><tr><th>Sachivalayam Name</th><th>${desig}</th></tr>`;
-        results.forEach(r => {
-          html += `<tr>
-            <td>${r.name}</td>
-            <td class="${r.approved === 'YES' ? 'yes' : 'no'}">${r.approved}</td>
-          </tr>`;
-        });
-        html += `</table>`;
-        outputDiv.innerHTML = html;
-      } catch (err) {
-        outputDiv.innerHTML = "<p style='color:red;'>Cloud connection error.</p>";
-      }
-    });
-  </script>
+  // Load standard initial baseline dataset at script initiation
+  window.addEventListener('DOMContentLoaded', fetchDropdownData);
+</script>
 </body>
 </html>

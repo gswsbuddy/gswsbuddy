@@ -8,10 +8,13 @@ class handler(BaseHTTPRequestHandler):
         params = parse_qs(query)
         
         action = params.get('action', [None])[0]
+        scope = params.get('scope', ['RURAL'])[0].upper() # Read active navigation scope
 
-        # 1. Safely load the raw master directory list
+        # 1. Dynamically select the JSON asset registry based on the active tab context
+        target_json = 'api/annexrural1.json' if scope == 'RURAL' else 'api/annexurban1.json'
+
         try:
-            with open('api/annexrural1.json', 'r') as f:
+            with open(target_json, 'r', encoding='utf-8') as f:
                 data = json.load(f)
         except Exception:
             data = {}
@@ -34,7 +37,7 @@ class handler(BaseHTTPRequestHandler):
             dropdown_structure["designations"] = sorted(list(designation_set))
             response_data = dropdown_structure
 
-        # Action B: Process specific designation row queries on the server
+        # Action B: Process specific designation queries on the server
         elif action == "filter_by_designation":
             district = params.get('district', [None])[0]
             mandal = params.get('mandal', [None])[0]
@@ -53,15 +56,15 @@ class handler(BaseHTTPRequestHandler):
                 ):
                     results.append({"name": sachivalayam, "approved": status})
             
-            # Sort so YES positions float to the top
+            # Sort so YES positions float to the top cleanly
             results.sort(key=lambda x: x["approved"], reverse=True)
             response_data = results
         
         else:
             response_data = {"error": "Invalid request action parameters"}
 
-        # 2. Serve the neat data package back to the waiter
+        # 2. Serve the neat data package back to the user interface
         self.send_response(200)
         self.send_header('Content-type', 'application/json')
         self.end_headers()
-        self.wfile.write(json.dumps(response_data).encode())
+        self.wfile.write(json.dumps(response_data).encode('utf-8'))
