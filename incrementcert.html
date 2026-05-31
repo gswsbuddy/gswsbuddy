@@ -296,7 +296,7 @@
   async function downloadWordDocx() {
     const payload = getFullPayload();
     try {
-      const response = await fetch('/api/increment_generator', {
+      const response = await fetch('/api/incrementcertificate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
