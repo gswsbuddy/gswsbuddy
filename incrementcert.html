@@ -2,176 +2,319 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>GSWS Buddy - Increment Certificate Generator</title>
+  <title>GSWS Buddy - Auto-Generative Increment Certificate</title>
   <style>
-    body {
-      font-family: 'Times New Roman', serif;
-      background: #eef;
-      padding: 20px;
+    body { font-family: 'Times New Roman', serif; background: #f4faff; padding: 20px; color: #333; }
+    form { background: #fff; padding: 25px; max-width: 750px; margin: auto; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    label { font-weight: bold; display: block; margin-top: 12px; color: #003366; }
+    input, select { width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 14px; }
+    input[type="checkbox"] { width: auto; margin-top: 0; transform: scale(1.2); cursor: pointer; }
+    
+    .leave-matrix-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+    .leave-matrix-table th, .leave-matrix-table td { border: 1px solid #ddd; padding: 10px; text-align: left; font-size: 13.5px; }
+    .leave-matrix-table th { background: #f2f7fc; color: #003366; }
+    .leave-matrix-table input[type="date"] { padding: 4px; font-size: 12.5px; }
+    .disabled-row { background-color: #fafafa; opacity: 0.6; }
+    
+    button { margin-top: 25px; margin-right: 10px; padding: 10px 18px; background-color: #005a9c; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; transition: background 0.2s; }
+    button:hover { background-color: #004475; }
+    .btn-download { background-color: #28a745; }
+    .btn-download:hover { background-color: #218838; }
+    
+    /* 1. Added Clean Left and Right Margins Side Padding to the Preview Board */
+    #output { 
+      display: none; 
+      background: #fff; 
+      padding: 50px 60px; /* Spacious margins around the body print text */
+      margin-top: 30px; 
+      white-space: pre-wrap; 
+      max-width: 750px; 
+      margin-left: auto; 
+      margin-right: auto; 
+      border-radius: 10px; 
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+      font-size: 16px; 
+      line-height: 2; 
     }
-    form {
-      background: #fff;
-      padding: 20px;
-      max-width: 700px;
-      margin: auto;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    label {
-      font-weight: bold;
-      display: block;
-      margin-top: 10px;
-    }
-    input {
-      width: 100%;
-      padding: 6px;
-      margin-top: 4px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    button {
-      margin-top: 20px;
-      margin-right: 10px;
-      padding: 10px 15px;
-      background-color: #005a9c;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    #output {
-      background: #fff;
-      padding: 30px;
-      margin-top: 30px;
-      white-space: pre-wrap;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-      border-radius: 10px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
-      font-size: 16px;
-      line-height: 2;
-      font-family: 'Times New Roman', serif;
-    }
+    .back-btn { display: inline-block; text-decoration: none; color: #005a9c; font-weight: bold; font-size: 14px; margin-bottom: 15px; }
   </style>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FKVZ9P09W5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-FKVZ9P09W5');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FKVZ9P09W5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FKVZ9P09W5');
+  </script>
 </head>
 <body>
-  <h2 style="text-align:center; color:#005a9c;">Increment Certificate Generator</h2>
-  <form>
+
+<div style="max-width: 850px; margin: auto;">
+  <a href="/index.html" class="back-btn">⬅️ Back to Main Dashboard</a>
+  <h2 style="text-align:center; color:#005a9c; margin-top: 0;">Smart Increment Certificate Generator</h2>
+  
+  <form id="certificateForm" onsubmit="return false;">
     <label>Employee Name</label>
-    <input type="text" id="name">
+    <input type="text" id="name" placeholder="e.g. I. Sai Simha Reddy">
+
+    <label>Gender Selection (For Pronouns)</label>
+    <select id="gender">
+      <option value="Male">Male (Sri / He / His)</option>
+      <option value="Female">Female (Smt / She / Her)</option>
+    </select>
+
     <label>Designation</label>
-    <input type="text" id="designation">
-    <label>Place of Working</label>
-    <input type="text" id="placeOfWorking">
+    <input type="text" id="designation" placeholder="e.g. Panchayat Secretary">
+
+    <label>Place of Working (Village Secretariat Name)</label>
+    <input type="text" id="placeOfWorking" placeholder="e.g. Kasiralla">
+
     <label>Mandal</label>
-    <input type="text" id="mandal">
+    <input type="text" id="mandal" placeholder="e.g. Yadamari">
+
     <label>District</label>
-    <input type="text" id="district">
+    <input type="text" id="district" placeholder="e.g. Chittoor">
+
     <label>Date of Working in Present Station</label>
     <input type="date" id="dateOfJoining">
+
     <label>Date of Regularisation</label>
     <input type="date" id="regularisationDate">
-    <label>Basic Pay</label>
-    <input type="number" id="basicPay">
+
+    <label>Current Basic Pay (₹)</label>
+    <input type="number" id="basicPay" placeholder="e.g. 22460">
+
     <label>Last Increment Date</label>
     <input type="date" id="lastIncrementDate">
 
-    <button type="button" onclick="generatePreview()">Generate Preview</button>
-    <button type="button" onclick="downloadWord()">Download as Word</button>
+    <label style="margin-top: 20px; border-bottom: 2px solid #005a9c; padding-bottom: 5px; font-size: 16px;">📋 Leave History Record Settings</label>
+    <p style="font-size: 12.5px; color: #666; margin-top: 4px;">Tick the box next to any leave category availed during this increment year loop cycle to configure operational dates.</p>
+    
+    <table class="leave-matrix-table">
+      <thead>
+        <tr>
+          <th style="width: 5%;">Select</th>
+          <th style="width: 35%;">Type of Leave</th>
+          <th style="width: 22%;">From Date</th>
+          <th style="width: 22%;">To Date</th>
+          <th style="width: 16%;">Remarks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id="row_maternity" class="disabled-row">
+          <td style="text-align:center;"><input type="checkbox" id="check_maternity" onchange="toggleLeaveRow('maternity')"></td>
+          <td>Maternity Leave</td>
+          <td><input type="date" id="from_maternity" disabled></td>
+          <td><input type="date" id="to_maternity" disabled></td>
+          <td><input type="text" id="rem_maternity" placeholder="Optional" style="padding:4px; font-size:12px;" disabled></td>
+        </tr>
+        <tr id="row_eol" class="disabled-row">
+          <td style="text-align:center;"><input type="checkbox" id="check_eol" onchange="toggleLeaveRow('eol')"></td>
+          <td>EOL - ExtraOrdinary Leave</td>
+          <td><input type="date" id="from_eol" disabled></td>
+          <td><input type="date" id="to_eol" disabled></td>
+          <td><input type="text" id="rem_eol" placeholder="Optional" style="padding:4px; font-size:12px;" disabled></td>
+        </tr>
+        <tr id="row_medical" class="disabled-row">
+          <td style="text-align:center;"><input type="checkbox" id="check_medical" onchange="toggleLeaveRow('medical')"></td>
+          <td>Medical Leave (HPL/Commuted)</td>
+          <td><input type="date" id="from_medical" disabled></td>
+          <td><input type="date" id="to_medical" disabled></td>
+          <td><input type="text" id="rem_medical" placeholder="Optional" style="padding:4px; font-size:12px;" disabled></td>
+        </tr>
+        <tr id="row_childcare" class="disabled-row">
+          <td style="text-align:center;"><input type="checkbox" id="check_childcare" onchange="toggleLeaveRow('childcare')"></td>
+          <td>Child Care Leave</td>
+          <td><input type="date" id="from_childcare" disabled></td>
+          <td><input type="date" id="to_childcare" disabled></td>
+          <td><input type="text" id="rem_childcare" placeholder="Optional" style="padding:4px; font-size:12px;" disabled></td>
+        </tr>
+        <tr id="row_earned" class="disabled-row">
+          <td style="text-align:center;"><input type="checkbox" id="check_earned" onchange="toggleLeaveRow('earned')"></td>
+          <td>Earned Leave</td>
+          <td><input type="date" id="from_earned" disabled></td>
+          <td><input type="date" id="to_earned" disabled></td>
+          <td><input type="text" id="rem_earned" placeholder="Optional" style="padding:4px; font-size:12px;" disabled></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button type="button" onclick="generatePreview()">👁️ Generate Preview</button>
+    <button type="button" class="btn-download" onclick="downloadWordDocx()">📥 Download Natively as Word (.docx)</button>
   </form>
 
   <div id="output"></div>
+</div>
 
-  <script>
-    function formatDateIndian(dateStr) {
-      const date = new Date(dateStr);
-      return `${String(date.getDate()).padStart(2,"0")}/${String(date.getMonth()+1).padStart(2,"0")}/${date.getFullYear()}`;
-    }
-
-    function calculateOneYearLater(dateStr) {
-      const date = new Date(dateStr);
-      date.setDate(date.getDate() + 364); // 364th day logic
-      return formatDateIndian(date.toISOString().split('T')[0]);
-    }
-
-    function generateText() {
-      const name = document.getElementById("name").value;
-      const designation = document.getElementById("designation").value;
-      const placeOfWorking = document.getElementById("placeOfWorking").value;
-      const mandal = document.getElementById("mandal").value;
-      const district = document.getElementById("district").value;
-      const dateOfJoining = formatDateIndian(document.getElementById("dateOfJoining").value);
-      const regularisationDate = formatDateIndian(document.getElementById("regularisationDate").value);
-      const basicPay = document.getElementById("basicPay").value;
-      const lastIncrementRaw = document.getElementById("lastIncrementDate").value;
-      const lastIncrementDate = formatDateIndian(lastIncrementRaw);
-      const oneYearDate = calculateOneYearLater(lastIncrementRaw);
-
-      const leaveTable = `
-        <table border="1" cellspacing="0" cellpadding="5" style="border-collapse: collapse; width: 100%; font-family: Times New Roman; font-size: 16px;">
-          <tr>
-            <th>S. No</th>
-            <th>Type of Leave</th>
-            <th>Leave Period From</th>
-            <th>Leave Period To</th>
-            <th>No. of Days</th>
-            <th>Remarks</th>
-          </tr>
-          <tr><td>1</td><td>Maternity Leave</td><td></td><td></td><td></td><td></td></tr>
-          <tr><td>2</td><td>EOL - ExtraOrdinary Leave</td><td></td><td></td><td></td><td></td></tr>
-          <tr><td>3</td><td>Medical Leave (HPL/Commuted)</td><td></td><td></td><td></td><td></td></tr>
-          <tr><td>4</td><td>Child Care Leave</td><td></td><td></td><td></td><td></td></tr>
-          <tr><td>5</td><td>Earned Leave</td><td></td><td></td><td></td><td></td></tr>
-        </table>
-      `;
-
-      return `
-        <h3 style="text-align:center;">EMPLOYEE SERVICE CERTIFICATE</h3>
-        <p style="text-indent: 50px;">This is to certify that Sri ${name} working as ${designation} at ${placeOfWorking} Grama Sachivalayam, ${mandal} (M), ${district} District from ${dateOfJoining}. He has regularised from service on ${regularisationDate}. His basic pay is Rs. ${basicPay}/- wef ${lastIncrementDate}. He has completed one year of his service without any break. He has paid and drawn salary for the period from ${lastIncrementDate} to ${oneYearDate}.</p>
-        <p>His leave availed details are as follows from the period ${lastIncrementDate} to ${oneYearDate}:</p>
-        ${leaveTable}
-        <p>So Sri ${name}, ${designation} is eligible for Annual Grade Increment wef ${oneYearDate} as per our records.</p>
-        <p style="margin-top: 40px;">Panchayath Secretary (DDO)<br>
-        ${placeOfWorking} Village Secretariat<br>
-        ${mandal} (M.), ${district} Dist.</p>
-      `;
-    }
-
-    function generatePreview() {
-      document.getElementById("output").innerHTML = generateText();
-    }
-
-    function downloadWord() {
-      const content = generateText();
-      const sourceHTML = `
-        <html xmlns:o='urn:schemas-microsoft-com:office:office'
-              xmlns:w='urn:schemas-microsoft-com:office:word'
-              xmlns='http://www.w3.org/TR/REC-html40'>
-          <head><meta charset='utf-8'></head>
-          <body style='font-family:Times New Roman; font-size:16px; line-height:2;'>${content}</body>
-        </html>
-      `;
-      const blob = new Blob(['\ufeff', sourceHTML], {
-        type: 'application/msword'
+<script>
+  function toggleLeaveRow(type) {
+    const isChecked = document.getElementById(`check_${type}`).checked;
+    const row = document.getElementById(`row_${type}`);
+    const inputs = [
+      document.getElementById(`from_${type}`),
+      document.getElementById(`to_${type}`),
+      document.getElementById(`rem_${type}`)
+    ];
+    
+    if(isChecked) {
+      row.classList.remove('disabled-row');
+      inputs.forEach(input => input.disabled = false);
+    } else {
+      row.classList.add('disabled-row');
+      inputs.forEach(input => {
+        input.disabled = true;
+        input.value = "";
       });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = 'Increment_Certificate.doc';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
     }
-  </script>
+  }
+
+  function getFullPayload() {
+    const leaveTypes = ["maternity", "eol", "medical", "childcare", "earned"];
+    let leavesObj = {};
+    
+    leaveTypes.forEach(t => {
+      const isChecked = document.getElementById(`check_${t}`).checked;
+      leavesObj[t] = {
+        availed: isChecked,
+        from: isChecked ? document.getElementById(`from_${t}`).value : "",
+        to: isChecked ? document.getElementById(`to_${t}`).value : "",
+        remarks: isChecked ? document.getElementById(`rem_${t}`).value : ""
+      };
+    });
+
+    return {
+      name: document.getElementById("name").value,
+      gender: document.getElementById("gender").value,
+      designation: document.getElementById("designation").value,
+      placeOfWorking: document.getElementById("placeOfWorking").value,
+      mandal: document.getElementById("mandal").value,
+      district: document.getElementById("district").value,
+      dateOfJoining: document.getElementById("dateOfJoining").value,
+      regularisationDate: document.getElementById("regularisationDate").value,
+      basicPay: document.getElementById("basicPay").value,
+      lastIncrementDate: document.getElementById("lastIncrementDate").value,
+      leaves: leavesObj
+    };
+  }
+
+  function formatDateString(str) {
+    if(!str) return "NIL";
+    const d = new Date(str);
+    if(isNaN(d.getTime())) return "NIL";
+    return `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}/${d.getFullYear()}`;
+  }
+
+  function calculateDaysCount(startStr, endStr) {
+    if(!startStr || !endStr) return "NIL";
+    const start = new Date(startStr);
+    const end = new Date(endStr);
+    if(isNaN(start.getTime()) || isNaN(end.getTime())) return "NIL";
+    const diff = (end - start) / (1000 * 60 * 60 * 24) + 1;
+    return diff > 0 ? diff : 0;
+  }
+
+  function generatePreview() {
+    const p = getFullPayload();
+    const outBox = document.getElementById("output");
+    
+    const prefix = p.gender === "Male" ? "Sri" : "Smt";
+    const heShe = p.gender === "Male" ? "He" : "She";
+    const hisHer = p.gender === "Male" ? "His" : "Her";
+    
+    const joined = formatDateString(p.dateOfJoining);
+    const regularised = formatDateString(p.regularisationDate);
+    const incremented = formatDateString(p.lastIncrementDate);
+    
+    let oneYear = "[Date]";
+    if(p.lastIncrementDate) {
+      const d = new Date(p.lastIncrementDate);
+      d.setDate(d.getDate() + 364);
+      oneYear = `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}/${d.getFullYear()}`;
+    }
+
+    const leaveTypesMap = [
+      { key: "maternity", label: "Maternity Leave" },
+      { key: "eol", label: "EOL - ExtraOrdinary Leave" },
+      { key: "medical", label: "Medical Leave (HPL/Commuted)" },
+      { key: "childcare", label: "Child Care Leave" },
+      { key: "earned", label: "Earned Leave" }
+    ];
+    
+    let rowHtml = "";
+    leaveTypesMap.forEach((item, index) => {
+      const l = p.leaves[item.key];
+      if(l.availed) {
+        const days = calculateDaysCount(l.from, l.to);
+        rowHtml += `<tr>
+          <td style="text-align:center; padding: 6px;">${index+1}</td>
+          <td style="padding: 6px;">${item.label}</td>
+          <td style="text-align:center; padding: 6px;">${formatDateString(l.from)}</td>
+          <td style="text-align:center; padding: 6px;">${formatDateString(l.to)}</td>
+          <td style="text-align:center; padding: 6px;">${days}</td>
+          <td style="text-align:center; padding: 6px;">${l.remarks || '-'}</td>
+        </tr>`;
+      } else {
+        rowHtml += `<tr>
+          <td style="text-align:center; padding: 6px;">${index+1}</td>
+          <td style="padding: 6px;">${item.label}</td>
+          <td style="text-align:center; padding: 6px;">NIL</td>
+          <td style="text-align:center; padding: 6px;">NIL</td>
+          <td style="text-align:center; padding: 6px;">NIL</td>
+          <td style="text-align:center; padding: 6px;">-</td>
+        </tr>`;
+      }
+    });
+
+    outBox.style.display = "block";
+    outBox.innerHTML = `
+      <h3 style="text-align:center; margin-bottom: 25px;"><u>EMPLOYEE SERVICE CERTIFICATE</u></h3>
+      <p style="text-indent: 50px; text-align: justify; line-height: 2; margin-bottom: 15px;">This is to certify that ${prefix} ${p.name || '[Name]'} working as ${p.designation || '[Designation]'} at ${p.placeOfWorking || '[Secretariat]'} Grama Sachivalayam, ${p.mandal || '[Mandal]'} (M), ${p.district || '[District]'} District from ${joined}. ${heShe} has regularised from service on ${regularised}. ${hisHer} basic pay is Rs. ${p.basicPay || '[Amount]'}/- wef ${incremented}. ${heShe} has completed one year of ${hisHer.toLowerCase()} service without any break. ${heShe} has paid and drawn salary for the period from ${incremented} to ${oneYear}.</p>
+      
+      <p style="margin-top: 0; margin-bottom: 6px; line-height: 2;">${hisHer} leave availed details are as follows from the period ${incremented} to ${oneYear}:</p>
+      
+      <table border="1" style="width:100%; border-collapse:collapse; margin: 0 0 12px 0;" cellpadding="5">
+        <thead>
+          <tr style="background:#f2f7fc;">
+            <th style="text-align:center; padding: 6px;">S. No</th>
+            <th>Type of Leave</th>
+            <th style="text-align:center; padding: 6px;">From</th>
+            <th style="text-align:center; padding: 6px;">To</th>
+            <th style="text-align:center; padding: 6px;">Days</th>
+            <th style="text-align:center; padding: 6px;">Remarks</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rowHtml}
+        </tbody>
+      </table>
+      
+      <p style="margin-top: 0; margin-bottom: 0; line-height: 2;">So ${prefix} ${p.name || '[Name]'}, ${p.designation || '[Designation]'} is eligible for Annual Grade Increment wef ${oneYear} as per our records.</p>
+      <p style="margin-top: 45px; text-align:right; font-weight:bold; line-height: 1.5;">Panchayath Secretary (DDO)<br>${p.placeOfWorking || '[Secretariat]'} Village Secretariat<br>${p.mandal || '[Mandal]'} (M.), ${p.district || '[District]'} Dist.</p>
+    `;
+    outBox.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  async function downloadWordDocx() {
+    const payload = getFullPayload();
+    try {
+      const response = await fetch('/api/increment_generator', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (!response.ok) throw new Error("API compilation error.");
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${payload.name || 'Employee'}_Incrementcertificate.docx`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      a.remove();
+    } catch (err) {
+      alert("❌ Failed to output native word document from server container.");
+    }
+  }
+</script>
 </body>
 </html>
