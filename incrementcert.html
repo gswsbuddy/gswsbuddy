@@ -15,14 +15,19 @@
     .scope-btn { flex: 1; padding: 10px; border: none; background: transparent; font-size: 14px; font-weight: bold; color: #555; cursor: pointer; border-radius: 6px; transition: all 0.2s ease; }
     .scope-btn.active { background: #005a9c; color: white; box-shadow: 0 2px 5px rgba(0,0,0,0.15); }
 
+    /* Custom Switch Toggle button option */
+    .custom-toggle-container { margin-top: 6px; text-align: right; }
+    .toggle-custom-btn { background: none; border: none; color: #005a9c; font-size: 12.5px; font-weight: bold; cursor: pointer; text-decoration: underline; padding: 0; }
+    .toggle-custom-btn:hover { color: #003366; }
+
     .leave-matrix-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
     .leave-matrix-table th, .leave-matrix-table td { border: 1px solid #ddd; padding: 10px; text-align: left; font-size: 13.5px; }
     .leave-matrix-table th { background: #f2f7fc; color: #003366; }
     .leave-matrix-table input[type="date"] { padding: 4px; font-size: 12.5px; }
     .disabled-row { background-color: #fafafa; opacity: 0.6; }
     
-    button { margin-top: 25px; margin-right: 10px; padding: 10px 18px; background-color: #005a9c; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; transition: background 0.2s; }
-    button:hover { background-color: #004475; }
+    button.action-btn { margin-top: 25px; margin-right: 10px; padding: 10px 18px; background-color: #005a9c; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; transition: background 0.2s; }
+    button.action-btn:hover { background-color: #004475; }
     .btn-download { background-color: #28a745; }
     .btn-download:hover { background-color: #218838; }
     
@@ -88,10 +93,22 @@
       <option value="">-- Select Mandal First --</option>
     </select>
 
-    <label>Designation</label>
-    <select id="designation">
-      <option value="">-- Loading Positions... --</option>
-    </select>
+    <!-- Designation Container Section -->
+    <div id="designationDropdownWrapper">
+      <label>Designation</label>
+      <select id="designationSelect">
+        <!-- populated reactively from arrays mapped from image_9715b7.png -->
+      </select>
+    </div>
+    
+    <div id="designationCustomWrapper" style="display: none;">
+      <label>Custom Designation</label>
+      <input type="text" id="designationCustomInput" placeholder="Enter custom designation title manually">
+    </div>
+
+    <div class="custom-toggle-container">
+      <button type="button" class="toggle-custom-btn" id="customToggleBtn" onclick="toggleCustomDesignationMode()">✏️ Write Custom Designation</button>
+    </div>
 
     <label>Date of Working in Present Station</label>
     <input type="date" id="dateOfJoining">
@@ -157,8 +174,8 @@
       </tbody>
     </table>
 
-    <button type="button" onclick="generatePreview()">👁️ Generate Preview</button>
-    <button type="button" class="btn-download" onclick="downloadWordDocx()">📥 Download Natively as Word (.docx)</button>
+    <button type="button" class="action-btn" onclick="generatePreview()">👁️ Generate Preview</button>
+    <button type="button" class="action-btn btn-download" onclick="downloadWordDocx()">📥 Download Natively as Word (.docx)</button>
   </form>
 
   <div id="output"></div>
@@ -166,6 +183,39 @@
 
 <script>
   let dataDropdownStructure = null;
+  let isCustomDesignationMode = false;
+
+  // 👑 Exact designations transcribed directly verbatim from image_9715b7.png
+  const ruralDesignationsList = [
+    "Engineering Assistant",
+    "ANM",
+    "Panchayat Secretary Grade VI(Digital Assistant)",
+    "Grama Mahila Samrakshana Karyadarshi",
+    "Village Surveyor",
+    "Welfare & Educational Assistant",
+    "Energy Assistant",
+    "Panchayat Secretary",
+    "Animal Husbandry Assistant",
+    "Village Revenue Officer",
+    "Panchayat Secretary (Grade V)",
+    "Village Agriculture Assistant",
+    "Village Horticulture Assistant",
+    "Fisheries Assistant",
+    "Village Sericulture Assistant"
+  ];
+
+  const urbanDesignationsList = [
+    "Ward Administrative Secretary",
+    "Ward Women & Weaker Sections Protection Secretary",
+    "Ward Health Secretary",
+    "Ward Revenue Secretary",
+    "Ward Planing& Regulation Secretary",
+    "Ward Sanitation& Environment Secretary",
+    "Ward Welfare & Development Secretary",
+    "Ward Education Secretary",
+    "Ward Amenities Secretary",
+    "Ward Energy Secretary"
+  ];
 
   function toggleAreaScope(scope) {
     document.getElementById("areaScope").value = scope;
@@ -178,10 +228,35 @@
     document.getElementById("district").innerHTML = '<option value="">-- Select District --</option>';
     document.getElementById("mandal").innerHTML = '<option value="">-- Select District First --</option>';
     document.getElementById("placeOfWorking").innerHTML = '<option value="">-- Select Mandal First --</option>';
-    document.getElementById("designation").innerHTML = '<option value="">-- Loading... --</option>';
     document.getElementById("output").style.display = "none";
 
+    // Revert custom designation mode when toggling scopes to prevent ghost values
+    if (isCustomDesignationMode) {
+      toggleCustomDesignationMode();
+    }
+
     loadDynamicDropdownAssets();
+  }
+
+  // Toggles the interface between list selection mode and manual entry mode
+  function toggleCustomDesignationMode() {
+    isCustomDesignationMode = !isCustomDesignationMode;
+    
+    const dropWrapper = document.getElementById("designationDropdownWrapper");
+    const customWrapper = document.getElementById("designationCustomWrapper");
+    const toggleBtn = document.getElementById("customToggleBtn");
+
+    if (isCustomDesignationMode) {
+      dropWrapper.style.display = "none";
+      customWrapper.style.display = "block";
+      toggleBtn.textContent = "📋 Choose from Standard List";
+      document.getElementById("designationCustomInput").value = "";
+    } else {
+      dropWrapper.style.display = "block";
+      customWrapper.style.display = "none";
+      toggleBtn.textContent = "✏️ Write Custom Designation";
+      populateDesignationsMenu();
+    }
   }
 
   async function loadDynamicDropdownAssets() {
@@ -193,23 +268,33 @@
       dataDropdownStructure = payload.mapping;
 
       const distSelect = document.getElementById("district");
+      distSelect.innerHTML = '<option value="">-- Select District --</option>';
       Object.keys(dataDropdownStructure).sort().forEach(d => {
         const opt = document.createElement("option");
         opt.value = opt.textContent = d;
         distSelect.appendChild(opt);
       });
 
-      const desigSelect = document.getElementById("designation");
-      desigSelect.innerHTML = '<option value="">-- Select Designation --</option>';
-      payload.designations.forEach(job => {
-        const opt = document.createElement("option");
-        opt.value = opt.textContent = job;
-        desigSelect.appendChild(job);
-      });
+      populateDesignationsMenu();
 
     } catch (err) {
-      console.error("Failed loading dynamic menu layout streams.", err);
+      console.error("Failed loading dynamic menu layouts.", err);
     }
+  }
+
+  // Renders standard options targeting image_9715b7.png layout rules
+  function populateDesignationsMenu() {
+    const activeScope = document.getElementById("areaScope").value;
+    const desigSelect = document.getElementById("designationSelect");
+    desigSelect.innerHTML = '<option value="">-- Select Designation --</option>';
+    
+    const targetList = (activeScope === "RURAL") ? ruralDesignationsList : urbanDesignationsList;
+    
+    targetList.forEach(job => {
+      const opt = document.createElement("option");
+      opt.value = opt.textContent = job;
+      desigSelect.appendChild(opt);
+    });
   }
 
   function handleDistrictChange() {
@@ -263,6 +348,13 @@
     }
   }
 
+  function getSelectedDesignationValue() {
+    if (isCustomDesignationMode) {
+      return document.getElementById("designationCustomInput").value.trim() || "[Designation]";
+    }
+    return document.getElementById("designationSelect").value || "[Designation]";
+  }
+
   function getFullPayload() {
     const leaveTypes = ["maternity", "eol", "medical", "childcare", "earned"];
     let leavesObj = {};
@@ -281,7 +373,7 @@
       scope: document.getElementById("areaScope").value,
       name: document.getElementById("name").value,
       gender: document.getElementById("gender").value,
-      designation: document.getElementById("designation").value,
+      designation: getSelectedDesignationValue(),
       placeOfWorking: document.getElementById("placeOfWorking").value,
       mandal: document.getElementById("mandal").value,
       district: document.getElementById("district").value,
@@ -328,7 +420,6 @@
       oneYear = `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}/${d.getFullYear()}`;
     }
 
-    // Fixed Branding Mapping Rules
     const brandingLabel = p.scope === "RURAL" ? "Swarna Gramam" : "Swarna Ward";
     const authorityLabel = p.scope === "RURAL" ? "Panchayath Secretary (DDO)" : "Ward Administrative Secretary";
 
@@ -368,7 +459,7 @@
     outBox.style.display = "block";
     outBox.innerHTML = `
       <h3 style="text-align:center; margin-bottom: 25px;"><u>EMPLOYEE SERVICE CERTIFICATE</u></h3>
-      <p style="text-indent: 50px; text-align: justify; line-height: 2; margin-bottom: 15px;">This is to certify that ${prefix} ${p.name || '[Name]'} working as ${p.designation || '[Designation]'} at ${p.placeOfWorking || '[Secretariat]'} ${brandingLabel}, ${p.mandal || '[Mandal]'} (M), ${p.district || '[District]'} District from ${joined}. ${heShe} has regularised from service on ${regularised}. ${hisHer} basic pay is Rs. ${p.basicPay || '[Amount]'}/- wef ${incremented}. ${heShe} has completed one year of ${hisHer.toLowerCase()} service without any break. ${heShe} has paid and drawn salary for the period from ${incremented} to ${oneYear}.</p>
+      <p style="text-indent: 50px; text-align: justify; line-height: 2; margin-bottom: 15px;">This is to certify that ${prefix} ${p.name || '[Name]'} working as ${p.designation} at ${p.placeOfWorking || '[Secretariat]'} ${brandingLabel}, ${p.mandal || '[Mandal]'} (M), ${p.district || '[District]'} District from ${joined}. ${heShe} has regularised from service on ${regularised}. ${hisHer} basic pay is Rs. ${p.basicPay || '[Amount]'}/- wef ${incremented}. ${heShe} has completed one year of ${hisHer.toLowerCase()} service without any break. ${heShe} has paid and drawn salary for the period from ${incremented} to ${oneYear}.</p>
       
       <p style="margin-top: 0; margin-bottom: 6px; line-height: 2;">${hisHer} leave availed details are as follows from the period ${incremented} to ${oneYear}:</p>
       
@@ -388,7 +479,7 @@
         </tbody>
       </table>
       
-      <p style="margin-top: 0; margin-bottom: 0; line-height: 2;">So ${prefix} ${p.name || '[Name]'}, ${p.designation || '[Designation]'} is eligible for Annual Grade Increment wef ${oneYear} as per our records.</p>
+      <p style="margin-top: 0; margin-bottom: 0; line-height: 2;">So ${prefix} ${p.name || '[Name]'}, ${p.designation} is eligible for Annual Grade Increment wef ${oneYear} as per our records.</p>
       <p style="margin-top: 45px; text-align:right; font-weight:bold; line-height: 1.5;">${authorityLabel}<br>${p.placeOfWorking || '[Secretariat]'} ${brandingLabel}<br>${p.mandal || '[Mandal]'} (M.), ${p.district || '[District]'} Dist.</p>
     `;
     outBox.scrollIntoView({ behavior: 'smooth' });
