@@ -20,6 +20,10 @@
       "dest": "api/mango_ecrop_data.py"
     },
     {
+      "src": "/",
+      "dest": "/index.html"
+    },
+    {
       "src": "/(.*)",
       "dest": "/$1"
     }
