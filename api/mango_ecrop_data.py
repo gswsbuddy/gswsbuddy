@@ -7,6 +7,7 @@ app = Flask(__name__)
 
 
 def load_spreadsheet(file_bytes):
+  """Loads standard Excel files or HTML-based .xls files from government portals."""
   try:
     return pd.read_excel(file_bytes)
   except Exception:
@@ -16,9 +17,13 @@ def load_spreadsheet(file_bytes):
     return tables[0]
 
 
-@app.route("/api/mango_ecrop_data", methods=["POST"])
-@app.route("/", methods=["POST"])
+@app.route("/api/mango_ecrop_data", methods=["POST", "OPTIONS"])
+@app.route("/", methods=["POST", "OPTIONS"])
 def process_file():
+  # Handle preflight CORS request from browser
+  if request.method == "OPTIONS":
+    return "", 200
+
   if "file" not in request.files:
     return jsonify({"error": "No file uploaded."}), 400
 
@@ -95,6 +100,7 @@ def process_file():
           else ""
       )
 
+      # Deduplicate by Booking ID to prevent double counting
       if booking_col:
         unique_group = group.drop_duplicates(subset=[booking_col])
         total_land_extent = unique_group[area_col].sum()
@@ -168,7 +174,6 @@ def process_file():
     )
 
   except Exception as e:
-    # Print traceback to Vercel logs and return exact error message in response
     error_trace = traceback.format_exc()
     print(error_trace)
     return jsonify({"error": str(e), "traceback": error_trace}), 500

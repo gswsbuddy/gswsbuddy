@@ -1,13 +1,27 @@
 {
   "version": 2,
-  "rewrites": [
+  "builds": [
     {
-      "source": "/api/designation_finder",
-      "destination": "/api/designation_finder.py"
+      "src": "api/*.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/designation_finder",
+      "dest": "api/designation_finder.py"
     },
     {
-      "source": "/api/accounts",
-      "destination": "/api/accounts.py"
+      "src": "/api/accounts",
+      "dest": "api/accounts.py"
+    },
+    {
+      "src": "/api/mango_ecrop_data",
+      "dest": "api/mango_ecrop_data.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
     }
   ]
 }
