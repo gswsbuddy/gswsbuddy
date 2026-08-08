@@ -8,6 +8,14 @@
     {
       "source": "/api/accounts",
       "destination": "/api/accounts.py"
+    },
+    {
+      "source": "/api/test_excel",
+      "destination": "/api/test_excel.py"
+    },
+    {
+      "source": "/test",
+      "destination": "/test.html"
     }
   ]
 }
