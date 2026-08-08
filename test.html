@@ -44,8 +44,16 @@ document.getElementById('testForm').addEventListener('submit', async function(e)
         });
 
         if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.error || 'Server error occurred');
+            let errorMsg = 'Server error occurred.';
+            try {
+                const errorData = await response.json();
+                errorMsg = errorData.error || errorData.traceback || errorMsg;
+            } catch (jsonErr) {
+                // If Vercel returns plain text/HTML instead of JSON
+                const textMsg = await response.text();
+                errorMsg = `HTTP ${response.status}: ${textMsg.substring(0, 150)}...`;
+            }
+            throw new Error(errorMsg);
         }
 
         const blob = await response.blob();
