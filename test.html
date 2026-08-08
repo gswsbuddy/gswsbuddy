@@ -7,7 +7,7 @@
         body { font-family: sans-serif; padding: 40px; text-align: center; }
         .box { border: 2px dashed #3498db; padding: 30px; display: inline-block; border-radius: 8px; }
         button { background: #27ae60; color: white; padding: 10px 20px; border: none; font-weight: bold; cursor: pointer; margin-top: 15px; }
-        #status { margin-top: 15px; font-weight: bold; }
+        #status { margin-top: 20px; font-weight: bold; font-family: monospace; text-align: left; background: #f8f9fa; padding: 15px; border-radius: 5px; }
     </style>
 </head>
 <body>
@@ -44,14 +44,17 @@ document.getElementById('testForm').addEventListener('submit', async function(e)
         });
 
         if (!response.ok) {
-            let errorMsg = 'Server error occurred.';
+            // READ RESPONSE STREAM ONLY ONCE
+            const responseText = await response.text();
+            let errorMsg = `HTTP ${response.status}: ${response.statusText}`;
+
             try {
-                const errorData = await response.json();
+                // Try parsing as JSON error object
+                const errorData = JSON.parse(responseText);
                 errorMsg = errorData.error || errorData.traceback || errorMsg;
-            } catch (jsonErr) {
-                // If Vercel returns plain text/HTML instead of JSON
-                const textMsg = await response.text();
-                errorMsg = `HTTP ${response.status}: ${textMsg.substring(0, 150)}...`;
+            } catch (e) {
+                // If Vercel returned HTML or raw text, show clean snippet
+                errorMsg = `Server Response:\n${responseText.substring(0, 300)}`;
             }
             throw new Error(errorMsg);
         }
@@ -67,7 +70,7 @@ document.getElementById('testForm').addEventListener('submit', async function(e)
 
         statusDiv.innerText = '✅ Success! Excel downloaded.';
     } catch (err) {
-        statusDiv.innerText = '❌ Failed: ' + err.message;
+        statusDiv.innerText = '❌ Failed:\n' + err.message;
     }
 });
 </script>
