@@ -1,9 +1,28 @@
 import io
 import traceback
-import pandas as pd
 from flask import Flask, jsonify, request, send_file
+import pandas as pd
 
 app = Flask(__name__)
+
+
+def parse_file_safely(file_storage):
+  """Safely parses .xlsx or HTML-based .xls portal exports."""
+  file_bytes = file_storage.read()
+
+  # Attempt 1: Standard Excel reading
+  try:
+    return pd.read_excel(io.BytesIO(file_bytes))
+  except Exception:
+    pass
+
+  # Attempt 2: Portal HTML-table reading (.xls format)
+  try:
+    html_str = file_bytes.decode('utf-8', errors='ignore')
+    tables = pd.read_html(io.StringIO(html_str))
+    return tables[0]
+  except Exception as e:
+    raise ValueError(f'Could not parse spreadsheet file: {str(e)}')
 
 
 @app.route('/api/test_excel', methods=['POST', 'OPTIONS'])
@@ -13,23 +32,20 @@ def process_sl_no():
     return '', 200
 
   if 'file' not in request.files:
-    return jsonify({'error': 'No file uploaded.'}), 400
+    return jsonify({'error': 'No file uploaded in request.'}), 400
 
   file = request.files['file']
+  if file.filename == '':
+    return jsonify({'error': 'Empty file selected.'}), 400
 
   try:
-    # 1. Handle both native .xlsx and portal HTML-based .xls files
-    try:
-      df = pd.read_excel(file)
-    except Exception:
-      file.seek(0)
-      html_content = file.read().decode('utf-8', errors='ignore')
-      df = pd.read_html(html_content)[0]
+    # Read dataframe cleanly
+    df = parse_file_safely(file)
 
-    # 2. Insert Sl. No at position 0
+    # Insert Sl. No column at the beginning
     df.insert(0, 'Sl. No', range(1, len(df) + 1))
 
-    # 3. Save to Excel stream
+    # Export to memory stream using openpyxl
     output = io.BytesIO()
     with pd.ExcelWriter(output, engine='openpyxl') as writer:
       df.to_excel(writer, index=False, sheet_name='Summary')
@@ -45,7 +61,6 @@ def process_sl_no():
     )
 
   except Exception as e:
-    # Catch crash details and return as JSON so JavaScript won't break
-    error_details = traceback.format_exc()
-    print(error_details)
-    return jsonify({'error': str(e), 'traceback': error_details}), 500
+    err_trace = traceback.format_exc()
+    print(err_trace)
+    return jsonify({'error': str(e), 'traceback': err_trace}), 500
